@@ -164,7 +164,7 @@ class InterfaceTests(unittest.TestCase):
                     tools = await session.list_tools()
                     self.assertIn("hss_run", [t.name for t in tools.tools])
                     search_tool = next(t for t in tools.tools if t.name == "hss_search")
-                    self.assertIn("direction", search_tool.inputSchema["properties"])
+                    self.assertIn("direction", search_tool.model_dump(by_alias=True)["inputSchema"]["properties"])
                     result = await session.call_tool(
                         "hss_search", {"field": "philosophy", "direction": "logic"}
                     )
