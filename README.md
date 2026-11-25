@@ -8,6 +8,14 @@ HSS brings research guidance, methods, software, Skills, literature and data con
 
 The catalogue covers philosophy, literature and language, history, arts and culture, sociology and anthropology, politics and public policy, law, Marxist theory, economics, business and finance, education, psychology, communication, population and human geography. Common research capabilities are shared across these fields.
 
+## Implementation status
+
+This is a working environment foundation, not a completed implementation of every HSS method. Field and direction entries provide navigation; the 91 modules combine shared research resources, software recipes and explicit operations. The runtime implements 24 statistical and 10 material/collection operations. The wider method catalogue, R exports and upstream software entries have different execution requirements, documented in [execution coverage](docs/execution.md).
+
+Python implements preparation, studies and the CLI/MCP interface. TypeScript in `packages/client/src` implements the host client and selection UI. SQL in `state.py`, `knowledge.py` and `materials.py` manages SQLite records, research indexes and bibliographies. R generators produce scripts for external statistical environments. There is no custom Rust or C/C++ runtime in this repository; hosts and upstream tools keep their own execution implementations.
+
+Host interfaces are implemented. Registration inside a running Qiushi Engine or Origo product, execution of every external software recipe, and end-to-end research examples for every direction remain separate work. Publishing the complete source does not imply that those integrations or all methods have been completed.
+
 ## Start
 
 Python 3.11 or later. The catalogue, research guidance, material operations, JSON API and MCP server require only Python's standard library.
