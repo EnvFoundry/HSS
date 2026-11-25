@@ -37,6 +37,60 @@ export interface ResearchModule {
     kind: string;
     components: string[];
     execution: string;
+    backends?: Record<string, string[]>;
+}
+export interface Study {
+    title?: string;
+    question?: string;
+    tasks: Record<string, unknown>[];
+}
+export interface StudyResult {
+    output: string;
+    tasks: string[];
+    results: string;
+    report: string;
+}
+export interface ResearchBrief {
+    phenomenon?: string;
+    question?: string;
+    goal?: string;
+    scope?: string;
+    materials?: unknown[];
+    [key: string]: unknown;
+}
+export interface Exploration {
+    brief: ResearchBrief;
+    next_questions: string[];
+    design_questions: {
+        field: string;
+        question: string;
+    }[];
+    candidate_routes: {
+        module: string;
+        purpose: string;
+        inputs: string[];
+        outputs: string[];
+    }[];
+}
+export interface Blueprint {
+    modules: {
+        id: string;
+        name: string;
+        purpose: string;
+        inputs: string[];
+        outputs: string[];
+    }[];
+    operations: Record<string, unknown>[];
+    design: Exploration;
+    [key: string]: unknown;
+}
+export interface Operation {
+    id: string;
+    name: string;
+    kind: string;
+    scope: string;
+    input_schema: Record<string, unknown>;
+    example: Record<string, unknown>;
 }
 export interface Binding {
     command: string[];
@@ -82,14 +136,45 @@ export declare class HSSClient {
     request<T>(action: string, args?: Record<string, unknown>, progress?: (event: Progress) => void): Promise<T>;
     browse(): Promise<Catalogue>;
     search(query?: string, field?: string): Promise<ResearchModule[]>;
-    plan(selections: Selection[], existing?: Binding[]): Promise<Plan>;
+    plan(selections: Selection[], existing?: Binding[], backends?: Record<string, string>): Promise<Plan>;
     prepare(selections: Selection[], options?: {
         software?: boolean;
         existing?: Binding[];
+        backends?: Record<string, string>;
         options?: Record<string, unknown>;
     }, progress?: (event: Progress) => void): Promise<Preparation>;
     context(selections: Selection[]): Promise<unknown>;
+    describe(operation: string): Promise<Operation>;
+    operations(): Promise<{
+        operations: Omit<Operation, "example" | "input_schema">[];
+    }>;
+    explore(brief: ResearchBrief): Promise<Exploration>;
+    blueprint(selections: Selection[], brief?: ResearchBrief): Promise<Blueprint>;
+    project(path: string, title: string, options?: {
+        brief?: ResearchBrief;
+        selections?: Selection[];
+        study?: Study;
+    }): Promise<{
+        project: string;
+        brief: string;
+        study: string;
+    }>;
+    run(study: Study, output: string, base?: string): Promise<StudyResult>;
+    manuscript(document: Record<string, unknown>, output: string, base?: string): Promise<{
+        manuscript: string;
+        sections: number;
+        references: number;
+    }>;
+    installed(): Promise<{
+        modules: string[];
+        bindings: Record<string, Binding>;
+    }>;
+    connect(provider: string, query: string, options?: Record<string, unknown>, limit?: number): Promise<unknown>;
+    remove(selections: Selection[], prune?: boolean): Promise<unknown>;
+    export(output: string, selections: Selection[]): Promise<unknown>;
 }
+/** NDJSON streams preparation progress before the final response. */
+export declare function httpTransport(url?: string): Transport;
 export declare class SelectionSet {
     private values;
     set(module: string, selected: boolean): void;

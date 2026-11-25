@@ -1,4 +1,4 @@
-import { HSSClient } from './client.js';
+import { HSSClient } from "./client.js";
 /** The host supplies the request transport; this element owns no job service. */
 export declare class HSSPicker extends HTMLElement {
     private client?;
@@ -11,9 +11,11 @@ export declare class HSSPicker extends HTMLElement {
     private busy;
     private status;
     private software;
+    private chosenBackends;
     constructor();
     connect(client: HSSClient): Promise<void>;
     get selections(): string[];
+    get backends(): Record<string, string>;
     private text;
     private button;
     private render;
