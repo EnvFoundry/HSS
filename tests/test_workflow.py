@@ -128,7 +128,9 @@ class WorkflowTests(unittest.TestCase):
             forwarded = json.loads(
                 (root / "results/calculation/input.json").read_text(encoding="utf-8")
             )
-            self.assertEqual(Path(forwarded["data"]), root / "results/join/means.csv")
+            self.assertTrue(
+                Path(forwarded["data"]).samefile(root / "results/join/means.csv")
+            )
             output = request(
                 {
                     "action": "manuscript",
