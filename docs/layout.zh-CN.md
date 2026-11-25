@@ -43,14 +43,14 @@ hss project /research/Projects/community-study --title "城市社区参与研究
 hss --space /research export bundle:interview-study --output /research/System/plugins/hss
 ```
 
-宿主可以通过 JSON 接口的 `space` 和 `areas` 改写资源区域，例如保持现有的小写目录，或把软件和缓存放到容量更大的磁盘：
+宿主可以通过 JSON 接口的 `space` 和 `layout` 改写资源区域，例如保持现有的小写目录，或把软件和缓存放到容量更大的磁盘：
 
 ```json
 {
   "action": "plan",
   "space": "D:/Research",
   "selections": ["bundle:interview-study"],
-  "areas": {
+  "layout": {
     "env": "E:/ResearchSoftware/hss",
     "skills": "system/skills",
     "cache": "E:/ResearchCache/hss"
