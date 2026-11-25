@@ -2,6 +2,7 @@ import asyncio
 import json
 import os
 from pathlib import Path
+import sqlite3
 import subprocess
 import sys
 import tempfile
@@ -11,6 +12,7 @@ from hss.api import request
 from hss.connectors import search
 from hss.hosts import export
 from hss.manager import Manager
+from hss.materials import bibliography
 from hss.mcp import dispatch
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -96,6 +98,34 @@ class InterfaceTests(unittest.TestCase):
             result = search("crossref", "community education", 5)
         self.assertEqual(result["records"][0]["authors"], ["A Researcher"])
         self.assertIn("rows=5", call.call_args.args[0])
+
+    def test_databases_release_connections_after_operations(self):
+        connect = sqlite3.connect
+        connections = []
+
+        def remember(*args, **kwargs):
+            connection = connect(*args, **kwargs)
+            connections.append(connection)
+            return connection
+
+        with tempfile.TemporaryDirectory() as tmp:
+            with patch("sqlite3.connect", side_effect=remember):
+                request(
+                    {
+                        "action": "index",
+                        "space": tmp,
+                        "selections": ["argument-analysis"],
+                    }
+                )
+                request({"action": "lookup", "space": tmp, "query": "论证"})
+                result = bibliography(
+                    {"works": [{"id": "example", "title": "示例文献"}]}, Path(tmp)
+                )
+                self.assertEqual(result["works"], 1)
+            self.assertEqual(len(connections), 3)
+            for connection in connections:
+                with self.assertRaises(sqlite3.ProgrammingError):
+                    connection.execute("SELECT 1")
 
     def test_official_mcp_client(self):
         try:

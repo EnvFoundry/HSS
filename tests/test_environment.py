@@ -77,7 +77,9 @@ class EnvironmentTests(unittest.TestCase):
             m = Manager(tmp, {"knowledge": "shared/knowledge"})
             m.prepare(["concept-analysis"])
             self.assertTrue((Path(tmp) / "shared/knowledge/theory.md").exists())
-            self.assertFalse((Path(tmp) / "System").exists())
+            names = {path.name for path in Path(tmp).iterdir()}
+            self.assertIn("system", names)
+            self.assertNotIn("System", names)
 
     def test_existing_interpreter_reused_and_never_removed(self):
         with tempfile.TemporaryDirectory() as tmp:
