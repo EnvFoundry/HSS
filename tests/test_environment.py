@@ -42,11 +42,17 @@ class EnvironmentTests(unittest.TestCase):
         self.assertEqual(len(context["modules"]), len(c.modules))
         for module in c.modules.values():
             for filename in module.get("workflows", []):
-                data = json.loads((DATA / "workflows" / filename).read_text())
+                data = json.loads(
+                    (DATA / "workflows" / filename).read_text(encoding="utf-8")
+                )
                 self.assertTrue(data)
         self.assertEqual(
             len(request({"action": "methods"})),
-            len(json.loads((DATA / "methods.json").read_text())["methods"]),
+            len(
+                json.loads((DATA / "methods.json").read_text(encoding="utf-8"))[
+                    "methods"
+                ]
+            ),
         )
 
     def test_resource_selection_and_shared_removal(self):

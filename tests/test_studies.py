@@ -19,10 +19,14 @@ class StudyTests(unittest.TestCase):
         for path in EX.glob("*-study.json"):
             with self.subTest(path=path.name), tempfile.TemporaryDirectory() as tmp:
                 result = Manager(Path(tmp) / "space").run_study(
-                    json.loads(path.read_text()), Path(tmp) / "result", EX
+                    json.loads(path.read_text(encoding="utf-8")),
+                    Path(tmp) / "result",
+                    EX,
                 )
                 self.assertTrue(Path(result["report"]).is_file())
-                records = json.loads(Path(result["results"]).read_text())
+                records = json.loads(
+                    Path(result["results"]).read_text(encoding="utf-8")
+                )
                 self.assertTrue(
                     all(r["status"] == "completed" for r in records.values())
                 )
@@ -52,7 +56,7 @@ class StudyTests(unittest.TestCase):
             normalize({"id": "a", "branch_id": "NC03.linear", "operation": "rct"})
 
     def test_future_features_are_not_used_in_prediction(self):
-        study = json.loads((EX / "prediction-study.json").read_text())
+        study = json.loads((EX / "prediction-study.json").read_text(encoding="utf-8"))
         study["tasks"] = study["tasks"][:1]
         study["tasks"][0]["variable_metadata"]["x1"]["available_at"] = 1
         with (
@@ -62,7 +66,7 @@ class StudyTests(unittest.TestCase):
             run(study, tmp, EX)
 
     def test_pca_cannot_preprocess_prediction_test_rows(self):
-        study = json.loads((EX / "measurement-study.json").read_text())
+        study = json.loads((EX / "measurement-study.json").read_text(encoding="utf-8"))
         task = study["tasks"][1]
         task.update(branch_id="NC04.regression", prediction={"split": "iid_holdout"})
         with (
@@ -125,7 +129,7 @@ class StudyTests(unittest.TestCase):
         }
         with tempfile.TemporaryDirectory() as tmp:
             result = export_r("did", task, EX / "synthetic_panel.csv", tmp)
-            text = Path(result["code_file"]).read_text()
+            text = Path(result["code_file"]).read_text(encoding="utf-8")
             self.assertIn('control_group="notyettreated"', text)
             self.assertIn("anticipation=1", text)
             self.assertFalse(result["executed"])

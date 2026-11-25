@@ -23,6 +23,7 @@ class InterfaceTests(unittest.TestCase):
             input=json.dumps({"action": "search", "query": "文本"}),
             capture_output=True,
             text=True,
+            encoding="utf-8",
             check=True,
         )
         self.assertTrue(json.loads(result.stdout))
@@ -37,9 +38,9 @@ class InterfaceTests(unittest.TestCase):
                 capture_output=True,
                 check=True,
             )
-            conf = json.loads((root / "moved/mcp.json").read_text())["mcpServers"][
-                "hss"
-            ]
+            conf = json.loads((root / "moved/mcp.json").read_text(encoding="utf-8"))[
+                "mcpServers"
+            ]["hss"]
             r = subprocess.run(
                 [conf["command"], *conf["args"]],
                 input=json.dumps(
@@ -48,6 +49,7 @@ class InterfaceTests(unittest.TestCase):
                 + "\n",
                 capture_output=True,
                 text=True,
+                encoding="utf-8",
                 check=True,
             )
             self.assertGreater(len(json.loads(r.stdout)["result"]["tools"]), 10)
@@ -111,11 +113,14 @@ class InterfaceTests(unittest.TestCase):
             ) as (reader, writer):
                 async with ClientSession(reader, writer) as session:
                     initialized = await session.initialize()
-                    self.assertEqual(initialized.serverInfo.name, "hss")
+                    self.assertEqual(
+                        initialized.model_dump(by_alias=True)["serverInfo"]["name"],
+                        "hss",
+                    )
                     tools = await session.list_tools()
                     self.assertIn("hss_run", [t.name for t in tools.tools])
                     result = await session.call_tool("hss_browse", {})
-                    self.assertFalse(result.isError)
+                    self.assertFalse(result.model_dump(by_alias=True)["isError"])
                     self.assertIn("fields", json.loads(result.content[0].text))
                     resources = await session.list_resources()
                     self.assertTrue(resources.resources)

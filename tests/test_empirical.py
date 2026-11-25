@@ -11,7 +11,7 @@ EX = Path(__file__).resolve().parents[1] / "examples"
 
 
 def example(name):
-    return json.loads((EX / name).read_text())
+    return json.loads((EX / name).read_text(encoding="utf-8"))
 
 
 def rct_task():
