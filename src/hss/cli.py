@@ -43,9 +43,21 @@ def main(argv=None):
         elif name == "methods":
             p.add_argument("--family")
             p.add_argument("--executable", action="store_true")
-    for name in ("plan", "prepare", "context", "remove", "export", "index"):
+    for name in (
+        "plan",
+        "prepare",
+        "context",
+        "blueprint",
+        "remove",
+        "export",
+        "index",
+    ):
         p = commands.add_parser(name)
         p.add_argument("selections", nargs="*")
+        if name in {"plan", "prepare"}:
+            p.add_argument(
+                "--backend", action="append", default=[], help="MODULE=BACKEND"
+            )
         if name == "prepare":
             p.add_argument("--resources-only", action="store_true")
             p.add_argument("--offline", action="store_true")
@@ -62,6 +74,12 @@ def main(argv=None):
     p = commands.add_parser("project")
     p.add_argument("path")
     p.add_argument("--title", required=True)
+    p.add_argument("--select", dest="selections", action="append", default=[])
+    p.add_argument("--brief", help="Research brief JSON file")
+    p.add_argument("--study", help="Executable study JSON file")
+    p = commands.add_parser("manuscript")
+    p.add_argument("file")
+    p.add_argument("--output", required=True)
     p = commands.add_parser("bind")
     p.add_argument("component")
     p.add_argument("command", nargs="+")
@@ -101,6 +119,10 @@ def main(argv=None):
                     payload[key] = args[key]
         else:
             payload = {k: v for k, v in args.items() if v is not None}
+            if args.get("backend"):
+                payload["backends"] = dict(
+                    value.split("=", 1) for value in args["backend"]
+                )
             if action == "prepare":
                 payload["software"] = not args["resources_only"]
                 payload["options"] = {"offline": args["offline"]}
@@ -111,6 +133,15 @@ def main(argv=None):
                 )
             elif action == "explore":
                 payload["brief"] = read(args["file"])
+            elif action == "project":
+                for key in ("brief", "study"):
+                    if args.get(key):
+                        payload[key] = read(args[key])
+            elif action == "manuscript":
+                payload.update(
+                    document=read(args["file"]),
+                    base=str(Path(args["file"]).resolve().parent),
+                )
             elif action == "export-r":
                 payload["task"] = read(args["file"])
             elif action == "connect" and args.get("options"):
@@ -124,7 +155,10 @@ def main(argv=None):
         return (
             2
             if isinstance(result, dict)
-            and (result.get("failed") or result.get("pending"))
+            and (
+                result.get("failed")
+                or (result.get("pending") and payload.get("software") is not False)
+            )
             else 0
         )
     except (ValueError, KeyError, OSError, RuntimeError, ImportError) as exc:

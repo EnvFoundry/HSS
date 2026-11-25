@@ -64,7 +64,7 @@ print(root / "mcp.json")
     write_json(
         root / "plugin.json",
         {
-            "name": "hss",
+            "name": "hss-research",
             "version": "0.1.0",
             "description": "Humanities and social sciences research resources and execution",
             "skills": ["skills/" + s for s in skills],

@@ -90,7 +90,7 @@ class Manager:
                     if binding
                     else (
                         "install"
-                        if component["kind"] in {"python", "r", "node"}
+                        if component["kind"] in {"python", "r", "node", "native"}
                         else "connect"
                     ),
                     "binding": binding,
@@ -322,6 +322,7 @@ class Manager:
             env={**os.environ, **binding["environment"]},
             capture_output=True,
             text=True,
+            encoding="utf-8",
             timeout=timeout,
         )
         return {"exit_code": run.returncode, "stdout": run.stdout, "stderr": run.stderr}
@@ -329,10 +330,50 @@ class Manager:
     def run_study(self, plan, output, base=None):
         from .study import ordered_tasks
         from .materials import FUNCTIONS
+        from .native import COMPONENTS
+        from .external import R_COMPONENTS
+        import copy
         import os
 
+        plan = copy.deepcopy(plan)
+        for task in plan["tasks"]:
+            operation = task.get("operation")
+            if operation in {"r_analysis", "script", "command"}:
+                component_id = (
+                    R_COMPONENTS.get(task.get("adapter"))
+                    if operation == "r_analysis"
+                    else task.get("component")
+                )
+                if component_id not in self.catalog.components:
+                    raise ValueError("Unknown research runtime: " + str(component_id))
+                definition = self.catalog.components[component_id]
+                if operation != "command" and definition["kind"] not in {
+                    "python",
+                    "r",
+                    "node",
+                }:
+                    raise ValueError(
+                        "Project scripts require a Python, R or Node component"
+                    )
+                binding = software.find_existing(definition, self.state.bindings())
+                if binding is None:
+                    raise ValueError(
+                        f"Prepare or bind {component_id} before running this study"
+                    )
+                task["runtime"] = {**binding, "kind": definition["kind"]}
+            native_component = COMPONENTS.get(task.get("operation"))
+            if native_component:
+                binding = self.state.bindings().get(native_component)
+                if binding is None:
+                    raise ValueError(
+                        f"Prepare or bind {native_component} before running this study"
+                    )
+                task["native_command"] = binding["command"]
         tasks = ordered_tasks(plan)
-        needs_analysis = any(t["operation"] not in FUNCTIONS for t in tasks)
+        needs_analysis = any(
+            t["operation"] not in {*FUNCTIONS, "r_analysis", "script", "command", "sql"}
+            for t in tasks
+        )
         component = "python-empirical" if needs_analysis else None
         if any(
             str(p).lower().endswith(".pdf") for t in tasks for p in t.get("paths", [])

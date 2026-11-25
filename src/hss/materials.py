@@ -13,7 +13,7 @@ import statistics
 import xml.etree.ElementTree as ET
 import zipfile
 
-from .catalog import write_json
+from .catalog import DATA, write_json
 
 
 def extract(path):
@@ -358,9 +358,7 @@ def table(task, out):
 def bibliography(task, out):
     path = out / "bibliography.sqlite"
     with closing(sqlite3.connect(path)) as con, con:
-        con.execute(
-            "CREATE TABLE IF NOT EXISTS works(id TEXT PRIMARY KEY, title TEXT NOT NULL, authors TEXT, year INTEGER, doi TEXT, url TEXT, metadata TEXT NOT NULL)"
-        )
+        con.executescript((DATA / "sql/works.sql").read_text(encoding="utf-8"))
         for item in task["works"]:
             con.execute(
                 "INSERT OR REPLACE INTO works VALUES (?,?,?,?,?,?,?)",
@@ -393,3 +391,7 @@ FUNCTIONS = {
         "bibliography",
     )
 }
+
+from .native import COMPONENTS as NATIVE_COMPONENTS, execute as native_execute
+
+FUNCTIONS.update({operation: native_execute for operation in NATIVE_COMPONENTS})

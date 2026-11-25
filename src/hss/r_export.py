@@ -285,7 +285,23 @@ def export_r(adapter, task, data_path, outdir):
         header += [
             f'if (anyNA(dat[, {vector(cols)}, drop=FALSE])) stop("Missing analysis values: specify preprocessing; no automatic dropping")'
         ]
-    footer = ['saveRDS(fit, "fit.rds")']
+    footer = [
+        'saveRDS(fit, "fit.rds")',
+        'capture.output(summary(fit), file="summary.txt")',
+    ]
+    if adapter == "lavaan":
+        footer += [
+            'write.csv(lavaan::parameterEstimates(fit, standardized=TRUE), "estimates.csv", row.names=FALSE)'
+        ]
+    elif adapter == "cox":
+        footer += [
+            "co <- summary(fit)$coefficients",
+            'write.csv(data.frame(term=rownames(co), co, row.names=NULL), "estimates.csv", row.names=FALSE)',
+        ]
+    elif adapter == "survey":
+        footer += [
+            'write.csv(data.frame(term=names(coef(fit)), estimate=coef(fit), standard_error=survey::SE(fit)), "estimates.csv", row.names=FALSE)'
+        ]
     path = outdir / "analysis.R"
     path.write_text("\n".join(header + code + footer) + "\n", encoding="utf-8")
     return dict(
