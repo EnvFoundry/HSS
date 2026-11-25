@@ -1,23 +1,120 @@
 {
   "name": "hss-research",
   "version": "0.1.0",
-  "display_name": "HSS · 人文与社会科学",
-  "description": "Composable research design, materials, methods, software and writing for humanities and social sciences.",
+  "display_name": "HSS",
+  "description": "Connect research questions, source material and methods. Select resources for qualitative, quantitative and computational work.",
   "homepage": "https://github.com/EnvFoundry/HSS",
-  "skills": ["src/hss/data/skills"],
+  "skills": [
+    "src/hss/data/skills"
+  ],
   "environment": {
+    "presentation": {
+      "en": {
+        "label": "Humanities & social sciences",
+        "summary": "Connect research questions, source material and methods. Select resources for qualitative, quantitative and computational work.",
+        "capabilities": [
+          "Study design",
+          "Sources & databases",
+          "Qualitative & quantitative",
+          "Writing"
+        ]
+      },
+      "zh-CN": {
+        "label": "人文与社会科学",
+        "summary": "连接研究问题、原始资料与分析方法，按任务准备定性、定量和计算研究所需的资源。",
+        "capabilities": [
+          "研究设计",
+          "资料与数据库",
+          "定性与定量分析",
+          "写作"
+        ]
+      }
+    },
     "resources": [
-      {"kind": "data", "path": "workspace:///System/env/hss", "title": "HSS software and selections"},
-      {"kind": "data", "path": "workspace:///System/knowledge/hss", "title": "HSS research knowledge"},
-      {"kind": "data", "path": "workspace:///System/databases/hss", "title": "HSS research databases"}
+      {
+        "kind": "catalogue",
+        "package_path": "src/hss/data/catalog.json",
+        "title": "Fields, directions and modules",
+        "titles": {
+          "en": "Fields, directions and modules",
+          "zh-CN": "领域、方向与模块"
+        }
+      },
+      {
+        "kind": "knowledge",
+        "package_path": "src/hss/data/knowledge",
+        "title": "Research knowledge and methods",
+        "titles": {
+          "en": "Research knowledge and methods",
+          "zh-CN": "研究知识与方法"
+        }
+      },
+      {
+        "kind": "workflows",
+        "package_path": "src/hss/data/workflows",
+        "title": "Research workflows",
+        "titles": {
+          "en": "Research workflows",
+          "zh-CN": "研究流程"
+        }
+      },
+      {
+        "kind": "guidance",
+        "package_path": "src/hss/data/prompts",
+        "title": "Research and writing guidance",
+        "titles": {
+          "en": "Research and writing guidance",
+          "zh-CN": "研究与写作引导"
+        }
+      },
+      {
+        "kind": "skills",
+        "package_path": "src/hss/data/skills",
+        "title": "Agent guidance",
+        "titles": {
+          "en": "Agent guidance",
+          "zh-CN": "Agent 使用方法"
+        }
+      },
+      {
+        "kind": "configuration",
+        "package_path": "plugin.json",
+        "title": "MCP / Plugin",
+        "titles": {
+          "en": "MCP / Plugin",
+          "zh-CN": "MCP 与插件配置"
+        }
+      },
+      {
+        "kind": "data",
+        "path": "workspace:///System/env/hss",
+        "title": "HSS software and selections"
+      },
+      {
+        "kind": "data",
+        "path": "workspace:///System/knowledge/hss",
+        "title": "HSS research knowledge"
+      },
+      {
+        "kind": "data",
+        "path": "workspace:///System/databases/hss",
+        "title": "HSS research databases"
+      }
     ]
   },
   "mcpServers": {
     "hss": {
       "transport": "stdio",
       "command": "${RESEARCH_PYTHON}",
-      "args": ["-B", "${PACKAGE_ROOT}/connect/server.py"],
-      "env": {"HSS_RESEARCH_SPACE": "${WORKSPACE_ROOT}", "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8"}
+      "args": [
+        "-B",
+        "${PACKAGE_ROOT}/connect/server.py"
+      ],
+      "env": {
+        "HSS_RESEARCH_SPACE": "${WORKSPACE_ROOT}",
+        "PYTHONUTF8": "1",
+        "PYTHONIOENCODING": "utf-8"
+      }
     }
   }
 }
