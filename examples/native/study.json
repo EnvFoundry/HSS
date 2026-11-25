@@ -1,0 +1,29 @@
+{
+  "title": "Unicode corpus and textual witnesses",
+  "tasks": [
+    {
+      "id": "profile",
+      "operation": "native_profile",
+      "paths": [
+        "left.txt"
+      ]
+    },
+    {
+      "id": "concordance",
+      "operation": "native_concordance",
+      "paths": [
+        "left.txt"
+      ],
+      "query": "研究",
+      "context": 5
+    },
+    {
+      "id": "alignment",
+      "operation": "native_collate",
+      "paths": [
+        "left.txt",
+        "right.txt"
+      ]
+    }
+  ]
+}
