@@ -1,0 +1,40 @@
+{
+  "title": "Policy Study (synthetic demonstration data)",
+  "tasks": [
+    {
+      "variables": {
+        "outcome": "y",
+        "treatment": "treated_group",
+        "unit": "id",
+        "time": "time"
+      },
+      "outcome_type": "continuous",
+      "analysis": {
+        "seed": 42761
+      },
+      "data_contract": {
+        "unit": "individual",
+        "primary_key": [
+          "id",
+          "time"
+        ],
+        "structure": "panel",
+        "dependence": "iid"
+      },
+      "id": "did",
+      "branch_id": "CA04.two_period_panel",
+      "data": "synthetic_panel.csv",
+      "estimand": {
+        "kind": "ATT",
+        "label": "两组两期模拟ATT"
+      },
+      "design": {
+        "family": "did",
+        "assignment": "individual_binary_randomized",
+        "treatment_time": 0,
+        "periods": 2,
+        "treatment_path": "two_group_single_switch"
+      }
+    }
+  ]
+}

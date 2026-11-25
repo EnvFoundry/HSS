@@ -1,0 +1,87 @@
+{
+  "title": "Argument and collection instruments",
+  "tasks": [
+    {
+      "id": "argument",
+      "operation": "argument_map",
+      "claims": [
+        {
+          "id": "P1",
+          "role": "premise",
+          "text": "A policy is justified when it improves the specified common outcome."
+        },
+        {
+          "id": "P2",
+          "role": "empirical premise",
+          "text": "The policy improves the specified common outcome."
+        },
+        {
+          "id": "C1",
+          "role": "conclusion",
+          "text": "The policy is justified under the stated criterion."
+        }
+      ],
+      "relations": [
+        {
+          "from": "P1",
+          "to": "C1",
+          "kind": "supports",
+          "reason": "Normative premise"
+        },
+        {
+          "from": "P2",
+          "to": "C1",
+          "kind": "supports",
+          "reason": "Empirical premise to investigate"
+        }
+      ]
+    },
+    {
+      "id": "survey",
+      "operation": "questionnaire",
+      "title": "Community participation pilot",
+      "items": [
+        {
+          "id": "participation",
+          "type": "single",
+          "prompt": "Have you attended a community event in the past month?",
+          "options": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "frequency",
+          "type": "number",
+          "prompt": "How many events did you attend?",
+          "show_if": {
+            "item": "participation",
+            "equals": "Yes"
+          }
+        }
+      ]
+    },
+    {
+      "id": "experiment",
+      "operation": "experiment",
+      "trials": [
+        {
+          "stimulus": "LEFT",
+          "keys": [
+            "f",
+            "j"
+          ],
+          "instruction": "Press F for LEFT, J for RIGHT"
+        },
+        {
+          "stimulus": "RIGHT",
+          "keys": [
+            "f",
+            "j"
+          ],
+          "instruction": "Press F for LEFT, J for RIGHT"
+        }
+      ]
+    }
+  ]
+}

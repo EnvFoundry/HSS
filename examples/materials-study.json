@@ -1,0 +1,107 @@
+{
+  "title": "Qualitative material demonstration (invented passages)",
+  "tasks": [
+    {
+      "id": "corpus",
+      "operation": "corpus",
+      "documents": [
+        {
+          "id": "interview-1",
+          "source": "Invented teaching example",
+          "text": "我搬到城里后仍然想念家乡。工作方便，但是邻里交流少了。"
+        },
+        {
+          "id": "interview-2",
+          "source": "Invented teaching example",
+          "text": "在城里找到工作以后，我开始参加社区活动。"
+        }
+      ]
+    },
+    {
+      "id": "concordance",
+      "operation": "concordance",
+      "documents": [
+        {
+          "id": "interview-1",
+          "source": "Invented teaching example",
+          "text": "我搬到城里后仍然想念家乡。工作方便，但是邻里交流少了。"
+        },
+        {
+          "id": "interview-2",
+          "source": "Invented teaching example",
+          "text": "在城里找到工作以后，我开始参加社区活动。"
+        }
+      ],
+      "query": "城里"
+    },
+    {
+      "id": "coding",
+      "operation": "coding",
+      "documents": [
+        {
+          "id": "interview-1",
+          "source": "Invented teaching example",
+          "text": "我搬到城里后仍然想念家乡。工作方便，但是邻里交流少了。"
+        },
+        {
+          "id": "interview-2",
+          "source": "Invented teaching example",
+          "text": "在城里找到工作以后，我开始参加社区活动。"
+        }
+      ],
+      "codebook": {
+        "belonging": "An explicit statement about attachment to a place"
+      },
+      "annotations": [
+        {
+          "document": "interview-1",
+          "start": 6,
+          "end": 12,
+          "code": "belonging",
+          "coder": "researcher",
+          "quote": "仍然想念家乡"
+        }
+      ]
+    },
+    {
+      "id": "agreement",
+      "operation": "agreement",
+      "ratings": [
+        {
+          "unit": 1,
+          "a": "A",
+          "b": "A"
+        },
+        {
+          "unit": 2,
+          "a": "B",
+          "b": "B"
+        },
+        {
+          "unit": 3,
+          "a": "A",
+          "b": "B"
+        },
+        {
+          "unit": 4,
+          "a": "B",
+          "b": "B"
+        }
+      ]
+    },
+    {
+      "id": "collation",
+      "operation": "collate",
+      "documents": [
+        {
+          "id": "witness-a",
+          "text": "学而时习之，不亦说乎。"
+        },
+        {
+          "id": "witness-b",
+          "text": "学而时习之，不亦悦乎。"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "title": "Adjusted Study (synthetic demonstration data)",
+  "tasks": [
+    {
+      "variables": {
+        "outcome": "iv_y",
+        "treatment": "dose",
+        "instruments": [
+          "z"
+        ],
+        "controls": [
+          "x1"
+        ]
+      },
+      "outcome_type": "continuous",
+      "analysis": {
+        "seed": 42761
+      },
+      "variable_metadata": {
+        "x1": {
+          "measured_at": -1,
+          "available_at": -1,
+          "role": "baseline"
+        }
+      },
+      "data_contract": {
+        "unit": "individual",
+        "primary_key": [
+          "id"
+        ],
+        "structure": "cross_section",
+        "dependence": "iid"
+      },
+      "id": "iv",
+      "branch_id": "CA03.linear",
+      "data": "synthetic_individual.csv",
+      "estimand": {
+        "kind": "linear_IV_parameter",
+        "label": "线性常数处理斜率"
+      },
+      "design": {
+        "family": "iv",
+        "assignment": "individual_binary_randomized",
+        "treatment_time": 0,
+        "iv_model": "linear_constant_effect"
+      }
+    },
+    {
+      "variables": {
+        "outcome": "y",
+        "treatment": "d",
+        "controls": [
+          "x1",
+          "x2"
+        ]
+      },
+      "outcome_type": "continuous",
+      "analysis": {
+        "seed": 42761,
+        "folds": 3
+      },
+      "variable_metadata": {
+        "x1": {
+          "measured_at": -1,
+          "available_at": -1,
+          "role": "baseline"
+        },
+        "x2": {
+          "measured_at": -1,
+          "available_at": -1,
+          "role": "baseline"
+        }
+      },
+      "data_contract": {
+        "unit": "individual",
+        "primary_key": [
+          "id"
+        ],
+        "structure": "cross_section",
+        "dependence": "iid"
+      },
+      "id": "aipw",
+      "branch_id": "CA02.aipw",
+      "data": "synthetic_individual.csv",
+      "estimand": {
+        "kind": "ATE",
+        "label": "随机分配对结局均值的影响"
+      },
+      "design": {
+        "family": "adjustment",
+        "assignment": "individual_binary_randomized",
+        "treatment_time": 0
+      }
+    }
+  ]
+}

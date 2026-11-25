@@ -1,0 +1,76 @@
+{
+  "title": "Randomized Study (synthetic demonstration data)",
+  "tasks": [
+    {
+      "variables": {
+        "outcome": "y"
+      },
+      "outcome_type": "continuous",
+      "analysis": {
+        "seed": 42761
+      },
+      "depends_on": [],
+      "data_contract": {
+        "unit": "individual",
+        "primary_key": [
+          "id"
+        ],
+        "structure": "cross_section",
+        "dependence": "iid"
+      },
+      "id": "description",
+      "branch_id": "NC01.summary",
+      "data": "synthetic_individual.csv",
+      "estimand": {
+        "kind": "mean",
+        "label": "结局的样本均值"
+      }
+    },
+    {
+      "variables": {
+        "outcome": "y",
+        "treatment": "d",
+        "controls": [
+          "x1",
+          "x2"
+        ]
+      },
+      "outcome_type": "continuous",
+      "analysis": {
+        "seed": 42761
+      },
+      "variable_metadata": {
+        "x1": {
+          "measured_at": -1,
+          "available_at": -1,
+          "role": "baseline"
+        },
+        "x2": {
+          "measured_at": -1,
+          "available_at": -1,
+          "role": "baseline"
+        }
+      },
+      "data_contract": {
+        "unit": "individual",
+        "primary_key": [
+          "id"
+        ],
+        "structure": "cross_section",
+        "dependence": "iid"
+      },
+      "id": "experiment",
+      "branch_id": "CA01.ancova_lin",
+      "data": "synthetic_individual.csv",
+      "estimand": {
+        "kind": "ATE",
+        "label": "随机分配对结局均值的影响"
+      },
+      "design": {
+        "family": "rct",
+        "assignment": "individual_binary_randomized",
+        "treatment_time": 0
+      }
+    }
+  ]
+}

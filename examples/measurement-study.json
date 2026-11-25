@@ -1,0 +1,65 @@
+{
+  "title": "Measurement Study (synthetic demonstration data)",
+  "tasks": [
+    {
+      "variables": {
+        "features": [
+          "x1",
+          "x2",
+          "x3"
+        ]
+      },
+      "outcome_type": "continuous",
+      "analysis": {
+        "seed": 42761,
+        "components": 2
+      },
+      "data_contract": {
+        "unit": "individual",
+        "primary_key": [
+          "id"
+        ],
+        "structure": "cross_section",
+        "dependence": "iid"
+      },
+      "id": "measurement",
+      "branch_id": "NC02.pca",
+      "data": "synthetic_individual.csv",
+      "estimand": {
+        "kind": "linear_representation",
+        "label": "三指标的线性表示"
+      }
+    },
+    {
+      "variables": {
+        "outcome": "y",
+        "features": [
+          "PC1",
+          "PC2"
+        ]
+      },
+      "outcome_type": "continuous",
+      "analysis": {
+        "seed": 42761
+      },
+      "source_task": "measurement",
+      "depends_on": [
+        "measurement"
+      ],
+      "data_contract": {
+        "unit": "individual",
+        "primary_key": [
+          "id"
+        ],
+        "structure": "cross_section",
+        "dependence": "iid"
+      },
+      "id": "association",
+      "branch_id": "NC03.linear",
+      "estimand": {
+        "kind": "conditional_association",
+        "label": "主成分与结局的条件关联"
+      }
+    }
+  ]
+}

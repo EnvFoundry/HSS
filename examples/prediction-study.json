@@ -1,0 +1,165 @@
+{
+  "title": "Prediction Study (synthetic demonstration data)",
+  "tasks": [
+    {
+      "variables": {
+        "outcome": "y",
+        "features": [
+          "x1",
+          "x2",
+          "x3"
+        ]
+      },
+      "outcome_type": "continuous",
+      "analysis": {
+        "seed": 42761,
+        "learner": "ridge"
+      },
+      "prediction": {
+        "target_domain": "iid",
+        "split": "iid_holdout",
+        "test_fraction": 0.25,
+        "prediction_time": 0
+      },
+      "variable_metadata": {
+        "x1": {
+          "measured_at": -1,
+          "available_at": -1,
+          "role": "baseline"
+        },
+        "x2": {
+          "measured_at": -1,
+          "available_at": -1,
+          "role": "baseline"
+        },
+        "x3": {
+          "measured_at": -1,
+          "available_at": -1,
+          "role": "baseline"
+        }
+      },
+      "data_contract": {
+        "unit": "individual",
+        "primary_key": [
+          "id"
+        ],
+        "structure": "cross_section",
+        "dependence": "iid"
+      },
+      "id": "prediction",
+      "branch_id": "NC04.regression",
+      "data": "synthetic_individual.csv",
+      "estimand": {
+        "kind": "prediction_loss",
+        "label": "同分布新观测上的预测误差"
+      }
+    },
+    {
+      "variables": {
+        "outcome": "y_binary",
+        "features": [
+          "x1",
+          "x2",
+          "x3"
+        ]
+      },
+      "outcome_type": "binary",
+      "analysis": {
+        "seed": 42761,
+        "learner": "logistic"
+      },
+      "prediction": {
+        "target_domain": "iid",
+        "split": "iid_holdout",
+        "test_fraction": 0.25,
+        "prediction_time": 0
+      },
+      "variable_metadata": {
+        "x1": {
+          "measured_at": -1,
+          "available_at": -1,
+          "role": "baseline"
+        },
+        "x2": {
+          "measured_at": -1,
+          "available_at": -1,
+          "role": "baseline"
+        },
+        "x3": {
+          "measured_at": -1,
+          "available_at": -1,
+          "role": "baseline"
+        }
+      },
+      "data_contract": {
+        "unit": "individual",
+        "primary_key": [
+          "id"
+        ],
+        "structure": "cross_section",
+        "dependence": "iid"
+      },
+      "id": "classification",
+      "branch_id": "NC04.classification",
+      "data": "synthetic_individual.csv",
+      "estimand": {
+        "kind": "prediction_loss",
+        "label": "同分布新观测上的预测误差"
+      }
+    },
+    {
+      "variables": {
+        "outcome": "y",
+        "features": [
+          "x1",
+          "x2",
+          "x3"
+        ]
+      },
+      "outcome_type": "continuous",
+      "analysis": {
+        "seed": 42761,
+        "learner": "ridge",
+        "alpha": 0.1
+      },
+      "prediction": {
+        "target_domain": "iid",
+        "split": "iid_three_way",
+        "test_fraction": 0.25,
+        "prediction_time": 0
+      },
+      "variable_metadata": {
+        "x1": {
+          "measured_at": -1,
+          "available_at": -1,
+          "role": "baseline"
+        },
+        "x2": {
+          "measured_at": -1,
+          "available_at": -1,
+          "role": "baseline"
+        },
+        "x3": {
+          "measured_at": -1,
+          "available_at": -1,
+          "role": "baseline"
+        }
+      },
+      "data_contract": {
+        "unit": "individual",
+        "primary_key": [
+          "id"
+        ],
+        "structure": "cross_section",
+        "dependence": "iid"
+      },
+      "id": "intervals",
+      "branch_id": "NC04.conformal",
+      "data": "synthetic_individual.csv",
+      "estimand": {
+        "kind": "prediction_loss",
+        "label": "同分布新观测上的预测误差"
+      }
+    }
+  ]
+}
