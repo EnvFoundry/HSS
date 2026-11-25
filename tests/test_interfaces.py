@@ -10,7 +10,7 @@ import unittest
 from unittest.mock import patch
 from hss.api import request
 from hss.connectors import search
-from hss.hosts import export
+from hss.hosts import export, environment_metadata
 from hss.manager import Manager
 from hss.materials import bibliography
 from hss.mcp import dispatch
@@ -56,6 +56,20 @@ class InterfaceTests(unittest.TestCase):
             )
             self.assertGreater(len(json.loads(r.stdout)["result"]["tools"]), 10)
             self.assertTrue((root / "moved/skills/hss-theory/SKILL.md").exists())
+
+    def test_source_and_export_share_descriptions_with_actual_resource_paths(self):
+        source = json.loads((ROOT / 'plugin.json').read_text())['environment']
+        self.assertEqual(source['presentation'], environment_metadata()['presentation'])
+        for item in source['resources']:
+            if 'package_path' in item:
+                self.assertTrue((ROOT / item['package_path']).exists(), item)
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp) / 'export'
+            export(Manager(Path(tmp) / 'space'), output, ['argument-analysis'])
+            metadata = json.loads((output / 'plugin.json').read_text())['environment']
+            self.assertEqual(source['presentation'], metadata['presentation'])
+            for item in metadata['resources']:
+                self.assertTrue((output / item['package_path']).exists(), item)
 
     def test_mcp_tool_errors_are_tool_results(self):
         result = dispatch(
