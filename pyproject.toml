@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "envfoundry-hss"
+version = "0.1.0"
+description = "Humanities and social sciences research environments, composed by task"
+requires-python = ">=3.11"
+license = "MIT"
+readme = "README.md"
+authors = [{name = "EnvFoundry"}]
+dependencies = []
+
+[project.optional-dependencies]
+analysis = ["numpy>=1.26", "scipy>=1.11", "pandas>=2.1", "scikit-learn>=1.4"]
+
+[project.scripts]
+hss = "hss.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+hss = ["data/*.json", "data/*.html", "data/knowledge/*.md", "data/skills/*/SKILL.md", "data/workflows/*.json", "data/prompts/*.md", "data/examples/*", "data/r/*.R", "data/sql/*.sql"]
