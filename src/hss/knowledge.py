@@ -2,6 +2,7 @@
 
 import json
 import sqlite3
+from contextlib import closing
 
 
 def build(manager, selections):
@@ -28,7 +29,7 @@ def build(manager, selections):
                 "guide",
                 "hss://knowledge/" + filename,
             )
-    with sqlite3.connect(path) as con:
+    with closing(sqlite3.connect(path)) as con, con:
         con.execute(
             "CREATE TABLE IF NOT EXISTS documents(id TEXT PRIMARY KEY, title TEXT, body TEXT, kind TEXT, location TEXT)"
         )
@@ -50,7 +51,7 @@ def search(manager, query, limit=20):
     query = query.strip()
     if not query:
         raise ValueError("Provide search text")
-    with sqlite3.connect(f"{path.as_uri()}?mode=ro", uri=True) as con:
+    with closing(sqlite3.connect(f"{path.as_uri()}?mode=ro", uri=True)) as con:
         con.row_factory = sqlite3.Row
         escaped = query.replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_")
         rows = con.execute(

@@ -1,6 +1,7 @@
 """Text, qualitative material, arguments and collection instruments."""
 
 from collections import Counter
+from contextlib import closing
 import csv
 import difflib
 import html
@@ -356,7 +357,7 @@ def table(task, out):
 
 def bibliography(task, out):
     path = out / "bibliography.sqlite"
-    with sqlite3.connect(path) as con:
+    with closing(sqlite3.connect(path)) as con, con:
         con.execute(
             "CREATE TABLE IF NOT EXISTS works(id TEXT PRIMARY KEY, title TEXT NOT NULL, authors TEXT, year INTEGER, doi TEXT, url TEXT, metadata TEXT NOT NULL)"
         )
