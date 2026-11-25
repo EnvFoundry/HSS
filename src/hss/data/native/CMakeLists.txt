@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.16)
+project(hss_alignment LANGUAGES CXX)
+add_executable(hss-align alignment.cpp)
+if(MINGW)
+  target_link_options(hss-align PRIVATE -municode)
+endif()
+target_compile_features(hss-align PRIVATE cxx_std_17)
+set_target_properties(hss-align PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")

@@ -2343,5 +2343,315 @@
         }
       ]
     }
+  },
+  {
+    "id": "native_profile",
+    "name": "Streaming UTF-8 corpus profile",
+    "kind": "material",
+    "scope": "Prepared native backend. UTF-8 input; positions are Unicode code points. Concordance matches within lines. Profiling reports whitespace tokens, not linguistic segmentation. Alignment minimizes unit-cost insertion, deletion and substitution.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "paths"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "native_profile"
+        },
+        "paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "maxItems": 1
+        }
+      }
+    },
+    "example": {
+      "id": "native_profile",
+      "operation": "native_profile",
+      "paths": [
+        "materials/left.txt"
+      ]
+    }
+  },
+  {
+    "id": "native_concordance",
+    "name": "Streaming exact concordance",
+    "kind": "material",
+    "scope": "Prepared native backend. UTF-8 input; positions are Unicode code points. Concordance matches within lines. Profiling reports whitespace tokens, not linguistic segmentation. Alignment minimizes unit-cost insertion, deletion and substitution.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "paths",
+        "query"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "native_concordance"
+        },
+        "paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "maxItems": 1
+        },
+        "query": {
+          "type": "string",
+          "minLength": 1
+        },
+        "context": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "example": {
+      "id": "native_concordance",
+      "operation": "native_concordance",
+      "paths": [
+        "materials/left.txt"
+      ],
+      "query": "研究",
+      "context": 25
+    }
+  },
+  {
+    "id": "native_collate",
+    "name": "Exact Unicode edit alignment",
+    "kind": "material",
+    "scope": "Prepared native backend. UTF-8 input; positions are Unicode code points. Concordance matches within lines. Profiling reports whitespace tokens, not linguistic segmentation. Alignment minimizes unit-cost insertion, deletion and substitution.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "paths"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "native_collate"
+        },
+        "paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        }
+      }
+    },
+    "example": {
+      "id": "native_collate",
+      "operation": "native_collate",
+      "paths": [
+        "materials/left.txt",
+        "materials/right.txt"
+      ]
+    }
+  },
+  {
+    "id": "r_analysis",
+    "name": "R method execution",
+    "kind": "upstream",
+    "scope": "Run a configured R method with its prepared interpreter and save the fitted model.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "adapter",
+        "data"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "r_analysis"
+        },
+        "adapter": {
+          "type": "string"
+        },
+        "data": {
+          "type": "string"
+        }
+      }
+    },
+    "example": {
+      "id": "survival",
+      "operation": "r_analysis",
+      "adapter": "cox",
+      "data": "data.csv",
+      "variables": {
+        "duration": "duration",
+        "event": "event",
+        "features": [
+          "age"
+        ]
+      }
+    }
+  },
+  {
+    "id": "script",
+    "name": "Project analysis code",
+    "kind": "upstream",
+    "scope": "Run a project Python, R or JavaScript script with a registered component; its first argument is input.json, and its working directory is the task output.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "component",
+        "script"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "script"
+        },
+        "component": {
+          "type": "string"
+        },
+        "script": {
+          "type": "string"
+        }
+      }
+    },
+    "example": {
+      "id": "custom",
+      "operation": "script",
+      "component": "python-empirical",
+      "script": "analysis/custom.py",
+      "data": "data.csv"
+    }
+  },
+  {
+    "id": "sql",
+    "name": "Relational data analysis",
+    "kind": "relational",
+    "scope": "Load named CSV tables with explicit column types and execute SQL queries into result tables and a project database.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "datasets",
+        "queries"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "sql"
+        },
+        "datasets": {
+          "type": "array"
+        },
+        "queries": {
+          "type": "array"
+        }
+      }
+    },
+    "example": {
+      "id": "groups",
+      "operation": "sql",
+      "datasets": [
+        {
+          "name": "observations",
+          "path": "data.csv",
+          "types": {
+            "value": "REAL"
+          }
+        }
+      ],
+      "queries": [
+        {
+          "name": "means",
+          "sql": "SELECT group_name, AVG(value) AS mean_value FROM observations GROUP BY group_name"
+        }
+      ]
+    }
+  },
+  {
+    "id": "command",
+    "name": "Prepared research command",
+    "kind": "upstream",
+    "scope": "Run an explicit argument vector with a prepared executable. Path arguments are resolved from the study base. The working directory is the task output.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "component",
+        "arguments"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "command"
+        },
+        "component": {
+          "type": "string"
+        },
+        "arguments": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "required": [
+                  "path"
+                ],
+                "properties": {
+                  "path": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            ]
+          }
+        }
+      }
+    },
+    "example": {
+      "id": "ocr",
+      "operation": "command",
+      "component": "tesseract",
+      "arguments": [
+        {
+          "path": "scan.png"
+        },
+        "transcription",
+        "-l",
+        "eng"
+      ]
+    }
   }
 ]

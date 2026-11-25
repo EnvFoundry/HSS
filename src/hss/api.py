@@ -99,7 +99,22 @@ def request(payload, progress=None):
     if action == "project":
         from .research import create_project
 
-        return create_project(payload["path"], payload["title"], payload.get("brief"))
+        return create_project(
+            payload["path"],
+            payload["title"],
+            payload.get("brief"),
+            selections,
+            payload.get("study"),
+            catalog,
+        )
+    if action == "blueprint":
+        from .research import blueprint
+
+        return blueprint(catalog, selections, payload.get("brief"))
+    if action == "manuscript":
+        from .manuscript import render
+
+        return render(payload["document"], payload["output"], payload.get("base"))
     if action == "connect":
         from .connectors import search
 

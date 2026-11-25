@@ -22,4 +22,4 @@ hss = "hss.cli:main"
 where = ["src"]
 
 [tool.setuptools.package-data]
-hss = ["data/*.json", "data/*.html", "data/knowledge/*.md", "data/skills/*/SKILL.md", "data/workflows/*.json", "data/prompts/*.md", "data/examples/*", "data/r/*.R", "data/sql/*.sql"]
+hss = ["data/*.json", "data/*.html", "data/knowledge/*.md", "data/skills/*/SKILL.md", "data/workflows/*.json", "data/prompts/*.md", "data/examples/*", "data/r/*.R", "data/sql/*.sql", "data/native/*"]

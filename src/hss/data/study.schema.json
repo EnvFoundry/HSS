@@ -1590,13 +1590,102 @@
             "type": "object",
             "required": [
               "id",
-              "branch_id"
+              "operation",
+              "paths"
             ],
             "properties": {
               "id": {
                 "type": "string"
               },
-              "branch_id": {
+              "operation": {
+                "const": "native_profile"
+              },
+              "paths": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 1,
+                "maxItems": 1
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "paths",
+              "query"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "native_concordance"
+              },
+              "paths": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 1,
+                "maxItems": 1
+              },
+              "query": {
+                "type": "string",
+                "minLength": 1
+              },
+              "context": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "paths"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "native_collate"
+              },
+              "paths": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 2,
+                "maxItems": 2
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "adapter",
+              "data"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "r_analysis"
+              },
+              "adapter": {
+                "type": "string"
+              },
+              "data": {
                 "type": "string"
               }
             }
@@ -1605,14 +1694,87 @@
             "type": "object",
             "required": [
               "id",
-              "selected_method_id"
+              "operation",
+              "component",
+              "script"
             ],
             "properties": {
               "id": {
                 "type": "string"
               },
-              "selected_method_id": {
+              "operation": {
+                "const": "script"
+              },
+              "component": {
                 "type": "string"
+              },
+              "script": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "datasets",
+              "queries"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "sql"
+              },
+              "datasets": {
+                "type": "array"
+              },
+              "queries": {
+                "type": "array"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "component",
+              "arguments"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "command"
+              },
+              "component": {
+                "type": "string"
+              },
+              "arguments": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "object",
+                      "required": [
+                        "path"
+                      ],
+                      "properties": {
+                        "path": {
+                          "type": "string"
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  ]
+                }
               }
             }
           }

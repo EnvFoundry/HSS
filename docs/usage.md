@@ -15,7 +15,7 @@ hss prepare bundle:historical-study --resources-only
 
 The CLI emits JSON. Lists returned by `browse` contain the exact field, direction and module IDs. An empty selection does nothing. Resource-only preparation still reports any compatible existing software; missing software is listed as `not_prepared`.
 
-For ordinary installation, remove `--resources-only`. HSS prepares Python or Node packages and R packages when Rscript is available. It does not install an operating system, R distribution, desktop application or database server. `pending` describes connections that still need the host's runtime or service. CLI exit codes are 0 for complete results, 2 for a preparation containing pending or failed components, and 1 for a request error.
+For ordinary installation, remove `--resources-only`. HSS prepares Python or Node packages and R packages when Rscript is available. It does not install an operating system, R distribution, desktop application or database server. `pending` describes connections that still need the host's runtime or service. CLI exit codes are 0 for completed requests (including requested resource-only preparation), 2 when requested software remains pending or failed, and 1 for a request error.
 
 `--space` is a global argument and precedes the command. Without it, `HSS_RESEARCH_SPACE` or `~/.hss` supplies the persistent research space. A `--layout paths.json` file can override any area with an absolute path or a path relative to the research space:
 

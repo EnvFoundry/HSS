@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  />
+  <title>HSS Research Workbench</title>
+  <style>
+    body {
+      margin: 0;
+      background: #f5f3ed;
+      color: #203832;
+      font: 15px system-ui;
+    }
+    main {
+      max-width: 1180px;
+      margin: auto;
+      padding: 30px 24px;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ccd4ca;
+      padding-bottom: 20px;
+      margin-bottom: 24px;
+    }
+    h1 {
+      font: 38px Georgia;
+      margin: 0;
+    }
+    header p {
+      margin: 8px 0;
+      color: #60736a;
+    }
+    a {
+      color: #275e49;
+    }
+  </style>
+  <main>
+    <header>
+      <div>
+        <h1>HSS</h1>
+        <p>Humanities &amp; Social Sciences · Research Workbench</p>
+      </div>
+      <a href="https://github.com/EnvFoundry/HSS">EnvFoundry / HSS</a>
+    </header>
+    <hss-workbench></hss-workbench>
+  </main>
+  <script type="module">
+    import { HSSClient, httpTransport } from "./lib/client.js";
+    import "./lib/workbench.js";
+    await document
+      .querySelector("hss-workbench")
+      .connect(new HSSClient(httpTransport()));
+  </script>
+</html>

@@ -3,14 +3,9 @@
 import json
 import sqlite3
 from contextlib import contextmanager
+from .catalog import DATA
 
-SCHEMA = """
-CREATE TABLE IF NOT EXISTS modules (id TEXT PRIMARY KEY, installed_at TEXT DEFAULT CURRENT_TIMESTAMP);
-CREATE TABLE IF NOT EXISTS bindings (component TEXT PRIMARY KEY, command TEXT NOT NULL, managed INTEGER NOT NULL DEFAULT 0, location TEXT, environment TEXT NOT NULL DEFAULT '{}');
-CREATE TABLE IF NOT EXISTS assets (module TEXT NOT NULL, path TEXT NOT NULL, content TEXT NOT NULL, PRIMARY KEY(module,path));
-CREATE TABLE IF NOT EXISTS module_components (module TEXT NOT NULL, component TEXT NOT NULL, PRIMARY KEY(module,component));
-CREATE TABLE IF NOT EXISTS connections (id TEXT PRIMARY KEY, config TEXT NOT NULL);
-"""
+SCHEMA = (DATA / "sql/registry.sql").read_text(encoding="utf-8")
 
 
 class State:

@@ -7,6 +7,7 @@ from .catalog import DATA
 
 STRING = {"type": "string"}
 SELECTIONS = {"type": "array", "items": STRING}
+BACKENDS = {"type": "object", "additionalProperties": STRING}
 TOOL_SPECS = {
     "describe": (
         "Get exact operation inputs and a complete example before writing a study task",
@@ -44,6 +45,7 @@ TOOL_SPECS = {
         "Resolve selected modules, shared software and install locations",
         {
             "selections": SELECTIONS,
+            "backends": BACKENDS,
             "existing": {"type": "array", "items": {"type": "object"}},
         },
         ["selections"],
@@ -52,6 +54,7 @@ TOOL_SPECS = {
         "Prepare only explicitly selected modules",
         {
             "selections": SELECTIONS,
+            "backends": BACKENDS,
             "software": {"type": "boolean"},
             "existing": {"type": "array", "items": {"type": "object"}},
             "options": {"type": "object"},
@@ -59,6 +62,35 @@ TOOL_SPECS = {
         ["selections"],
     ),
     "installed": ("Read prepared modules and interpreter bindings", {}, []),
+    "bind": (
+        "Reuse an existing interpreter or executable for a research component",
+        {
+            "component": STRING,
+            "command": SELECTIONS,
+            "environment": {"type": "object", "additionalProperties": STRING},
+        },
+        ["component", "command"],
+    ),
+    "exec": (
+        "Run an explicit command with a prepared research component",
+        {
+            "component": STRING,
+            "arguments": SELECTIONS,
+            "cwd": STRING,
+            "timeout": {"type": "integer", "minimum": 1},
+        },
+        ["component"],
+    ),
+    "export": (
+        "Export selected Skills and the research service as a portable plugin",
+        {"output": STRING, "selections": SELECTIONS},
+        ["output"],
+    ),
+    "remove": (
+        "Remove selected modules; optionally remove managed software no remaining module uses",
+        {"selections": SELECTIONS, "prune": {"type": "boolean"}},
+        ["selections"],
+    ),
     "explore": (
         "Develop alternative research designs from an initial brief",
         {"brief": {"type": "object"}},
@@ -66,8 +98,24 @@ TOOL_SPECS = {
     ),
     "project": (
         "Create a research project in an empty directory",
-        {"path": STRING, "title": STRING, "brief": {"type": "object"}},
+        {
+            "path": STRING,
+            "title": STRING,
+            "brief": {"type": "object"},
+            "selections": SELECTIONS,
+            "study": {"type": "object"},
+        },
         ["path", "title"],
+    ),
+    "blueprint": (
+        "Compose selected fields, directions or modules into research inputs, workflows, methods and software",
+        {"selections": SELECTIONS, "brief": {"type": "object"}},
+        ["selections"],
+    ),
+    "manuscript": (
+        "Assemble authored research text, actual result tables and supplied references into a manuscript",
+        {"document": {"type": "object"}, "output": STRING, "base": STRING},
+        ["document", "output"],
     ),
     "run": (
         "Execute specified study tasks using the configured interpreter",
@@ -137,7 +185,18 @@ def dispatch(method, params):
     if method == "tools/list":
         result = []
         for name, (description, properties, required) in TOOL_SPECS.items():
-            readonly = name not in {"prepare", "project", "run", "export-r", "index"}
+            readonly = name not in {
+                "prepare",
+                "project",
+                "run",
+                "export-r",
+                "index",
+                "manuscript",
+                "bind",
+                "exec",
+                "export",
+                "remove",
+            }
             result.append(
                 {
                     "name": "hss_" + name.replace("-", "_"),
@@ -154,7 +213,7 @@ def dispatch(method, params):
                     },
                     "annotations": {
                         "readOnlyHint": readonly,
-                        "destructiveHint": False,
+                        "destructiveHint": name == "remove",
                         "idempotentHint": readonly or name == "prepare",
                         "openWorldHint": name in {"connect", "prepare"},
                     },

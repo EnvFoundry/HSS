@@ -124,10 +124,65 @@ def explore(brief, catalog):
     }
 
 
-def create_project(path, title, brief=None):
+def blueprint(catalog, selections, brief=None):
+    """Expand any field, direction or module into a concrete research workspace."""
+    context = catalog.context(selections)
+    modules = context["modules"]
+    workflows = {
+        name: read_json(catalog.asset("workflows", name))
+        for m in modules
+        for name in m.get("workflows", [])
+    }
+    components = sorted({name for m in modules for name in m.get("components", [])})
+    return {
+        "brief": brief or {},
+        "modules": [
+            {
+                "id": m["id"],
+                "name": m["name"],
+                "purpose": m["summary"],
+                "inputs": m["inputs"],
+                "outputs": m["outputs"],
+                "operations": m.get("operations", []),
+                "r_adapters": m.get("r_exports", []),
+                "backends": m.get("backends", {}),
+                "components": m.get("components", []),
+                "guides": m.get("knowledge", []),
+            }
+            for m in modules
+        ],
+        "operations": context["operations"],
+        "software": [catalog.components[c] for c in components],
+        "workflows": workflows,
+        "knowledge": context["knowledge"],
+        "design": explore(brief or {}, catalog),
+        "execution": {
+            "study": "Declare concrete tasks using operation input schemas; hss run executes their dependency order.",
+            "upstream": "Use r_analysis for named R adapters; use script with a prepared component for project-specific Python, R or JavaScript analyses.",
+            "interpretation": "Develop the selected interpretation or argument from the supplied materials, guided by the module's knowledge and workflow.",
+        },
+    }
+
+
+def create_project(path, title, brief=None, selections=(), study=None, catalog=None):
     root = Path(path).resolve()
     if root.exists() and any(root.iterdir()):
         raise FileExistsError("Use an empty project directory")
+    from .catalog import Catalog
+    from .study import ordered_tasks
+
+    catalog = catalog or Catalog()
+    design = blueprint(catalog, selections, brief)
+    study = (
+        study
+        if study is not None
+        else {
+            "title": title,
+            "question": (brief or {}).get("question", ""),
+            "tasks": [],
+        }
+    )
+    ordered_tasks(study)
     for folder in ("materials", "data", "analysis", "results", "writing"):
         (root / folder).mkdir(parents=True, exist_ok=True)
     brief = {"title": title, **(brief or {})}
@@ -139,14 +194,32 @@ def create_project(path, title, brief=None):
             "goal": brief.get("goal", ""),
             "scope": brief.get("scope", ""),
             "materials": brief.get("materials", []),
-            "alternative_designs": [],
-            "selected_design": None,
-            "researcher_decisions": [],
+            "alternative_designs": brief.get("alternative_designs", []),
+            "selected_design": brief.get("selected_design"),
+            "researcher_decisions": brief.get("researcher_decisions", []),
+            "modules": [m["id"] for m in design["modules"]],
         },
     )
     write_json(
         root / "study.json",
-        {"title": title, "question": brief.get("question", ""), "tasks": []},
+        study,
+    )
+    write_json(root / "analysis" / "blueprint.json", design)
+    guide = ["# " + title, "", brief.get("question", ""), ""]
+    for module in design["modules"]:
+        guide += [
+            "## " + module["name"],
+            "",
+            module["purpose"],
+            "",
+            "Inputs: " + "; ".join(module["inputs"]),
+            "Outputs: " + "; ".join(module["outputs"]),
+            "",
+        ]
+    for name, content in design["knowledge"].items():
+        guide += [content, ""]
+    (root / "analysis" / "research-guide.md").write_text(
+        "\n".join(guide), encoding="utf-8"
     )
     (root / "README.md").write_text(
         f"# {title}\n\nDevelop the research question and alternative designs in `research.json`.\nPut source material in `materials`, tabular data in `data`, executable tasks in `study.json`, and analysis code in `analysis`.\nRun `hss run study.json --output results/run-01`. Write the manuscript in `writing/manuscript.md`, using the actual results and cited sources.\n",

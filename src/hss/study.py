@@ -11,6 +11,12 @@ from . import materials
 
 def normalize(task):
     task = dict(task)
+    if task.get("operation") == "r_analysis":
+        from .external import R_COMPONENTS
+
+        if task.get("adapter") not in R_COMPONENTS:
+            raise ValueError("Unknown R analysis adapter: " + str(task.get("adapter")))
+        return task
     catalog = read_json(DATA / "methods.json")
     if task.get("branch_id"):
         branch = next(
@@ -128,12 +134,30 @@ def write_tables(result, out):
 
 def execute_task(task, out, base):
     task = dict(task)
-    for name in ("data",):
+    for name in ("data", "script"):
         if task.get(name):
             task[name] = str((base / Path(task[name])).resolve())
     task["paths"] = [str((base / Path(p)).resolve()) for p in task.get("paths", [])]
+    if task.get("datasets"):
+        task["datasets"] = [
+            {**source, "path": str((base / source["path"]).resolve())}
+            for source in task["datasets"]
+        ]
+    if task["operation"] == "command":
+        task["arguments"] = [
+            {"path": str((base / a["path"]).resolve())} if isinstance(a, dict) else a
+            for a in task.get("arguments", [])
+        ]
     out.mkdir(parents=True, exist_ok=False)
-    if task["operation"] in materials.FUNCTIONS:
+    if task["operation"] in {"r_analysis", "script", "command"}:
+        from .external import execute
+
+        result = execute(task, out)
+    elif task["operation"] == "sql":
+        from .tabular_sql import execute
+
+        result = execute(task, out)
+    elif task["operation"] in materials.FUNCTIONS:
         result = materials.FUNCTIONS[task["operation"]](task, out)
     else:
         from .empirical import causal, descriptive
@@ -224,6 +248,8 @@ def execute_task(task, out, base):
 
 def run(plan, output, base=None):
     tasks = ordered_tasks(plan)
+    if not tasks:
+        raise ValueError("Add at least one research task before execution")
     output = Path(output).resolve()
     if output.exists() and any(output.iterdir()):
         raise FileExistsError("Choose an empty output directory: " + str(output))
@@ -235,9 +261,14 @@ def run(plan, output, base=None):
         task = dict(task)
         if task.get("source_task"):
             upstream = results[task["source_task"]]
-            if not upstream.get("derived_data"):
+            source = (
+                upstream.get("table_files", {}).get(task["source_table"])
+                if task.get("source_table")
+                else upstream.get("derived_data")
+            )
+            if not source:
                 raise ValueError("The upstream task produced no derived data table")
-            task["data"] = upstream["derived_data"]
+            task["data"] = source
         results[task["id"]] = execute_task(task, output / task["id"], base)
         write_json(output / "results.json", results)
     lines = [

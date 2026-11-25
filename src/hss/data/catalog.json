@@ -913,7 +913,9 @@
       "components": [
         "python-economics"
       ],
-      "operations": [],
+      "operations": [
+        "script"
+      ],
       "inputs": [
         "主体与规则",
         "参数",
@@ -975,7 +977,8 @@
       "kind": "calculation",
       "components": [],
       "operations": [
-        "collate"
+        "collate",
+        "native_collate"
       ],
       "inputs": [
         "两个文本及其来源"
@@ -996,7 +999,12 @@
       ],
       "requires": [],
       "execution": "native",
-      "r_exports": []
+      "r_exports": [],
+      "backends": {
+        "cpp": [
+          "native-alignment"
+        ]
+      }
     },
     {
       "id": "tei-encoding",
@@ -1129,7 +1137,8 @@
       "kind": "calculation",
       "components": [],
       "operations": [
-        "collate"
+        "collate",
+        "native_collate"
       ],
       "inputs": [
         "原文与译文",
@@ -1151,7 +1160,12 @@
       ],
       "requires": [],
       "execution": "native",
-      "r_exports": []
+      "r_exports": [],
+      "backends": {
+        "cpp": [
+          "native-alignment"
+        ]
+      }
     },
     {
       "id": "discourse-analysis",
@@ -1281,7 +1295,8 @@
       "kind": "calculation",
       "components": [],
       "operations": [
-        "corpus"
+        "corpus",
+        "native_profile"
       ],
       "inputs": [
         "文件或文档记录",
@@ -1303,7 +1318,12 @@
       ],
       "requires": [],
       "execution": "native",
-      "r_exports": []
+      "r_exports": [],
+      "backends": {
+        "rust": [
+          "native-corpus"
+        ]
+      }
     },
     {
       "id": "text-concordance",
@@ -1312,7 +1332,8 @@
       "kind": "calculation",
       "components": [],
       "operations": [
-        "concordance"
+        "concordance",
+        "native_concordance"
       ],
       "inputs": [
         "语料",
@@ -1335,7 +1356,12 @@
       ],
       "requires": [],
       "execution": "native",
-      "r_exports": []
+      "r_exports": [],
+      "backends": {
+        "rust": [
+          "native-corpus"
+        ]
+      }
     },
     {
       "id": "linguistic-analysis",
@@ -1345,7 +1371,9 @@
       "components": [
         "python-language"
       ],
-      "operations": [],
+      "operations": [
+        "script"
+      ],
       "inputs": [
         "语料",
         "语言",
@@ -1594,7 +1622,10 @@
       "components": [
         "r-qca"
       ],
-      "operations": [],
+      "operations": [
+        "r_analysis",
+        "script"
+      ],
       "inputs": [
         "案例条件",
         "校准依据",
@@ -1690,7 +1721,9 @@
       "components": [
         "r-sampling"
       ],
-      "operations": [],
+      "operations": [
+        "script"
+      ],
       "inputs": [
         "总体",
         "抽样框",
@@ -1753,7 +1786,10 @@
       "components": [
         "r-survey"
       ],
-      "operations": [],
+      "operations": [
+        "r_analysis",
+        "script"
+      ],
       "inputs": [
         "调查数据",
         "权重",
@@ -1786,7 +1822,9 @@
       "summary": "界定构念、设计题项、开展认知访谈与试测，安排测量分析。",
       "kind": "guided",
       "components": [],
-      "operations": [],
+      "operations": [
+        "r_analysis"
+      ],
       "inputs": [
         "构念定义",
         "目标群体",
@@ -1821,7 +1859,10 @@
       "components": [
         "r-lavaan"
       ],
-      "operations": [],
+      "operations": [
+        "r_analysis",
+        "script"
+      ],
       "inputs": [
         "题项数据",
         "测量模型",
@@ -1861,7 +1902,9 @@
       "components": [
         "r-mirt"
       ],
-      "operations": [],
+      "operations": [
+        "script"
+      ],
       "inputs": [
         "题项响应",
         "计分规则"
@@ -2094,7 +2137,9 @@
       "components": [
         "r-lme4"
       ],
-      "operations": [],
+      "operations": [
+        "script"
+      ],
       "inputs": [
         "结果",
         "协变量",
@@ -2126,7 +2171,9 @@
       "components": [
         "r-fixest"
       ],
-      "operations": [],
+      "operations": [
+        "script"
+      ],
       "inputs": [
         "面板数据",
         "个体与时间",
@@ -2209,7 +2256,8 @@
         "python-empirical"
       ],
       "operations": [
-        "kaplan_meier"
+        "kaplan_meier",
+        "r_analysis"
       ],
       "inputs": [
         "持续时间",
@@ -2243,7 +2291,9 @@
       "components": [
         "python-bayes"
       ],
-      "operations": [],
+      "operations": [
+        "script"
+      ],
       "inputs": [
         "数据",
         "模型",
@@ -2276,7 +2326,9 @@
       "components": [
         "r-matching"
       ],
-      "operations": [],
+      "operations": [
+        "script"
+      ],
       "inputs": [
         "处理",
         "基线变量",
@@ -2309,7 +2361,8 @@
         "python-empirical"
       ],
       "operations": [
-        "aipw"
+        "aipw",
+        "r_analysis"
       ],
       "inputs": [
         "处理",
@@ -2461,7 +2514,10 @@
       "components": [
         "r-did"
       ],
-      "operations": [],
+      "operations": [
+        "r_analysis",
+        "script"
+      ],
       "inputs": [
         "面板",
         "首次处理时期",
@@ -2509,7 +2565,9 @@
         "r-rdrobust"
       ],
       "operations": [
-        "local_rd"
+        "local_rd",
+        "r_analysis",
+        "script"
       ],
       "inputs": [
         "结果",
@@ -2554,7 +2612,8 @@
         "python-empirical"
       ],
       "operations": [
-        "synthetic_control"
+        "synthetic_control",
+        "r_analysis"
       ],
       "inputs": [
         "完整面板",
@@ -2602,7 +2661,9 @@
       "components": [
         "r-mediation"
       ],
-      "operations": [],
+      "operations": [
+        "script"
+      ],
       "inputs": [
         "处理",
         "中介",
@@ -2848,7 +2909,9 @@
       "components": [
         "python-spatial"
       ],
-      "operations": [],
+      "operations": [
+        "script"
+      ],
       "inputs": [
         "空间数据",
         "坐标",
@@ -2955,7 +3018,9 @@
       "components": [
         "r-network"
       ],
-      "operations": [],
+      "operations": [
+        "script"
+      ],
       "inputs": [
         "网络",
         "节点属性",
@@ -2987,7 +3052,9 @@
       "components": [
         "python-simulation"
       ],
-      "operations": [],
+      "operations": [
+        "script"
+      ],
       "inputs": [
         "主体与行为规则",
         "参数",
@@ -3019,7 +3086,9 @@
       "components": [
         "python-economics"
       ],
-      "operations": [],
+      "operations": [
+        "script"
+      ],
       "inputs": [
         "经济模型",
         "参数",
@@ -3052,7 +3121,9 @@
       "components": [
         "python-finance"
       ],
-      "operations": [],
+      "operations": [
+        "script"
+      ],
       "inputs": [
         "合约或资产",
         "参数",
@@ -3115,7 +3186,9 @@
       "components": [
         "r-survival"
       ],
-      "operations": [],
+      "operations": [
+        "script"
+      ],
       "inputs": [
         "人口数据",
         "时期",
@@ -3286,7 +3359,8 @@
       "kind": "calculation",
       "components": [],
       "operations": [
-        "table"
+        "table",
+        "sql"
       ],
       "inputs": [
         "CSV",
@@ -3319,7 +3393,10 @@
       "components": [
         "python-tables"
       ],
-      "operations": [],
+      "operations": [
+        "sql",
+        "script"
+      ],
       "inputs": [
         "数据表",
         "键与粒度"
@@ -3350,7 +3427,10 @@
       "components": [
         "r-missing"
       ],
-      "operations": [],
+      "operations": [
+        "r_analysis",
+        "script"
+      ],
       "inputs": [
         "数据",
         "缺失模式",
@@ -3385,7 +3465,9 @@
       "components": [
         "tesseract"
       ],
-      "operations": [],
+      "operations": [
+        "command"
+      ],
       "inputs": [
         "扫描材料",
         "语言与版面"
@@ -3479,7 +3561,9 @@
       "components": [
         "quarto"
       ],
-      "operations": [],
+      "operations": [
+        "command"
+      ],
       "inputs": [
         "文稿",
         "图表",
@@ -4163,6 +4247,24 @@
       ],
       "url": "https://grf-labs.github.io/grf/",
       "setup": "Connect an Rscript interpreter; HSS installs the selected package in its research library."
+    },
+    {
+      "id": "native-corpus",
+      "name": "HSS streaming corpus engine",
+      "kind": "native",
+      "language": "rust",
+      "command": "hss-corpus",
+      "setup": "Install Rust from https://rust-lang.org/install or bind an existing hss-corpus executable.",
+      "url": "https://github.com/EnvFoundry/HSS"
+    },
+    {
+      "id": "native-alignment",
+      "name": "HSS exact Unicode alignment",
+      "kind": "native",
+      "language": "cpp",
+      "command": "hss-align",
+      "setup": "Use a C++17 compiler or CMake with the platform C++ toolchain, or bind an existing hss-align executable.",
+      "url": "https://github.com/EnvFoundry/HSS"
     }
   ],
   "bundles": [

@@ -16,7 +16,7 @@ result = request({
 })
 ```
 
-Actions: `browse`, `search`, `methods`, `resources`, `context`, `plan`, `prepare`, `installed`, `bind`, `remove`, `exec`, `explore`, `project`, `run`, `connect`, `index`, `lookup`, `export-r`, `export`. The implementation is in `src/hss/api.py`; examples show concrete payloads.
+Actions: `browse`, `search`, `methods`, `resources`, `context`, `plan`, `prepare`, `installed`, `bind`, `remove`, `exec`, `explore`, `blueprint`, `project`, `run`, `manuscript`, `connect`, `index`, `lookup`, `export-r`, `export`. The implementation is in `src/hss/api.py`; examples show concrete payloads.
 
 The host owns its task ID, process group, cancellation and account state. It records the returned interpreter command and resources with the rest of its environment registrations. HSS reuses SeedEnv interpreters when their packages meet the selected component requirements. This integration shape does not require either environment to import the other.
 
@@ -56,4 +56,16 @@ await picker.connect(new HSSClient(request => host.call('hss', request), '/resea
 
 Render `<hss-picker></hss-picker>` in the product. The component keeps selections across filters and lets users inspect a plan or prepare only the selected modules. It emits `hss-prepared` and `hss-error`. The browser never directly invokes a shell; the host transport calls its existing execution interface.
 
-There is no claim that a running Origo product or every Agent application has already loaded this package. This repository provides the integration implementation and protocol checks; product-specific registration belongs in the relevant host repository.
+## Direct Origo import
+
+Add `https://github.com/EnvFoundry/HSS` through Origo's repository source import. The root `plugin.json` declares eight Skills and the stdio research service. Origo supplies `RESEARCH_PYTHON`, `PACKAGE_ROOT` and `WORKSPACE_ROOT`; no separate HSS package installation is needed to browse or prepare resources.
+
+Origo installs this environment plugin as `System/env/hss-research`. Selected software and HSS state use `System/env/hss`; knowledge, Skills, workflows and project material retain their resource-specific locations. Keep the plugin name `hss-research` distinct from the mutable software directory when importing or renaming it.
+
+This path was exercised with the actual `Oxelra-AI/agentic-research-os` extension loader: repository package discovery, materialization, installation into the environment area, eight Skill declarations and an MCP catalogue call all completed. No private product code is included in HSS. The product's existing source importer is used; no new built-in catalogue tile is required.
+
+## Complete research UI
+
+Render `<hss-workbench></hss-workbench>` and connect it exactly like the picker. It adds research formulation, blueprint composition, project creation, task execution and manuscript assembly. The exported `httpTransport` reads streamed progress; the host can instead supply its own RPC transport. For a standalone process use `node packages/client/server.mjs --space /research`.
+
+The workbench emits `hss-result` after completed requests; the module picker emits `hss-prepared`. Both retain data and execute through the supplied client. See [workbench](workbench.md) for concrete R, SQL and project-code contracts.

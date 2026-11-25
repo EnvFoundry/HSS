@@ -141,7 +141,7 @@ Fields and directions are navigation views. Modules and software components are 
 
 ## Modules
 
-| Module | Purpose | Software | Computation / R export |
+| Module | Purpose | Software | Operations / R adapters |
 |---|---|---|---|
 | `research-question` · 研究问题凝练 | 从现象、材料或理论分歧形成可回答的问题与研究范围。 |  |  |
 | `literature-search` · 文献检索与整理 | 组织中英文检索、引文追踪和文献条目，保留可回到原文的位置。 |  |  |
@@ -150,21 +150,21 @@ Fields and directions are navigation views. Modules and software components are 
 | `argument-analysis` · 论证重建 | 把论点、前提、推导和反对意见组织为可以逐项阅读的论证图。 |  | argument_map |
 | `theory-building` · 理论构建 | 从行动、制度、关系与过程建立解释，并推导不同情形下的含义。 |  |  |
 | `normative-analysis` · 规范与伦理论证 | 说明价值前提、适用对象和冲突情形，比较不同规范方案。 |  |  |
-| `formal-models` · 形式理论与博弈 | 明确主体、行为规则、约束与互动，分析均衡或动态过程。 | python-economics |  |
+| `formal-models` · 形式理论与博弈 | 明确主体、行为规则、约束与互动，分析均衡或动态过程。 | python-economics | script |
 | `historical-sources` · 史料整理 | 按形成时间、作者、载体、出处与文本位置组织史料。 |  | corpus |
-| `text-collation` · 文本与版本比较 | 逐段呈现文本差异，区分录入差异、编辑改动和内容变化。 |  | collate |
+| `text-collation` · 文本与版本比较 | 逐段呈现文本差异，区分录入差异、编辑改动和内容变化。 | ; cpp: native-alignment | collate, native_collate |
 | `tei-encoding` · TEI 文本编码 | 按研究需要组织人物、地名、段落、引文与异文标记。 |  | corpus |
 | `historical-comparison` · 历史比较研究 | 围绕明确问题比较时期或案例，重建制度与过程变化。 |  |  |
 | `oral-history` · 口述史 | 组织访谈提纲、转录、时间线及叙述与其他材料的对应关系。 |  |  |
 | `literary-reading` · 文学细读与阐释 | 从文本形式、叙述、修辞和语境展开相互衔接的解释。 |  |  |
-| `translation-analysis` · 翻译与跨语言比较 | 对齐原文与译文，分析语义、语域和文化选择。 |  | collate |
+| `translation-analysis` · 翻译与跨语言比较 | 对齐原文与译文，分析语义、语域和文化选择。 | ; cpp: native-alignment | collate, native_collate |
 | `discourse-analysis` · 话语分析 | 研究概念、主体位置、表述方式与制度语境之间的关系。 |  |  |
 | `narrative-analysis` · 叙事分析 | 分析叙述结构、时间安排、视角和身份表达。 |  |  |
 | `visual-analysis` · 视觉与艺术材料分析 | 联系图像形式、制作、传播和观看情境分析视觉材料。 |  |  |
 | `cultural-analysis` · 文化与宗教研究 | 结合文本、实践与历史语境解释意义及其变化。 |  |  |
-| `corpus-assembly` · 语料整理与分段 | 把文本、CSV、Word、PDF 或 TEI 材料组织为带来源位置的语料。 |  | corpus |
-| `text-concordance` · 关键词与语境检索 | 返回词语所在的文本位置和上下文，支持中文及多语言材料。 |  | concordance |
-| `linguistic-analysis` · 语言结构与语料研究 | 组织分词、词性、句法与语料比较，选择适合材料的语言模型。 | python-language |  |
+| `corpus-assembly` · 语料整理与分段 | 把文本、CSV、Word、PDF 或 TEI 材料组织为带来源位置的语料。 | ; rust: native-corpus | corpus, native_profile |
+| `text-concordance` · 关键词与语境检索 | 返回词语所在的文本位置和上下文，支持中文及多语言材料。 | ; rust: native-corpus | concordance, native_concordance |
+| `linguistic-analysis` · 语言结构与语料研究 | 组织分词、词性、句法与语料比较，选择适合材料的语言模型。 | python-language | script |
 | `interview-design` · 访谈设计 | 把研究问题转为开放提问、追问路径与受访者选择方案。 |  |  |
 | `interview-coding` · 访谈材料编码 | 使用明确定义的编码及文本区间记录解释，保留原文联系。 |  | coding |
 | `thematic-analysis` · 主题分析 | 从编码、备忘录与材料比较发展主题，并说明主题之间的关系。 |  |  |
@@ -172,61 +172,61 @@ Fields and directions are navigation views. Modules and software components are 
 | `ethnography` · 民族志与田野研究 | 连接参与观察、田野笔记、访谈与研究者位置。 |  |  |
 | `case-study` · 案例研究 | 按研究问题选择案例，组织案内解释与跨案例比较。 |  |  |
 | `process-tracing` · 过程追踪 | 重建关键事件、行动和时序，比较不同机制对过程材料的解释。 |  |  |
-| `qca` · 集合论与组态分析 | 定义条件集合、校准规则和结果集合，分析必要性与充分性组合。 | r-qca | R:qca |
+| `qca` · 集合论与组态分析 | 定义条件集合、校准规则和结果集合，分析必要性与充分性组合。 | r-qca | r_analysis, script, qca |
 | `mixed-methods` · 混合方法研究 | 明确不同材料承担的任务，在设计和解释阶段整合研究结果。 |  |  |
 | `coding-agreement` · 编码者一致性 | 在相同分析单位上比较两个编码者的分类，并呈现分歧分布。 |  | agreement |
-| `sampling` · 抽样与样本规划 | 明确目标总体、抽样框、分层和调查资源，计算设计所需数量。 | r-sampling |  |
+| `sampling` · 抽样与样本规划 | 明确目标总体、抽样框、分层和调查资源，计算设计所需数量。 | r-sampling | script |
 | `questionnaire` · 问卷设计与实施 | 组织问题、选项、跳转、顺序和试测，生成可交换的问卷描述。 |  | questionnaire |
-| `survey-analysis` · 复杂调查分析 | 按权重、分层和抽样单位计算总体统计及其不确定性。 | r-survey | R:survey |
-| `scale-design` · 量表开发 | 界定构念、设计题项、开展认知访谈与试测，安排测量分析。 |  | R:lavaan |
-| `factor-analysis` · 因子与结构方程 | 按理论指定测量结构，分析载荷、模型拟合和群体可比性。 | r-lavaan | R:lavaan |
-| `item-response` · 项目反应模型 | 研究题项特征与潜在能力的关系，比较题项和群体表现。 | r-mirt |  |
+| `survey-analysis` · 复杂调查分析 | 按权重、分层和抽样单位计算总体统计及其不确定性。 | r-survey | r_analysis, script, survey |
+| `scale-design` · 量表开发 | 界定构念、设计题项、开展认知访谈与试测，安排测量分析。 |  | r_analysis, lavaan |
+| `factor-analysis` · 因子与结构方程 | 按理论指定测量结构，分析载荷、模型拟合和群体可比性。 | r-lavaan; r: r-lavaan | r_analysis, script, lavaan |
+| `item-response` · 项目反应模型 | 研究题项特征与潜在能力的关系，比较题项和群体表现。 | r-mirt | script |
 | `behavioural-experiments` · 行为实验 | 把操纵、刺激、随机分配、响应与时间线组织为浏览器实验。 | jspsych | experiment |
 | `conjoint` · 联合分析与选择实验 | 定义属性与水平，安排选择任务并分析属性的相对作用。 |  |  |
 | `randomized-experiment` · 随机实验分析 | 根据分配方式估计平均差异或含基线交互的调整结果。 | python-empirical | rct |
 | `descriptive-statistics` · 描述统计 | 按定义清楚的总体与变量计算均值、分位数和分布。 | python-empirical | summary |
 | `distribution` · 分布与不平等 | 描述分布形态并计算适用的 Gini 与 Theil 指标。 | python-empirical | distribution |
 | `linear-association` · 线性关联分析 | 估计给定协变量条件下的线性关联，支持 HC3 与单向聚类区间。 | python-empirical | ols |
-| `multilevel-models` · 多层模型 | 表达个体、组织或地区的层级结构与组间差异。 | r-lme4 |  |
-| `panel-models` · 面板与固定效应 | 根据个体、时间与变化来源组织面板模型。 | r-fixest |  |
-| `time-series` · 时间序列研究 | 研究趋势、周期、依赖结构与动态响应。 | python-empirical | autoreg |
-| `event-history` · 事件史与生存分析 | 组织起点、事件、随访与删失，计算生存过程。 | python-empirical | kaplan_meier, R:cox |
-| `bayesian-models` · 贝叶斯研究模型 | 表达先验、生成过程与后验，连接模型含义与观察结果。 | python-bayes |  |
-| `matching` · 匹配与加权设计 | 按处理前信息构造可比较样本，说明目标总体和调整方式。 | r-matching |  |
-| `adjusted-effects` · 双重稳健效应估计 | 使用交叉拟合的处理与结果模型估计明确总体上的平均效应。 | python-empirical | aipw, R:grf |
+| `multilevel-models` · 多层模型 | 表达个体、组织或地区的层级结构与组间差异。 | r-lme4 | script |
+| `panel-models` · 面板与固定效应 | 根据个体、时间与变化来源组织面板模型。 | r-fixest; r: r-fixest, python: python-models | script |
+| `time-series` · 时间序列研究 | 研究趋势、周期、依赖结构与动态响应。 | python-empirical; reference: python-empirical, statsmodels: python-models | autoreg |
+| `event-history` · 事件史与生存分析 | 组织起点、事件、随访与删失，计算生存过程。 | python-empirical | kaplan_meier, r_analysis, cox |
+| `bayesian-models` · 贝叶斯研究模型 | 表达先验、生成过程与后验，连接模型含义与观察结果。 | python-bayes | script |
+| `matching` · 匹配与加权设计 | 按处理前信息构造可比较样本，说明目标总体和调整方式。 | r-matching | script |
+| `adjusted-effects` · 双重稳健效应估计 | 使用交叉拟合的处理与结果模型估计明确总体上的平均效应。 | python-empirical; aipw: python-empirical, causal-forest: r-grf | aipw, r_analysis, grf |
 | `double-machine-learning` · 双重机器学习 | 按部分线性或交互回归任务选择正交得分与样本划分。 | python-empirical | dml_plr, dml_irm |
 | `instrumental-variables` · 工具变量分析 | 以明确的工具来源与目标参数开展线性两阶段估计。 | python-empirical | iv |
 | `did-two-period` · 两期双重差分 | 在两个时期与两类群体上估计未调整的双重差分。 | python-empirical | did_2x2 |
-| `did-staggered` · 多期政策效果 | 按处理批次与时期组织效应及其汇总。 | r-did | R:did, R:contdid, R:did_multiplegt |
-| `regression-discontinuity` · 断点设计 | 根据阈值规则与运行变量开展局部比较。 | r-rdrobust | local_rd, R:rdrobust |
-| `synthetic-control` · 合成控制 | 用供体轨迹拟合处理前过程并比较处理后的变化。 | python-empirical | synthetic_control, R:synthdid |
-| `mediation` · 中介与机制研究 | 明确作用时序与中介目标，连接过程研究和适用的效应分解。 | r-mediation |  |
+| `did-staggered` · 多期政策效果 | 按处理批次与时期组织效应及其汇总。 | r-did; group-time: r-did, continuous-dose: r-contdid, treatment-switching: r-multiplegt | r_analysis, script, did, contdid, did_multiplegt |
+| `regression-discontinuity` · 断点设计 | 根据阈值规则与运行变量开展局部比较。 | r-rdrobust; local-polynomial: r-rdrobust, local-randomization: python-empirical | local_rd, r_analysis, script, rdrobust |
+| `synthetic-control` · 合成控制 | 用供体轨迹拟合处理前过程并比较处理后的变化。 | python-empirical; reference: python-empirical, synth: r-synth, synthetic-did: r-synthdid | synthetic_control, r_analysis, synthdid |
+| `mediation` · 中介与机制研究 | 明确作用时序与中介目标，连接过程研究和适用的效应分解。 | r-mediation | script |
 | `prediction` · 预测与分类 | 按实际部署场景划分样本并开展表格预测。 | python-empirical | predict |
 | `text-classification` · 文本分类 | 在训练材料中学习文本表示，预测独立文本的类别。 | python-empirical | text_predict |
 | `conformal-prediction` · 保形预测区间 | 以独立训练、校准与测试划分构造交换条件下的预测区间。 | python-empirical | conformal |
 | `clustering` · 类型与聚类探索 | 比较样本在特征空间中的组合模式并解释类别。 | python-empirical | kmeans |
 | `principal-components` · 主成分表示 | 将共同变化投影为低维线性表示，并保留载荷与变换结果。 | python-empirical | pca |
-| `topic-models` · 主题模型 | 探索语料中的词语组合并联系具体文档解释主题。 | python-empirical | topic |
-| `spatial-patterns` · 空间格局分析 | 连接空间单位与邻接关系，研究集聚、分布和可达性。 | python-spatial |  |
+| `topic-models` · 主题模型 | 探索语料中的词语组合并联系具体文档解释主题。 | python-empirical; python: python-empirical, r: r-quanteda | topic |
+| `spatial-patterns` · 空间格局分析 | 连接空间单位与邻接关系，研究集聚、分布和可达性。 | python-spatial | script |
 | `spatial-autocorrelation` · 空间自相关 | 针对明确空间权重计算 Moran I 与随机标签置换结果。 | python-empirical | moran |
-| `network-structure` · 关系网络结构 | 计算观察网络的连接、程度与连通结构。 | python-empirical | network |
-| `network-models` · 网络形成与演化 | 根据关系生成过程选择网络统计模型。 | r-network |  |
-| `agent-simulation` · 主体模拟 | 将主体规则、关系、空间与时间推进组织为计算模型。 | python-simulation |  |
-| `economic-models` · 经济机制与动态模型 | 求解经济模型并比较参数、政策与均衡变化。 | python-economics |  |
-| `financial-models` · 金融定价与风险研究 | 依据合约、现金流、市场过程和研究假设开展金融计算。 | python-finance |  |
+| `network-structure` · 关系网络结构 | 计算观察网络的连接、程度与连通结构。 | python-empirical; reference: python-empirical, networkx: python-networks | network |
+| `network-models` · 网络形成与演化 | 根据关系生成过程选择网络统计模型。 | r-network | script |
+| `agent-simulation` · 主体模拟 | 将主体规则、关系、空间与时间推进组织为计算模型。 | python-simulation | script |
+| `economic-models` · 经济机制与动态模型 | 求解经济模型并比较参数、政策与均衡变化。 | python-economics | script |
+| `financial-models` · 金融定价与风险研究 | 依据合约、现金流、市场过程和研究假设开展金融计算。 | python-finance | script |
 | `policy-appraisal` · 政策与分配评价 | 把效果、成本、受益者和价值取向组织为政策比较。 |  |  |
-| `demographic-analysis` · 人口与迁移研究 | 连接人口口径、生命事件、队列和迁移过程。 | r-survival |  |
+| `demographic-analysis` · 人口与迁移研究 | 连接人口口径、生命事件、队列和迁移过程。 | r-survival | script |
 | `decomposition` · 差异分解 | 按明确参考组将均值差异分解为协变量与系数相关部分。 | python-empirical | oaxaca |
-| `meta-analysis` · 元分析 | 在可比较效应尺度上综合独立研究的估计与不确定性。 | python-empirical | meta |
+| `meta-analysis` · 元分析 | 在可比较效应尺度上综合独立研究的估计与不确定性。 | python-empirical; reference: python-empirical, r: r-metafor | meta |
 | `systematic-review` · 系统综述 | 明确研究范围、检索与纳入逻辑，综合研究之间的关系。 |  |  |
 | `multiple-comparisons` · 多重比较 | 在明确的检验族中计算 Holm 与 BH 调整。 | python-empirical | multiple_testing |
-| `data-preparation` · 研究数据整理 | 按变量含义处理类型、缺失、重复和数据结构。 |  | table |
-| `data-linkage` · 多源资料联结 | 明确联结键、粒度与基数，连接不同来源的记录。 | python-tables |  |
-| `missing-data` · 缺失数据分析 | 根据缺失过程和分析目标选择处理或多重插补方式。 | r-missing | R:mice |
-| `ocr-materials` · 扫描材料识别 | 将扫描页转为文本并保留页码与图像位置。 | tesseract |  |
+| `data-preparation` · 研究数据整理 | 按变量含义处理类型、缺失、重复和数据结构。 |  | table, sql |
+| `data-linkage` · 多源资料联结 | 明确联结键、粒度与基数，连接不同来源的记录。 | python-tables | sql, script |
+| `missing-data` · 缺失数据分析 | 根据缺失过程和分析目标选择处理或多重插补方式。 | r-missing | r_analysis, script, mice |
+| `ocr-materials` · 扫描材料识别 | 将扫描页转为文本并保留页码与图像位置。 | tesseract | command |
 | `pdf-materials` · PDF 与文档提取 | 提取可读取的文本并保留文档来源与段落。 | python-documents | corpus |
 | `research-writing` · 研究成果写作 | 从已有材料、分析和论证组织连贯的文章、报告或专著章节。 |  |  |
-| `research-publishing` · 文稿编排与导出 | 将研究文稿、图表和引用转换为适合交付的格式。 | quarto |  |
+| `research-publishing` · 文稿编排与导出 | 将研究文稿、图表和引用转换为适合交付的格式。 | quarto | command |
 | `research-reproduction` · 研究复算 | 根据公开材料重新运行分析，比较结果并解释差异来源。 |  |  |
 | `legal-interpretation` · 法律解释与比较 | 区分法源、适用时间和解释路径，比较规则在具体事实中的作用。 |  |  |
 | `intellectual-history` · 思想史与理论文本 | 把概念与论述放回作者、争论、制度和时期中理解。 |  |  |
@@ -280,6 +280,8 @@ Fields and directions are navigation views. Modules and software components are 
 | `r-multiplegt` | DIDmultiplegtDYN | [DIDmultiplegtDYN](https://github.com/chaisemartinPackages/did_multiplegt_dyn) |
 | `r-synthdid` | synthdid | [synthdid](https://synth-inference.github.io/synthdid/) |
 | `r-grf` | grf | [grf](https://grf-labs.github.io/grf/) |
+| `native-corpus` | hss-corpus | [HSS streaming corpus engine](https://github.com/EnvFoundry/HSS) |
+| `native-alignment` | hss-align | [HSS exact Unicode alignment](https://github.com/EnvFoundry/HSS) |
 
 ## Information and data services
 

@@ -1,0 +1,16 @@
+{
+  "title": "Relational analysis of synthetic regional records",
+  "question": "How do these four synthetic observations differ by region?",
+  "tasks": [{
+    "id": "regional-summary",
+    "operation": "sql",
+    "datasets": [
+      {"name": "people", "path": "people.csv", "types": {"person": "INTEGER", "income": "REAL"}},
+      {"name": "regions", "path": "regions.csv"}
+    ],
+    "queries": [
+      {"name": "groups", "sql": "SELECT p.region, r.service, COUNT(*) AS observations, AVG(p.income) AS mean_income FROM people p JOIN regions r ON p.region = r.region GROUP BY p.region, r.service ORDER BY p.region"},
+      {"name": "unmatched", "sql": "SELECT p.* FROM people p LEFT JOIN regions r ON p.region = r.region WHERE r.region IS NULL"}
+    ]
+  }]
+}

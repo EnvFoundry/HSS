@@ -32,7 +32,7 @@ def probe(component, command, environment=None):
             + r_vector(component.get("packages", []))
             + ", requireNamespace, logical(1), quietly=TRUE)))",
         ]
-    elif kind == "command":
+    elif kind in {"command", "native"}:
         args = [*command, *component.get("probe_args", ["--version"])]
     elif kind == "node":
         script = (
@@ -67,7 +67,7 @@ def find_existing(component, bindings, existing=()):
         if not item.get("components") or component["id"] in item["components"]
     ]
     for name, entry in bindings.items():
-        if component["kind"] != "command" or name == component["id"]:
+        if component["kind"] not in {"command", "native"} or name == component["id"]:
             candidates.append({**entry, "components": [component["id"]]})
     if component["kind"] == "python":
         candidates.append({"command": [sys.executable]})
@@ -75,7 +75,9 @@ def find_existing(component, bindings, existing=()):
         candidates.append({"command": [shutil.which("Rscript")]})
     elif component["kind"] == "node" and shutil.which("node"):
         candidates.append({"command": [shutil.which("node")]})
-    elif component["kind"] == "command" and shutil.which(component["command"]):
+    elif component["kind"] in {"command", "native"} and shutil.which(
+        component["command"]
+    ):
         candidates.append({"command": [shutil.which(component["command"])]})
     seen = set()
     for item in candidates:
@@ -87,7 +89,7 @@ def find_existing(component, bindings, existing=()):
         declared_kind = item.get("kind")
         if declared_kind and declared_kind != component["kind"]:
             continue
-        if component["kind"] == "command" and not item.get("components"):
+        if component["kind"] in {"command", "native"} and not item.get("components"):
             if (
                 not command
                 or Path(command[0]).stem.casefold() != component["command"].casefold()
@@ -109,6 +111,10 @@ def install(component, layout, existing=(), options=None, progress=None):
     name = component["id"]
     root = layout["env"] / "software" / name
     kind = component["kind"]
+    if kind == "native":
+        from .native import build
+
+        return build(component, root, options)
     if kind == "python":
         interpreter = root / ("Scripts/python.exe" if os.name == "nt" else "bin/python")
         if not interpreter.exists():

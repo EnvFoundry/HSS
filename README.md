@@ -8,13 +8,20 @@ HSS brings research guidance, methods, software, Skills, literature and data con
 
 The catalogue covers philosophy, literature and language, history, arts and culture, sociology and anthropology, politics and public policy, law, Marxist theory, economics, business and finance, education, psychology, communication, population and human geography. Common research capabilities are shared across these fields.
 
-## Implementation status
+## Research environment
 
-This is a working environment foundation, not a completed implementation of every HSS method. Field and direction entries provide navigation; the 91 modules combine shared research resources, software recipes and explicit operations. The runtime implements 24 statistical and 10 material/collection operations. The wider method catalogue, R exports and upstream software entries have different execution requirements, documented in [execution coverage](docs/execution.md).
+The research workbench connects module selection, research design, executable studies and manuscript assembly. Every catalogue direction expands into a blueprint containing its material inputs, outputs, research guidance, workflows, software choices and operation contracts. A host Agent develops the substantive research argument with the researcher and supplies model calls.
 
-Python implements preparation, studies and the CLI/MCP interface. TypeScript in `packages/client/src` implements the host client and selection UI. SQL in `state.py`, `knowledge.py` and `materials.py` manages SQLite records, research indexes and bibliographies. R generators produce scripts for external statistical environments. There is no custom Rust or C/C++ runtime in this repository; hosts and upstream tools keep their own execution implementations.
+| Implementation | Responsibility |
+|---|---|
+| TypeScript | Typed host client, field/direction/module picker, research workbench and streaming HTTP transport |
+| Rust | Streaming UTF-8 corpus profiles and keyword concordances with character and byte positions |
+| C++17 | Exact Unicode text alignment using divide-and-conquer edit distance |
+| SQL | Installation, knowledge and bibliography schemas; relational analyses of project CSV datasets |
+| Python | Selected preparation, interpreter reuse, research task execution, statistics, materials, CLI and MCP |
+| R | Named upstream statistical analyses, fitted models and result exports |
 
-Host interfaces are implemented. Registration inside a running Qiushi Engine or Origo product, execution of every external software recipe, and end-to-end research examples for every direction remain separate work. Publishing the complete source does not imply that those integrations or all methods have been completed.
+The root `plugin.json` makes this repository directly importable through Origo's repository source interface. Its actual extension loader has installed the package and called the research service successfully. Other hosts use the same stdio MCP or JSON interface.
 
 ## Start
 
@@ -47,6 +54,21 @@ hss export bundle:historical-study --output /research/System/plugins/hss
 
 Use `python -m hss` wherever the `hss` command is not on PATH. Windows research spaces can use paths such as `D:\Research`; neither an administrator account nor a global package installation is required.
 
+## Workbench and native text tools
+
+From a source checkout, the compiled workbench starts without a frontend build:
+
+```bash
+node packages/client/server.mjs --space /research --python python
+# Open http://127.0.0.1:8787
+
+hss --space /research prepare corpus-assembly text-collation --backend corpus-assembly=rust --backend text-collation=cpp
+hss --space /research run examples/native/study.json --output /research/Projects/native/results
+hss blueprint direction:history/sources
+```
+
+The native backends use an available Rust and C++ compiler; Windows C++ builds also support CMake with Visual Studio. They are selected explicitly. The ordinary material operations need no native compiler. See [workbench and study composition](docs/workbench.md) for SQL, R, project code and manuscript examples.
+
 ## What is included
 
 | Layer | Included capability |
@@ -54,13 +76,13 @@ Use `python -m hss` wherever the `hss` command is not on PATH. Windows research 
 | Navigation | 14 research fields and a common research entry, 60 directions, 91 reusable modules, 8 bundles |
 | Research | 19 topic guides, 8 task Skills, 7 workflows, research design and interpretation prompts |
 | Method reference | 371 method cards in 40 families; 241 design/task branches |
-| Computation | 24 bounded statistical operations covering 32 branches; 10 material and instrument operations |
-| Software | 41 Python, R, Node, command and service components, prepared or connected on selection |
-| External R | 11 script generators for 15 registered branches and missing-data imputation |
+| Computation | 41 study operations: 24 statistical, 13 material/native, SQL, R analysis, project scripts and prepared commands |
+| Software | 43 Python, R, Node, native, command and service components, prepared or connected on selection |
+| External R | 11 analysis adapters, usable in a study or exported as R scripts |
 | Information | 24 literature/data/service entries; clients for Crossref, OpenAlex, Zotero web libraries and World Bank indicators |
-| Agent integration | Python API, CLI/JSON, stdio MCP, portable plugin package, TypeScript client and selection component |
+| Agent integration | Python API, CLI/JSON, stdio MCP, portable plugin package, TypeScript client, module picker and research workbench |
 
-A method card is a description, not an implemented estimator. Module records separately list `operations`, `r_exports`, software components and research guidance. R script generation is reported as code export until the script is actually run. Large datasets, language models and application servers are obtained separately from their configured services.
+Method cards support research design and retrieval. Executable tasks use the operation contracts; broader methods run through their prepared upstream software. R code export and R execution are separate actions. Large datasets, language models and application servers are obtained separately from their configured services.
 
 ## Where resources go
 
@@ -70,7 +92,8 @@ A method card is a description, not an implemented estimator. Module records sep
 | Skills | `System/skills/hss-*` |
 | Research knowledge | `System/knowledge/hss` |
 | Workflows and prompts | `System/workflows/hss`, `System/prompts/hss` |
-| Exported integration package | Explicit destination, normally `System/plugins/hss` |
+| Origo environment plugin | `System/env/hss-research`, separate from installed software and state |
+| Portable exported plugin | Explicit destination, for example `System/plugins/hss` |
 | MCP client configuration | Exported package's `mcp.json`; the host chooses where to register it |
 | Selected local knowledge index | `System/databases/hss` |
 | Download cache | `System/cache/hss` |

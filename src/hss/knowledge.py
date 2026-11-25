@@ -3,6 +3,7 @@
 import json
 import sqlite3
 from contextlib import closing
+from .catalog import DATA
 
 
 def build(manager, selections):
@@ -30,9 +31,7 @@ def build(manager, selections):
                 "hss://knowledge/" + filename,
             )
     with closing(sqlite3.connect(path)) as con, con:
-        con.execute(
-            "CREATE TABLE IF NOT EXISTS documents(id TEXT PRIMARY KEY, title TEXT, body TEXT, kind TEXT, location TEXT)"
-        )
+        con.executescript((DATA / "sql/documents.sql").read_text(encoding="utf-8"))
         for key, record in records.items():
             con.execute(
                 "INSERT OR REPLACE INTO documents VALUES (?,?,?,?,?)", (key, *record)

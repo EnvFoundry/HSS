@@ -1,0 +1,23 @@
+{
+  "name": "hss-research",
+  "version": "0.1.0",
+  "display_name": "HSS · 人文与社会科学",
+  "description": "Composable research design, materials, methods, software and writing for humanities and social sciences.",
+  "homepage": "https://github.com/EnvFoundry/HSS",
+  "skills": ["src/hss/data/skills"],
+  "environment": {
+    "resources": [
+      {"kind": "data", "path": "workspace:///System/env/hss", "title": "HSS software and selections"},
+      {"kind": "data", "path": "workspace:///System/knowledge/hss", "title": "HSS research knowledge"},
+      {"kind": "data", "path": "workspace:///System/databases/hss", "title": "HSS research databases"}
+    ]
+  },
+  "mcpServers": {
+    "hss": {
+      "transport": "stdio",
+      "command": "${RESEARCH_PYTHON}",
+      "args": ["-B", "${PACKAGE_ROOT}/connect/server.py"],
+      "env": {"HSS_RESEARCH_SPACE": "${WORKSPACE_ROOT}", "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8"}
+    }
+  }
+}
