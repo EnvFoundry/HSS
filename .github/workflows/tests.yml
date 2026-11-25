@@ -1,5 +1,8 @@
 name: HSS
 on: [push, pull_request]
+concurrency:
+  group: hss-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   python:
     strategy:
@@ -13,8 +16,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python }}
+      - uses: dtolnay/rust-toolchain@stable
       - run: python -m pip install -e ".[analysis]" statsmodels mcp build
       - run: python -m unittest discover -s tests
+        env:
+          HSS_TEST_NATIVE: '1'
       - run: python -m build
   client:
     runs-on: ubuntu-latest
@@ -30,3 +36,18 @@ jobs:
         working-directory: packages/client
       - run: npm run build && npm test
         working-directory: packages/client
+  r:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+      - run: Rscript -e 'install.packages(c("survival", "lavaan", "survey"))'
+      - run: python -m pip install -e .
+      - run: python -m unittest discover -s tests -p test_workflow.py
+        env:
+          HSS_RSCRIPT: Rscript
