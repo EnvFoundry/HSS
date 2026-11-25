@@ -32,6 +32,15 @@
     },
     "resources": [
       {
+        "kind": "getting-started",
+        "package_path": "src/hss/data/skills/hss-research/SKILL.md",
+        "title": "From a question to a research project",
+        "titles": {
+          "en": "From a question to a research project",
+          "zh-CN": "从研究问题开始"
+        }
+      },
+      {
         "kind": "catalogue",
         "package_path": "src/hss/data/catalog.json",
         "title": "Fields, directions and modules",
