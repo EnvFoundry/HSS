@@ -1,0 +1,31 @@
+{
+  "id": "research",
+  "stages": [
+    {
+      "id": "frame",
+      "purpose": "明确问题",
+      "suggested_module": "research-question"
+    },
+    {
+      "id": "read",
+      "purpose": "理解已有研究",
+      "suggested_module": "literature-search"
+    },
+    {
+      "id": "design",
+      "purpose": "形成研究设计",
+      "suggested_module": "theory-building"
+    },
+    {
+      "id": "work",
+      "purpose": "开展所选研究",
+      "suggested_module": "data-preparation"
+    },
+    {
+      "id": "write",
+      "purpose": "形成成果",
+      "suggested_module": "research-writing"
+    }
+  ],
+  "iteration": "Return to the affected stage when the question or available materials change; use the host’s agreed interaction mode."
+}

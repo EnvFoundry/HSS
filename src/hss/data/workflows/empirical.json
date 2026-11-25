@@ -1,0 +1,31 @@
+{
+  "id": "empirical",
+  "stages": [
+    {
+      "id": "question",
+      "purpose": "问题与目标",
+      "suggested_module": "research-question"
+    },
+    {
+      "id": "design",
+      "purpose": "设计与测量",
+      "suggested_module": "theory-building"
+    },
+    {
+      "id": "data",
+      "purpose": "准备实际数据",
+      "suggested_module": "data-preparation"
+    },
+    {
+      "id": "analyse",
+      "purpose": "执行所选模型",
+      "suggested_module": "descriptive-statistics"
+    },
+    {
+      "id": "interpret",
+      "purpose": "解释结果",
+      "suggested_module": "research-writing"
+    }
+  ],
+  "iteration": "Return to the affected stage when the question or available materials change; use the host’s agreed interaction mode."
+}

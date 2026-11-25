@@ -1,0 +1,31 @@
+{
+  "id": "qualitative",
+  "stages": [
+    {
+      "id": "question",
+      "purpose": "问题与分析取向",
+      "suggested_module": "research-question"
+    },
+    {
+      "id": "collect",
+      "purpose": "访谈与材料",
+      "suggested_module": "interview-design"
+    },
+    {
+      "id": "code",
+      "purpose": "编码与备忘录",
+      "suggested_module": "interview-coding"
+    },
+    {
+      "id": "develop",
+      "purpose": "主题与解释",
+      "suggested_module": "thematic-analysis"
+    },
+    {
+      "id": "write",
+      "purpose": "研究论述",
+      "suggested_module": "research-writing"
+    }
+  ],
+  "iteration": "Return to the affected stage when the question or available materials change; use the host’s agreed interaction mode."
+}

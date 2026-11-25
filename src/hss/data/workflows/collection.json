@@ -1,0 +1,31 @@
+{
+  "id": "collection",
+  "stages": [
+    {
+      "id": "question",
+      "purpose": "问题与对象",
+      "suggested_module": "research-question"
+    },
+    {
+      "id": "instrument",
+      "purpose": "工具与题目",
+      "suggested_module": "questionnaire"
+    },
+    {
+      "id": "sample",
+      "purpose": "抽样或分配",
+      "suggested_module": "sampling"
+    },
+    {
+      "id": "collect",
+      "purpose": "实施与收集",
+      "suggested_module": "behavioural-experiments"
+    },
+    {
+      "id": "analyse",
+      "purpose": "分析与解释",
+      "suggested_module": "survey-analysis"
+    }
+  ],
+  "iteration": "Return to the affected stage when the question or available materials change; use the host’s agreed interaction mode."
+}

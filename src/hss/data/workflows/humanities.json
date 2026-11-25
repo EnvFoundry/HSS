@@ -1,0 +1,31 @@
+{
+  "id": "humanities",
+  "stages": [
+    {
+      "id": "question",
+      "purpose": "解释问题",
+      "suggested_module": "concept-analysis"
+    },
+    {
+      "id": "materials",
+      "purpose": "材料范围与位置",
+      "suggested_module": "historical-sources"
+    },
+    {
+      "id": "read",
+      "purpose": "比较与细读",
+      "suggested_module": "text-concordance"
+    },
+    {
+      "id": "interpret",
+      "purpose": "发展解释",
+      "suggested_module": "literary-reading"
+    },
+    {
+      "id": "write",
+      "purpose": "形成论述",
+      "suggested_module": "research-writing"
+    }
+  ],
+  "iteration": "Return to the affected stage when the question or available materials change; use the host’s agreed interaction mode."
+}

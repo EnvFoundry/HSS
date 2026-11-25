@@ -1,0 +1,31 @@
+{
+  "id": "theory",
+  "stages": [
+    {
+      "id": "concept",
+      "purpose": "澄清概念",
+      "suggested_module": "concept-analysis"
+    },
+    {
+      "id": "positions",
+      "purpose": "比较已有论述",
+      "suggested_module": "literature-synthesis"
+    },
+    {
+      "id": "reason",
+      "purpose": "发展论证",
+      "suggested_module": "argument-analysis"
+    },
+    {
+      "id": "model",
+      "purpose": "展开理论含义",
+      "suggested_module": "theory-building"
+    },
+    {
+      "id": "write",
+      "purpose": "形成理论论述",
+      "suggested_module": "research-writing"
+    }
+  ],
+  "iteration": "Return to the affected stage when the question or available materials change; use the host’s agreed interaction mode."
+}

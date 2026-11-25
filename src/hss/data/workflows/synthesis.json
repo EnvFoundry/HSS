@@ -1,0 +1,31 @@
+{
+  "id": "synthesis",
+  "stages": [
+    {
+      "id": "scope",
+      "purpose": "研究范围",
+      "suggested_module": "research-question"
+    },
+    {
+      "id": "search",
+      "purpose": "检索与阅读",
+      "suggested_module": "literature-search"
+    },
+    {
+      "id": "organize",
+      "purpose": "整理研究",
+      "suggested_module": "bibliography"
+    },
+    {
+      "id": "synthesize",
+      "purpose": "开展综合",
+      "suggested_module": "systematic-review"
+    },
+    {
+      "id": "write",
+      "purpose": "形成综合论述",
+      "suggested_module": "research-writing"
+    }
+  ],
+  "iteration": "Return to the affected stage when the question or available materials change; use the host’s agreed interaction mode."
+}
