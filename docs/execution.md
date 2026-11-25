@@ -46,15 +46,29 @@ Use `hss describe OPERATION` to retrieve exact inputs and a complete example tas
 | `table` | CSV column summaries and declared-key uniqueness. |
 | `bibliography` | Project SQLite bibliography from supplied source records. |
 
+## Native text and multi-language operations
+
+| Operation | Output |
+|---|---|
+| `native_profile` | Rust UTF-8 corpus profile and whitespace-token counts. |
+| `native_concordance` | Rust exact within-line matches with byte and Unicode positions. |
+| `native_collate` | C++ exact edit distance and aligned Unicode text segments. |
+| `sql` | Typed CSV import, relational queries, CSV tables and project SQLite database. |
+| `r_analysis` | Generated R analysis, executed fitted model and result artifacts. |
+| `script` | Project Python, R or JavaScript code executed with its prepared component. |
+| `command` | Prepared CLI program, explicit arguments and task output artifacts. |
+
 ## External R
 
-Code export covers `did`, `contdid`, `did_multiplegt`, `rdrobust`, `grf`, `synthdid`, `lavaan`, `cox`, `survey`, `mice` and `qca`. The returned result records `executed: false`. Prepare the matching software and execute the script with the configured R interpreter to obtain a fit. For broader methods, use the selected upstream package directly.
+Code export covers `did`, `contdid`, `did_multiplegt`, `rdrobust`, `grf`, `synthdid`, `lavaan`, `cox`, `survey`, `mice` and `qca`. `export-r` produces code with `executed: false`; the `r_analysis` operation executes the adapter with a registered R interpreter and saves its actual fit. For broader methods, use the selected upstream package directly.
 
 ## Integration scope
 
 The development checks cover Python numerical calculations against known answers and an independent statistics library, complete study examples, selected preparation and removal, shared dependencies, path mapping, runtime reuse, plugin relocation, the JSON CLI, the official Python MCP client, and the TypeScript-to-Python transport. A fresh core-only installation and a separately prepared numerical component are exercised before delivery.
 
-R numerical execution, remote authenticated data services, desktop applications and a running Qiushi/Origo product have separate deployment requirements. Their catalogue entries and exports do not imply they have been executed in this development environment. Linux is the locally exercised platform; Windows and Python 3.11/3.12 jobs are configured in CI.
+Native engines are compiled and exercised against Unicode material, independent edit-distance calculations and installation reuse. R integration executes Cox, lavaan and complex-survey analyses and reads their model files and estimate tables. The Node HTTP bridge creates a project and executes SQL; the source plugin has been installed by Origo's actual extension loader and called over MCP. All directions expand into concrete research blueprints. Linux and Windows checks run in CI with Python 3.11/3.12; a separate R job runs actual upstream analyses.
+
+These checks do not exercise every upstream package combination, external account or desktop application. Those components use their declared installation or connection contracts; the host supplies its own accounts and data access.
 
 ## Method reference
 

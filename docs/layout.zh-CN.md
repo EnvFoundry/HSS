@@ -6,13 +6,14 @@ HSS 由宿主传入持久研究空间，例如 Windows 的 `D:\Research` 或 Lin
 
 | 内容 | 位置 | 何时写入 |
 |---|---|---|
-| Python 环境、Node 软件 | `system/env/hss/software/<组件ID>/` | 准备所选模块且没有可复用的环境时 |
+| Python 环境、Node 软件、原生程序 | `system/env/hss/software/<组件ID>/` | 准备所选模块且没有可复用的环境时 |
 | R 包 | `system/env/hss/R/library/` | 已连接 R，并准备相应组件时 |
 | 模块选择与软件绑定 | `system/env/hss/selection.json`、`registry.sqlite` | 准备、绑定或移除模块时 |
 | Skills | `system/skills/hss-*/SKILL.md` | 准备相应模块时 |
 | 知识指南 | `system/knowledge/hss/` | 准备相应模块时 |
 | 工作流 | `system/workflows/hss/` | 准备相应模块时 |
 | 提示词 | `system/prompts/hss/` | 准备相应模块时 |
+| Origo 直接导入的环境插件 | `system/env/hss-research/` | 使用产品仓库导入时 |
 | 可移动插件包 | 显式导出位置，例如 `system/plugins/hss/` | 调用 `export` 时 |
 | MCP 配置 | 上述插件包中的 `mcp.json` | 导出插件包时，之后由宿主登记 |
 | 本地知识索引 | `system/databases/hss/research.sqlite` | 调用 `index` 时 |
@@ -60,4 +61,4 @@ hss --space /research export bundle:interview-study --output /research/System/pl
 
 相对路径基于研究空间，绝对路径直接使用。未设置的区域按默认布局解析。多用户部署由宿主为不同用户传入各自的研究空间；需要共享已有环境时，再通过解释器绑定实现复用。
 
-这些路径规则已经由 HSS 安装器实现。仓库提供 Python、CLI/JSON、MCP、TypeScript 客户端和模块选择组件；把产品内的下载按钮、任务调度和 MCP 注册接到这些接口，需要在对应宿主中完成。
+Origo 通过仓库源导入根目录 `plugin.json`，会将插件放入 `System/env/hss-research`，再由插件中的 MCP 服务准备所选组件。该流程已使用产品真实插件加载代码完成安装与调用。插件源码与 `System/env/hss` 中的软件和状态分别存放。TypeScript 工作台也可单独运行或嵌入产品现有界面。
