@@ -1,0 +1,10 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width">
+<title>HSS behavioural task</title><style>body{font:22px system-ui;max-width:850px;margin:15vh auto;padding:24px;text-align:center}button{font:inherit;padding:12px 28px}#stimulus{white-space:pre-wrap;margin:48px 0}small{font-size:15px;color:#555}</style>
+<h1>Research task</h1><p id="stimulus">Press Start when ready.</p><button id="start">Start</button><p id="instruction"></p><small id="progress"></small>
+<script>
+const trials=__TRIALS__, rows=[];let position=-1, onset=0, active=false;
+const stimulus=document.querySelector('#stimulus'),instruction=document.querySelector('#instruction');
+function next(){position++;active=false;if(position===trials.length){stimulus.textContent='Task completed.';instruction.textContent='Save the responses for the researcher.';const fields=['trial','stimulus','key','rt_ms'];const quote=x=>'"'+String(x).replaceAll('"','""')+'"';const csv=[fields.join(','),...rows.map(r=>fields.map(k=>quote(r[k])).join(','))].join('\n');const a=document.createElement('a');a.textContent='Download responses.csv';a.download='responses.csv';a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));document.body.append(a);return;}const t=trials[position];stimulus.textContent=t.stimulus;instruction.textContent=t.instruction||('Respond with: '+(t.keys||['f','j']).join(' / '));document.querySelector('#progress').textContent=(position+1)+' / '+trials.length;requestAnimationFrame(()=>requestAnimationFrame(()=>{onset=performance.now();active=true;}));}
+document.querySelector('#start').onclick=e=>{e.target.remove();next();};
+document.addEventListener('keydown',e=>{if(!active||e.repeat)return;const t=trials[position];if(!(t.keys||['f','j']).includes(e.key))return;e.preventDefault();rows.push({trial:position+1,stimulus:t.stimulus,key:e.key,rt_ms:performance.now()-onset});next();});
+</script></html>

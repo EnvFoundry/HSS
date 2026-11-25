@@ -1,0 +1,4459 @@
+{
+  "fields": [
+    {
+      "id": "philosophy",
+      "name": "哲学、逻辑与伦理",
+      "directions": [
+        {
+          "id": "concepts",
+          "name": "概念与知识",
+          "modules": [
+            "concept-analysis",
+            "argument-analysis",
+            "theory-building",
+            "literature-synthesis"
+          ]
+        },
+        {
+          "id": "ethics",
+          "name": "伦理与规范",
+          "modules": [
+            "normative-analysis",
+            "policy-appraisal",
+            "case-study",
+            "legal-interpretation"
+          ]
+        },
+        {
+          "id": "logic",
+          "name": "逻辑与形式理论",
+          "modules": [
+            "argument-analysis",
+            "formal-models",
+            "theory-building"
+          ]
+        },
+        {
+          "id": "history",
+          "name": "哲学史与宗教哲学",
+          "modules": [
+            "intellectual-history",
+            "historical-sources",
+            "text-collation",
+            "cultural-analysis"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "literature-language",
+      "name": "文学、语言与翻译",
+      "directions": [
+        {
+          "id": "literature",
+          "name": "文学研究",
+          "modules": [
+            "literary-reading",
+            "narrative-analysis",
+            "discourse-analysis",
+            "historical-sources"
+          ]
+        },
+        {
+          "id": "language",
+          "name": "语言与语料",
+          "modules": [
+            "corpus-assembly",
+            "linguistic-analysis",
+            "text-concordance",
+            "topic-models"
+          ]
+        },
+        {
+          "id": "translation",
+          "name": "翻译与跨语言",
+          "modules": [
+            "translation-analysis",
+            "text-collation",
+            "corpus-assembly"
+          ]
+        },
+        {
+          "id": "digital",
+          "name": "计算文本研究",
+          "modules": [
+            "text-classification",
+            "topic-models",
+            "tei-encoding",
+            "pdf-materials"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "history",
+      "name": "历史、考古与文献",
+      "directions": [
+        {
+          "id": "sources",
+          "name": "史料与文献",
+          "modules": [
+            "historical-sources",
+            "text-collation",
+            "tei-encoding",
+            "ocr-materials"
+          ]
+        },
+        {
+          "id": "social-history",
+          "name": "社会与制度史",
+          "modules": [
+            "historical-comparison",
+            "oral-history",
+            "process-tracing",
+            "network-structure"
+          ]
+        },
+        {
+          "id": "archaeology",
+          "name": "考古与文化遗产",
+          "modules": [
+            "spatial-patterns",
+            "visual-analysis",
+            "historical-sources",
+            "descriptive-statistics"
+          ]
+        },
+        {
+          "id": "intellectual",
+          "name": "思想与概念史",
+          "modules": [
+            "intellectual-history",
+            "concept-analysis",
+            "text-concordance",
+            "discourse-analysis"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arts-culture",
+      "name": "艺术、文化与宗教",
+      "directions": [
+        {
+          "id": "arts",
+          "name": "艺术史与美学",
+          "modules": [
+            "visual-analysis",
+            "literary-reading",
+            "normative-analysis",
+            "historical-sources"
+          ]
+        },
+        {
+          "id": "culture",
+          "name": "文化与宗教实践",
+          "modules": [
+            "cultural-analysis",
+            "ethnography",
+            "interview-coding",
+            "historical-comparison"
+          ]
+        },
+        {
+          "id": "performance",
+          "name": "表演与叙事",
+          "modules": [
+            "narrative-analysis",
+            "oral-history",
+            "visual-analysis"
+          ]
+        },
+        {
+          "id": "digital",
+          "name": "数字文化遗产",
+          "modules": [
+            "tei-encoding",
+            "corpus-assembly",
+            "ocr-materials",
+            "spatial-patterns"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sociology",
+      "name": "社会学、人类学与社会工作",
+      "directions": [
+        {
+          "id": "structure",
+          "name": "社会结构与不平等",
+          "modules": [
+            "survey-analysis",
+            "distribution",
+            "decomposition",
+            "multilevel-models"
+          ]
+        },
+        {
+          "id": "fieldwork",
+          "name": "田野与定性",
+          "modules": [
+            "ethnography",
+            "interview-design",
+            "interview-coding",
+            "thematic-analysis",
+            "grounded-theory"
+          ]
+        },
+        {
+          "id": "organizations",
+          "name": "组织与关系",
+          "modules": [
+            "organizational-research",
+            "case-study",
+            "network-structure",
+            "network-models"
+          ]
+        },
+        {
+          "id": "social-work",
+          "name": "社会工作与干预",
+          "modules": [
+            "mixed-methods",
+            "randomized-experiment",
+            "process-tracing",
+            "questionnaire"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "politics-policy",
+      "name": "政治、公共政策与国际研究",
+      "directions": [
+        {
+          "id": "institutions",
+          "name": "制度与治理",
+          "modules": [
+            "case-study",
+            "process-tracing",
+            "qca",
+            "historical-comparison"
+          ]
+        },
+        {
+          "id": "policy",
+          "name": "政策研究",
+          "modules": [
+            "did-staggered",
+            "regression-discontinuity",
+            "synthetic-control",
+            "policy-appraisal"
+          ]
+        },
+        {
+          "id": "international",
+          "name": "国际与区域研究",
+          "modules": [
+            "historical-sources",
+            "discourse-analysis",
+            "network-models",
+            "formal-models"
+          ]
+        },
+        {
+          "id": "political-behaviour",
+          "name": "政治行为",
+          "modules": [
+            "survey-analysis",
+            "behavioural-experiments",
+            "conjoint",
+            "text-classification"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "law",
+      "name": "法学",
+      "directions": [
+        {
+          "id": "interpretation",
+          "name": "法解释与比较法",
+          "modules": [
+            "legal-interpretation",
+            "argument-analysis",
+            "normative-analysis",
+            "case-study"
+          ]
+        },
+        {
+          "id": "empirical",
+          "name": "实证法律研究",
+          "modules": [
+            "data-preparation",
+            "text-classification",
+            "linear-association",
+            "did-staggered"
+          ]
+        },
+        {
+          "id": "history",
+          "name": "法律史",
+          "modules": [
+            "historical-sources",
+            "intellectual-history",
+            "historical-comparison"
+          ]
+        },
+        {
+          "id": "technology",
+          "name": "科技与法律",
+          "modules": [
+            "normative-analysis",
+            "policy-appraisal",
+            "discourse-analysis",
+            "theory-building"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "marxism",
+      "name": "马克思主义理论与思想政治教育",
+      "directions": [
+        {
+          "id": "theory",
+          "name": "理论与经典文本",
+          "modules": [
+            "intellectual-history",
+            "concept-analysis",
+            "text-collation",
+            "argument-analysis"
+          ]
+        },
+        {
+          "id": "education",
+          "name": "思想政治教育",
+          "modules": [
+            "curriculum-research",
+            "interview-design",
+            "questionnaire",
+            "mixed-methods"
+          ]
+        },
+        {
+          "id": "history",
+          "name": "党史与制度研究",
+          "modules": [
+            "historical-sources",
+            "historical-comparison",
+            "process-tracing",
+            "discourse-analysis"
+          ]
+        },
+        {
+          "id": "society",
+          "name": "社会发展研究",
+          "modules": [
+            "theory-building",
+            "survey-analysis",
+            "distribution",
+            "policy-appraisal"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "economics",
+      "name": "经济学",
+      "directions": [
+        {
+          "id": "micro",
+          "name": "微观、劳动与发展",
+          "modules": [
+            "matching",
+            "adjusted-effects",
+            "instrumental-variables",
+            "did-staggered",
+            "regression-discontinuity"
+          ]
+        },
+        {
+          "id": "macro",
+          "name": "宏观与动态经济",
+          "modules": [
+            "economic-models",
+            "time-series",
+            "formal-models"
+          ]
+        },
+        {
+          "id": "public",
+          "name": "公共经济与政策",
+          "modules": [
+            "policy-appraisal",
+            "synthetic-control",
+            "distribution",
+            "decomposition"
+          ]
+        },
+        {
+          "id": "experimental",
+          "name": "实验与行为经济",
+          "modules": [
+            "behavioural-experiments",
+            "conjoint",
+            "randomized-experiment",
+            "formal-models"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "business",
+      "name": "管理、商科与金融",
+      "directions": [
+        {
+          "id": "organization",
+          "name": "组织与战略",
+          "modules": [
+            "organizational-research",
+            "case-study",
+            "interview-coding",
+            "multilevel-models"
+          ]
+        },
+        {
+          "id": "marketing",
+          "name": "营销与消费者",
+          "modules": [
+            "conjoint",
+            "questionnaire",
+            "behavioural-experiments",
+            "prediction"
+          ]
+        },
+        {
+          "id": "finance",
+          "name": "金融研究",
+          "modules": [
+            "financial-models",
+            "time-series",
+            "panel-models",
+            "prediction"
+          ]
+        },
+        {
+          "id": "accounting-operations",
+          "name": "会计与运营",
+          "modules": [
+            "data-linkage",
+            "panel-models",
+            "economic-models",
+            "agent-simulation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "education",
+      "name": "教育学",
+      "directions": [
+        {
+          "id": "policy",
+          "name": "教育政策",
+          "modules": [
+            "research-question",
+            "did-staggered",
+            "regression-discontinuity",
+            "mixed-methods",
+            "policy-appraisal"
+          ]
+        },
+        {
+          "id": "measurement",
+          "name": "教育测量",
+          "modules": [
+            "scale-design",
+            "factor-analysis",
+            "item-response",
+            "survey-analysis"
+          ]
+        },
+        {
+          "id": "learning",
+          "name": "学习与教学",
+          "modules": [
+            "curriculum-research",
+            "behavioural-experiments",
+            "randomized-experiment",
+            "multilevel-models"
+          ]
+        },
+        {
+          "id": "higher",
+          "name": "高等教育",
+          "modules": [
+            "organizational-research",
+            "questionnaire",
+            "interview-design",
+            "thematic-analysis"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "psychology",
+      "name": "心理与行为研究",
+      "directions": [
+        {
+          "id": "measurement",
+          "name": "心理测量",
+          "modules": [
+            "scale-design",
+            "factor-analysis",
+            "item-response",
+            "principal-components"
+          ]
+        },
+        {
+          "id": "cognition",
+          "name": "认知与行为",
+          "modules": [
+            "behavioural-experiments",
+            "randomized-experiment",
+            "bayesian-models"
+          ]
+        },
+        {
+          "id": "social",
+          "name": "社会与发展心理",
+          "modules": [
+            "questionnaire",
+            "multilevel-models",
+            "mediation",
+            "mixed-methods"
+          ]
+        },
+        {
+          "id": "interaction",
+          "name": "人机互动",
+          "modules": [
+            "behavioural-experiments",
+            "interview-coding",
+            "thematic-analysis",
+            "prediction"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "communication",
+      "name": "新闻传播与信息研究",
+      "directions": [
+        {
+          "id": "media",
+          "name": "媒介与内容",
+          "modules": [
+            "media-research",
+            "discourse-analysis",
+            "corpus-assembly",
+            "topic-models"
+          ]
+        },
+        {
+          "id": "audience",
+          "name": "受众与传播效果",
+          "modules": [
+            "questionnaire",
+            "survey-analysis",
+            "randomized-experiment",
+            "interview-coding"
+          ]
+        },
+        {
+          "id": "networks",
+          "name": "传播网络",
+          "modules": [
+            "network-structure",
+            "network-models",
+            "agent-simulation"
+          ]
+        },
+        {
+          "id": "knowledge",
+          "name": "信息与知识组织",
+          "modules": [
+            "bibliography",
+            "literature-search",
+            "systematic-review",
+            "text-classification"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "population-geography",
+      "name": "人口、城市与人文地理",
+      "directions": [
+        {
+          "id": "population",
+          "name": "人口与迁移",
+          "modules": [
+            "demographic-analysis",
+            "event-history",
+            "survey-analysis",
+            "distribution"
+          ]
+        },
+        {
+          "id": "cities",
+          "name": "城市与空间",
+          "modules": [
+            "spatial-patterns",
+            "spatial-autocorrelation",
+            "data-linkage",
+            "policy-appraisal"
+          ]
+        },
+        {
+          "id": "environment",
+          "name": "社会与环境",
+          "modules": [
+            "mixed-methods",
+            "agent-simulation",
+            "historical-comparison",
+            "case-study"
+          ]
+        },
+        {
+          "id": "regional",
+          "name": "区域发展",
+          "modules": [
+            "did-staggered",
+            "synthetic-control",
+            "panel-models",
+            "spatial-patterns"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "research-common",
+      "name": "公共研究能力",
+      "directions": [
+        {
+          "id": "discovery",
+          "name": "问题与理论",
+          "modules": [
+            "research-question",
+            "literature-search",
+            "literature-synthesis",
+            "concept-analysis",
+            "theory-building"
+          ]
+        },
+        {
+          "id": "materials",
+          "name": "材料与数据",
+          "modules": [
+            "bibliography",
+            "corpus-assembly",
+            "data-preparation",
+            "data-linkage",
+            "missing-data"
+          ]
+        },
+        {
+          "id": "analysis",
+          "name": "通用分析",
+          "modules": [
+            "descriptive-statistics",
+            "linear-association",
+            "prediction",
+            "clustering",
+            "multiple-comparisons"
+          ]
+        },
+        {
+          "id": "synthesis",
+          "name": "综合与表达",
+          "modules": [
+            "systematic-review",
+            "meta-analysis",
+            "research-writing",
+            "research-publishing",
+            "research-reproduction"
+          ]
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "research-question",
+      "name": "研究问题凝练",
+      "summary": "从现象、材料或理论分歧形成可回答的问题与研究范围。",
+      "kind": "guided",
+      "components": [],
+      "operations": [],
+      "inputs": [
+        "现象与已有材料",
+        "希望获得的答案",
+        "时间与资源"
+      ],
+      "outputs": [
+        "主问题",
+        "备选问题",
+        "研究范围"
+      ],
+      "knowledge": [
+        "research.md"
+      ],
+      "skill": "hss-research",
+      "workflows": [
+        "research.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "research_guidance",
+      "r_exports": []
+    },
+    {
+      "id": "literature-search",
+      "name": "文献检索与整理",
+      "summary": "组织中英文检索、引文追踪和文献条目，保留可回到原文的位置。",
+      "kind": "guided",
+      "components": [],
+      "operations": [],
+      "inputs": [
+        "关键词与种子文献",
+        "检索范围"
+      ],
+      "outputs": [
+        "文献表",
+        "检索记录",
+        "阅读次序"
+      ],
+      "knowledge": [
+        "literature.md"
+      ],
+      "skill": "hss-literature",
+      "workflows": [
+        "synthesis.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "research_guidance",
+      "r_exports": []
+    },
+    {
+      "id": "literature-synthesis",
+      "name": "文献综合",
+      "summary": "按问题、理论、材料和设计比较研究，形成连贯的知识图景。",
+      "kind": "guided",
+      "components": [],
+      "operations": [],
+      "inputs": [
+        "文献条目与阅读笔记"
+      ],
+      "outputs": [
+        "主题矩阵",
+        "争论与研究空间"
+      ],
+      "knowledge": [
+        "literature.md"
+      ],
+      "skill": "hss-literature",
+      "workflows": [
+        "synthesis.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "research_guidance",
+      "r_exports": []
+    },
+    {
+      "id": "concept-analysis",
+      "name": "概念分析",
+      "summary": "区分概念内涵、使用语境、相邻概念与具体实例。",
+      "kind": "guided",
+      "components": [],
+      "operations": [],
+      "inputs": [
+        "概念",
+        "代表文本",
+        "使用场景"
+      ],
+      "outputs": [
+        "概念关系",
+        "边界实例",
+        "论述"
+      ],
+      "knowledge": [
+        "theory.md"
+      ],
+      "skill": "hss-theory",
+      "workflows": [
+        "theory.json"
+      ],
+      "prompts": [
+        "interpret.md"
+      ],
+      "requires": [],
+      "execution": "research_guidance",
+      "r_exports": []
+    },
+    {
+      "id": "argument-analysis",
+      "name": "论证重建",
+      "summary": "把论点、前提、推导和反对意见组织为可以逐项阅读的论证图。",
+      "kind": "calculation",
+      "components": [],
+      "operations": [
+        "argument_map"
+      ],
+      "inputs": [
+        "命题与关系"
+      ],
+      "outputs": [
+        "论证图",
+        "前提表",
+        "论述提纲"
+      ],
+      "knowledge": [
+        "theory.md"
+      ],
+      "skill": "hss-theory",
+      "workflows": [
+        "theory.json"
+      ],
+      "prompts": [
+        "interpret.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "r_exports": []
+    },
+    {
+      "id": "theory-building",
+      "name": "理论构建",
+      "summary": "从行动、制度、关系与过程建立解释，并推导不同情形下的含义。",
+      "kind": "guided",
+      "components": [],
+      "operations": [],
+      "inputs": [
+        "现象",
+        "已有理论",
+        "关键概念"
+      ],
+      "outputs": [
+        "理论框架",
+        "竞争解释",
+        "可观察含义"
+      ],
+      "knowledge": [
+        "theory.md"
+      ],
+      "skill": "hss-theory",
+      "workflows": [
+        "theory.json"
+      ],
+      "prompts": [
+        "interpret.md"
+      ],
+      "requires": [],
+      "execution": "research_guidance",
+      "r_exports": []
+    },
+    {
+      "id": "normative-analysis",
+      "name": "规范与伦理论证",
+      "summary": "说明价值前提、适用对象和冲突情形，比较不同规范方案。",
+      "kind": "guided",
+      "components": [],
+      "operations": [],
+      "inputs": [
+        "制度或行动问题",
+        "价值立场",
+        "具体案例"
+      ],
+      "outputs": [
+        "规范论证",
+        "立场比较",
+        "实践含义"
+      ],
+      "knowledge": [
+        "theory.md"
+      ],
+      "skill": "hss-theory",
+      "workflows": [
+        "theory.json"
+      ],
+      "prompts": [
+        "interpret.md"
+      ],
+      "requires": [],
+      "execution": "research_guidance",
+      "r_exports": []
+    },
+    {
+      "id": "formal-models",
+      "name": "形式理论与博弈",
+      "summary": "明确主体、行为规则、约束与互动，分析均衡或动态过程。",
+      "kind": "software",
+      "components": [
+        "python-economics"
+      ],
+      "operations": [],
+      "inputs": [
+        "主体与规则",
+        "参数",
+        "理论问题"
+      ],
+      "outputs": [
+        "模型",
+        "推导",
+        "比较静态或模拟"
+      ],
+      "knowledge": [
+        "theory.md"
+      ],
+      "skill": "hss-theory",
+      "workflows": [
+        "theory.json"
+      ],
+      "prompts": [
+        "interpret.md"
+      ],
+      "requires": [],
+      "execution": "upstream_api",
+      "r_exports": []
+    },
+    {
+      "id": "historical-sources",
+      "name": "史料整理",
+      "summary": "按形成时间、作者、载体、出处与文本位置组织史料。",
+      "kind": "calculation",
+      "components": [],
+      "operations": [
+        "corpus"
+      ],
+      "inputs": [
+        "原始史料与书目信息"
+      ],
+      "outputs": [
+        "史料目录",
+        "可定位的文本片段"
+      ],
+      "knowledge": [
+        "history.md"
+      ],
+      "skill": "hss-materials",
+      "workflows": [
+        "humanities.json"
+      ],
+      "prompts": [
+        "interpret.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "r_exports": []
+    },
+    {
+      "id": "text-collation",
+      "name": "文本与版本比较",
+      "summary": "逐段呈现文本差异，区分录入差异、编辑改动和内容变化。",
+      "kind": "calculation",
+      "components": [],
+      "operations": [
+        "collate"
+      ],
+      "inputs": [
+        "两个文本及其来源"
+      ],
+      "outputs": [
+        "并排差异表",
+        "对应位置"
+      ],
+      "knowledge": [
+        "history.md"
+      ],
+      "skill": "hss-materials",
+      "workflows": [
+        "humanities.json"
+      ],
+      "prompts": [
+        "interpret.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "r_exports": []
+    },
+    {
+      "id": "tei-encoding",
+      "name": "TEI 文本编码",
+      "summary": "按研究需要组织人物、地名、段落、引文与异文标记。",
+      "kind": "calculation",
+      "components": [],
+      "operations": [
+        "corpus"
+      ],
+      "inputs": [
+        "文本",
+        "编码范围",
+        "命名规则"
+      ],
+      "outputs": [
+        "TEI 材料",
+        "结构化文本"
+      ],
+      "knowledge": [
+        "history.md"
+      ],
+      "skill": "hss-materials",
+      "workflows": [
+        "humanities.json"
+      ],
+      "prompts": [
+        "interpret.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "r_exports": []
+    },
+    {
+      "id": "historical-comparison",
+      "name": "历史比较研究",
+      "summary": "围绕明确问题比较时期或案例，重建制度与过程变化。",
+      "kind": "guided",
+      "components": [],
+      "operations": [],
+      "inputs": [
+        "案例与时期",
+        "史料",
+        "比较维度"
+      ],
+      "outputs": [
+        "比较表",
+        "时序",
+        "历史解释"
+      ],
+      "knowledge": [
+        "history.md"
+      ],
+      "skill": "hss-materials",
+      "workflows": [
+        "humanities.json"
+      ],
+      "prompts": [
+        "interpret.md"
+      ],
+      "requires": [],
+      "execution": "research_guidance",
+      "r_exports": []
+    },
+    {
+      "id": "oral-history",
+      "name": "口述史",
+      "summary": "组织访谈提纲、转录、时间线及叙述与其他材料的对应关系。",
+      "kind": "guided",
+      "components": [],
+      "operations": [],
+      "inputs": [
+        "访谈主题",
+        "受访者背景",
+        "录音与材料"
+      ],
+      "outputs": [
+        "访谈方案",
+        "转录",
+        "口述叙事"
+      ],
+      "knowledge": [
+        "qualitative.md"
+      ],
+      "skill": "hss-qualitative",
+      "workflows": [
+        "qualitative.json"
+      ],
+      "prompts": [
+        "interpret.md"
+      ],
+      "requires": [],
+      "execution": "research_guidance",
+      "r_exports": []
+    },
+    {
+      "id": "literary-reading",
+      "name": "文学细读与阐释",
+      "summary": "从文本形式、叙述、修辞和语境展开相互衔接的解释。",
+      "kind": "guided",
+      "components": [],
+      "operations": [],
+      "inputs": [
+        "作品与相关文本",
+        "解释问题"
+      ],
+      "outputs": [
+        "细读笔记",
+        "段落定位",
+        "解释论述"
+      ],
+      "knowledge": [
+        "humanities.md"
+      ],
+      "skill": "hss-materials",
+      "workflows": [
+        "humanities.json"
+      ],
+      "prompts": [
+        "interpret.md"
+      ],
+      "requires": [],
+      "execution": "research_guidance",
+      "r_exports": []
+    },
+    {
+      "id": "translation-analysis",
+      "name": "翻译与跨语言比较",
+      "summary": "对齐原文与译文，分析语义、语域和文化选择。",
+      "kind": "calculation",
+      "components": [],
+      "operations": [
+        "collate"
+      ],
+      "inputs": [
+        "原文与译文",
+        "比较单位"
+      ],
+      "outputs": [
+        "对齐片段",
+        "差异解释"
+      ],
+      "knowledge": [
+        "humanities.md"
+      ],
+      "skill": "hss-materials",
+      "workflows": [
+        "humanities.json"
+      ],
+      "prompts": [
+        "interpret.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "r_exports": []
+    },
+    {
+      "id": "discourse-analysis",
+      "name": "话语分析",
+      "summary": "研究概念、主体位置、表述方式与制度语境之间的关系。",
+      "kind": "guided",
+      "components": [],
+      "operations": [],
+      "inputs": [
+        "文本或会话",
+        "情境",
+        "研究问题"
+      ],
+      "outputs": [
+        "话语片段",
+        "分析备忘录",
+        "解释"
+      ],
+      "knowledge": [
+        "humanities.md"
+      ],
+      "skill": "hss-materials",
+      "workflows": [
+        "humanities.json"
+      ],
+      "prompts": [
+        "interpret.md"
+      ],
+      "requires": [],
+      "execution": "research_guidance",
+      "r_exports": []
+    },
+    {
+      "id": "narrative-analysis",
+      "name": "叙事分析",
+      "summary": "分析叙述结构、时间安排、视角和身份表达。",
+      "kind": "guided",
+      "components": [],
+      "operations": [],
+      "inputs": [
+        "叙事材料",
+        "分析单位"
+      ],
+      "outputs": [
+        "叙事结构表",
+        "主题与时间线"
+      ],
+      "knowledge": [
+        "humanities.md"
+      ],
+      "skill": "hss-materials",
+      "workflows": [
+        "humanities.json"
+      ],
+      "prompts": [
+        "interpret.md"
+      ],
+      "requires": [],
+      "execution": "research_guidance",
+      "r_exports": []
+    },
+    {
+      "id": "visual-analysis",
+      "name": "视觉与艺术材料分析",
+      "summary": "联系图像形式、制作、传播和观看情境分析视觉材料。",
+      "kind": "guided",
+      "components": [],
+      "operations": [],
+      "inputs": [
+        "图像或作品",
+        "出处",
+        "展示语境"
+      ],
+      "outputs": [
+        "作品目录",
+        "视觉描述",
+        "解释"
+      ],
+      "knowledge": [
+        "humanities.md"
+      ],
+      "skill": "hss-materials",
+      "workflows": [
+        "humanities.json"
+      ],
+      "prompts": [
+        "interpret.md"
+      ],
+      "requires": [],
+      "execution": "research_guidance",
+      "r_exports": []
+    },
+    {
+      "id": "cultural-analysis",
+      "name": "文化与宗教研究",
+      "summary": "结合文本、实践与历史语境解释意义及其变化。",
+      "kind": "guided",
+      "components": [],
+      "operations": [],
+      "inputs": [
+        "文本与实践材料",
+        "概念框架"
+      ],
+      "outputs": [
+        "材料关系",
+        "案例比较",
+        "解释"
+      ],
+      "knowledge": [
+        "humanities.md"
+      ],
+      "skill": "hss-materials",
+      "workflows": [
+        "humanities.json"
+      ],
+      "prompts": [
+        "interpret.md"
+      ],
+      "requires": [],
+      "execution": "research_guidance",
+      "r_exports": []
+    },
+    {
+      "id": "corpus-assembly",
+      "name": "语料整理与分段",
+      "summary": "把文本、CSV、Word、PDF 或 TEI 材料组织为带来源位置的语料。",
+      "kind": "calculation",
+      "components": [],
+      "operations": [
+        "corpus"
+      ],
+      "inputs": [
+        "文件或文档记录",
+        "材料范围"
+      ],
+      "outputs": [
+        "语料 JSONL",
+        "段落与位置"
+      ],
+      "knowledge": [
+        "text.md"
+      ],
+      "skill": "hss-materials",
+      "workflows": [
+        "humanities.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "r_exports": []
+    },
+    {
+      "id": "text-concordance",
+      "name": "关键词与语境检索",
+      "summary": "返回词语所在的文本位置和上下文，支持中文及多语言材料。",
+      "kind": "calculation",
+      "components": [],
+      "operations": [
+        "concordance"
+      ],
+      "inputs": [
+        "语料",
+        "检索词",
+        "上下文范围"
+      ],
+      "outputs": [
+        "语境表",
+        "文档位置"
+      ],
+      "knowledge": [
+        "text.md"
+      ],
+      "skill": "hss-materials",
+      "workflows": [
+        "humanities.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "r_exports": []
+    },
+    {
+      "id": "linguistic-analysis",
+      "name": "语言结构与语料研究",
+      "summary": "组织分词、词性、句法与语料比较，选择适合材料的语言模型。",
+      "kind": "software",
+      "components": [
+        "python-language"
+      ],
+      "operations": [],
+      "inputs": [
+        "语料",
+        "语言",
+        "分析单位"
+      ],
+      "outputs": [
+        "语言标注",
+        "频率与比较表"
+      ],
+      "knowledge": [
+        "text.md"
+      ],
+      "skill": "hss-materials",
+      "workflows": [
+        "humanities.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "upstream_api",
+      "r_exports": []
+    },
+    {
+      "id": "interview-design",
+      "name": "访谈设计",
+      "summary": "把研究问题转为开放提问、追问路径与受访者选择方案。",
+      "kind": "guided",
+      "components": [],
+      "operations": [],
+      "inputs": [
+        "研究问题",
+        "受访者范围"
+      ],
+      "outputs": [
+        "访谈提纲",
+        "选择说明",
+        "试访安排"
+      ],
+      "knowledge": [
+        "qualitative.md"
+      ],
+      "skill": "hss-qualitative",
+      "workflows": [
+        "qualitative.json"
+      ],
+      "prompts": [
+        "interpret.md"
+      ],
+      "requires": [],
+      "execution": "research_guidance",
+      "r_exports": []
+    },
+    {
+      "id": "interview-coding",
+      "name": "访谈材料编码",
+      "summary": "使用明确定义的编码及文本区间记录解释，保留原文联系。",
+      "kind": "calculation",
+      "components": [],
+      "operations": [
+        "coding"
+      ],
+      "inputs": [
+        "语料",
+        "编码表",
+        "片段标注"
+      ],
+      "outputs": [
+        "编码表",
+        "片段表",
+        "共现关系"
+      ],
+      "knowledge": [
+        "qualitative.md"
+      ],
+      "skill": "hss-qualitative",
+      "workflows": [
+        "qualitative.json"
+      ],
+      "prompts": [
+        "interpret.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "r_exports": []
+    },
+    {
+      "id": "thematic-analysis",
+      "name": "主题分析",
+      "summary": "从编码、备忘录与材料比较发展主题，并说明主题之间的关系。",
+      "kind": "guided",
+      "components": [],
+      "operations": [],
+      "inputs": [
+        "编码材料",
+        "研究问题",
+        "分析取向"
+      ],
+      "outputs": [
+        "主题结构",
+        "代表片段",
+        "解释备忘录"
+      ],
+      "knowledge": [
+        "qualitative.md"
+      ],
+      "skill": "hss-qualitative",
+      "workflows": [
+        "qualitative.json"
+      ],
+      "prompts": [
+        "interpret.md"
+      ],
+      "requires": [],
+      "execution": "research_guidance",
+      "r_exports": []
+    },
+    {
+      "id": "grounded-theory",
+      "name": "扎根理论研究",
+      "summary": "通过持续比较和理论抽样发展概念、类别及其关系。",
+      "kind": "guided",
+      "components": [],
+      "operations": [],
+      "inputs": [
+        "初始材料",
+        "分析备忘录",
+        "补充材料机会"
+      ],
+      "outputs": [
+        "类别关系",
+        "抽样方向",
+        "理论论述"
+      ],
+      "knowledge": [
+        "qualitative.md"
+      ],
+      "skill": "hss-qualitative",
+      "workflows": [
+        "qualitative.json"
+      ],
+      "prompts": [
+        "interpret.md"
+      ],
+      "requires": [],
+      "execution": "research_guidance",
+      "r_exports": []
+    },
+    {
+      "id": "ethnography",
+      "name": "民族志与田野研究",
+      "summary": "连接参与观察、田野笔记、访谈与研究者位置。",
+      "kind": "guided",
+      "components": [],
+      "operations": [],
+      "inputs": [
+        "田野问题",
+        "场域",
+        "观察与访谈"
+      ],
+      "outputs": [
+        "田野安排",
+        "场景记录",
+        "文化解释"
+      ],
+      "knowledge": [
+        "qualitative.md"
+      ],
+      "skill": "hss-qualitative",
+      "workflows": [
+        "qualitative.json"
+      ],
+      "prompts": [
+        "interpret.md"
+      ],
+      "requires": [],
+      "execution": "research_guidance",
+      "r_exports": []
+    },
+    {
+      "id": "case-study",
+      "name": "案例研究",
+      "summary": "按研究问题选择案例，组织案内解释与跨案例比较。",
+      "kind": "guided",
+      "components": [],
+      "operations": [],
+      "inputs": [
+        "案例范围",
+        "研究问题",
+        "资料"
+      ],
+      "outputs": [
+        "案例档案",
+        "比较维度",
+        "解释"
+      ],
+      "knowledge": [
+        "qualitative.md"
+      ],
+      "skill": "hss-qualitative",
+      "workflows": [
+        "qualitative.json"
+      ],
+      "prompts": [
+        "interpret.md"
+      ],
+      "requires": [],
+      "execution": "research_guidance",
+      "r_exports": []
+    },
+    {
+      "id": "process-tracing",
+      "name": "过程追踪",
+      "summary": "重建关键事件、行动和时序，比较不同机制对过程材料的解释。",
+      "kind": "guided",
+      "components": [],
+      "operations": [],
+      "inputs": [
+        "机制设想",
+        "事件材料",
+        "时间线"
+      ],
+      "outputs": [
+        "过程图",
+        "材料与机制对应表"
+      ],
+      "knowledge": [
+        "qualitative.md"
+      ],
+      "skill": "hss-qualitative",
+      "workflows": [
+        "qualitative.json"
+      ],
+      "prompts": [
+        "interpret.md"
+      ],
+      "requires": [],
+      "execution": "research_guidance",
+      "r_exports": []
+    },
+    {
+      "id": "qca",
+      "name": "集合论与组态分析",
+      "summary": "定义条件集合、校准规则和结果集合，分析必要性与充分性组合。",
+      "kind": "software",
+      "components": [
+        "r-qca"
+      ],
+      "operations": [],
+      "inputs": [
+        "案例条件",
+        "校准依据",
+        "结果集合"
+      ],
+      "outputs": [
+        "真值表",
+        "组态解",
+        "案例解释"
+      ],
+      "knowledge": [
+        "qualitative.md"
+      ],
+      "skill": "hss-qualitative",
+      "workflows": [
+        "qualitative.json"
+      ],
+      "prompts": [
+        "interpret.md"
+      ],
+      "requires": [],
+      "execution": "upstream_api",
+      "r_exports": [
+        "qca"
+      ]
+    },
+    {
+      "id": "mixed-methods",
+      "name": "混合方法研究",
+      "summary": "明确不同材料承担的任务，在设计和解释阶段整合研究结果。",
+      "kind": "guided",
+      "components": [],
+      "operations": [],
+      "inputs": [
+        "定量与定性任务",
+        "联结单位"
+      ],
+      "outputs": [
+        "整合设计",
+        "联合展示",
+        "综合解释"
+      ],
+      "knowledge": [
+        "qualitative.md"
+      ],
+      "skill": "hss-qualitative",
+      "workflows": [
+        "qualitative.json"
+      ],
+      "prompts": [
+        "interpret.md"
+      ],
+      "requires": [],
+      "execution": "research_guidance",
+      "r_exports": []
+    },
+    {
+      "id": "coding-agreement",
+      "name": "编码者一致性",
+      "summary": "在相同分析单位上比较两个编码者的分类，并呈现分歧分布。",
+      "kind": "calculation",
+      "components": [],
+      "operations": [
+        "agreement"
+      ],
+      "inputs": [
+        "两个编码者的单位与类别"
+      ],
+      "outputs": [
+        "一致率",
+        "列联表",
+        "Cohen kappa"
+      ],
+      "knowledge": [
+        "qualitative.md"
+      ],
+      "skill": "hss-qualitative",
+      "workflows": [
+        "qualitative.json"
+      ],
+      "prompts": [
+        "interpret.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "r_exports": []
+    },
+    {
+      "id": "sampling",
+      "name": "抽样与样本规划",
+      "summary": "明确目标总体、抽样框、分层和调查资源，计算设计所需数量。",
+      "kind": "software",
+      "components": [
+        "r-sampling"
+      ],
+      "operations": [],
+      "inputs": [
+        "总体",
+        "抽样框",
+        "精度或功效目标"
+      ],
+      "outputs": [
+        "抽样方案",
+        "样本分配"
+      ],
+      "knowledge": [
+        "survey.md"
+      ],
+      "skill": "hss-collection",
+      "workflows": [
+        "collection.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "upstream_api",
+      "r_exports": []
+    },
+    {
+      "id": "questionnaire",
+      "name": "问卷设计与实施",
+      "summary": "组织问题、选项、跳转、顺序和试测，生成可交换的问卷描述。",
+      "kind": "calculation",
+      "components": [],
+      "operations": [
+        "questionnaire"
+      ],
+      "inputs": [
+        "概念与测量目标",
+        "受访者范围"
+      ],
+      "outputs": [
+        "问卷 JSON",
+        "实施说明"
+      ],
+      "knowledge": [
+        "survey.md"
+      ],
+      "skill": "hss-collection",
+      "workflows": [
+        "collection.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "r_exports": []
+    },
+    {
+      "id": "survey-analysis",
+      "name": "复杂调查分析",
+      "summary": "按权重、分层和抽样单位计算总体统计及其不确定性。",
+      "kind": "software",
+      "components": [
+        "r-survey"
+      ],
+      "operations": [],
+      "inputs": [
+        "调查数据",
+        "权重",
+        "抽样结构"
+      ],
+      "outputs": [
+        "总体统计",
+        "区间",
+        "分组表"
+      ],
+      "knowledge": [
+        "survey.md"
+      ],
+      "skill": "hss-collection",
+      "workflows": [
+        "collection.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "upstream_api",
+      "r_exports": [
+        "survey"
+      ]
+    },
+    {
+      "id": "scale-design",
+      "name": "量表开发",
+      "summary": "界定构念、设计题项、开展认知访谈与试测，安排测量分析。",
+      "kind": "guided",
+      "components": [],
+      "operations": [],
+      "inputs": [
+        "构念定义",
+        "目标群体",
+        "候选题项"
+      ],
+      "outputs": [
+        "题项表",
+        "试测方案",
+        "测量说明"
+      ],
+      "knowledge": [
+        "measurement.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "research_guidance",
+      "r_exports": [
+        "lavaan"
+      ]
+    },
+    {
+      "id": "factor-analysis",
+      "name": "因子与结构方程",
+      "summary": "按理论指定测量结构，分析载荷、模型拟合和群体可比性。",
+      "kind": "software",
+      "components": [
+        "r-lavaan"
+      ],
+      "operations": [],
+      "inputs": [
+        "题项数据",
+        "测量模型",
+        "分组信息"
+      ],
+      "outputs": [
+        "模型结果",
+        "载荷",
+        "解释"
+      ],
+      "knowledge": [
+        "measurement.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "upstream_api",
+      "backends": {
+        "r": [
+          "r-lavaan"
+        ]
+      },
+      "r_exports": [
+        "lavaan"
+      ]
+    },
+    {
+      "id": "item-response",
+      "name": "项目反应模型",
+      "summary": "研究题项特征与潜在能力的关系，比较题项和群体表现。",
+      "kind": "software",
+      "components": [
+        "r-mirt"
+      ],
+      "operations": [],
+      "inputs": [
+        "题项响应",
+        "计分规则"
+      ],
+      "outputs": [
+        "题项参数",
+        "信息曲线",
+        "能力估计"
+      ],
+      "knowledge": [
+        "measurement.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "upstream_api",
+      "r_exports": []
+    },
+    {
+      "id": "behavioural-experiments",
+      "name": "行为实验",
+      "summary": "把操纵、刺激、随机分配、响应与时间线组织为浏览器实验。",
+      "kind": "calculation",
+      "components": [
+        "jspsych"
+      ],
+      "operations": [
+        "experiment"
+      ],
+      "inputs": [
+        "实验设计",
+        "刺激",
+        "响应规则"
+      ],
+      "outputs": [
+        "实验页面",
+        "实施配置"
+      ],
+      "knowledge": [
+        "experiment.md"
+      ],
+      "skill": "hss-collection",
+      "workflows": [
+        "collection.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "r_exports": []
+    },
+    {
+      "id": "conjoint",
+      "name": "联合分析与选择实验",
+      "summary": "定义属性与水平，安排选择任务并分析属性的相对作用。",
+      "kind": "guided",
+      "components": [],
+      "operations": [],
+      "inputs": [
+        "属性水平",
+        "样本",
+        "选择设计"
+      ],
+      "outputs": [
+        "任务表",
+        "分析方案"
+      ],
+      "knowledge": [
+        "experiment.md"
+      ],
+      "skill": "hss-collection",
+      "workflows": [
+        "collection.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "research_guidance",
+      "r_exports": []
+    },
+    {
+      "id": "randomized-experiment",
+      "name": "随机实验分析",
+      "summary": "根据分配方式估计平均差异或含基线交互的调整结果。",
+      "kind": "calculation",
+      "components": [
+        "python-empirical"
+      ],
+      "operations": [
+        "rct"
+      ],
+      "inputs": [
+        "结果",
+        "分配",
+        "基线协变量"
+      ],
+      "outputs": [
+        "效应估计",
+        "区间",
+        "分组统计"
+      ],
+      "knowledge": [
+        "causal.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "r_exports": []
+    },
+    {
+      "id": "descriptive-statistics",
+      "name": "描述统计",
+      "summary": "按定义清楚的总体与变量计算均值、分位数和分布。",
+      "kind": "calculation",
+      "components": [
+        "python-empirical"
+      ],
+      "operations": [
+        "summary"
+      ],
+      "inputs": [
+        "分析数据",
+        "变量",
+        "可选权重"
+      ],
+      "outputs": [
+        "统计表",
+        "区间或加权点估计"
+      ],
+      "knowledge": [
+        "quantitative.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "r_exports": []
+    },
+    {
+      "id": "distribution",
+      "name": "分布与不平等",
+      "summary": "描述分布形态并计算适用的 Gini 与 Theil 指标。",
+      "kind": "calculation",
+      "components": [
+        "python-empirical"
+      ],
+      "operations": [
+        "distribution"
+      ],
+      "inputs": [
+        "数值变量",
+        "可选权重"
+      ],
+      "outputs": [
+        "经验分布",
+        "不平等指标"
+      ],
+      "knowledge": [
+        "quantitative.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "r_exports": []
+    },
+    {
+      "id": "linear-association",
+      "name": "线性关联分析",
+      "summary": "估计给定协变量条件下的线性关联，支持 HC3 与单向聚类区间。",
+      "kind": "calculation",
+      "components": [
+        "python-empirical"
+      ],
+      "operations": [
+        "ols"
+      ],
+      "inputs": [
+        "结果",
+        "协变量",
+        "可选聚类"
+      ],
+      "outputs": [
+        "系数表",
+        "区间",
+        "样本信息"
+      ],
+      "knowledge": [
+        "quantitative.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "r_exports": []
+    },
+    {
+      "id": "multilevel-models",
+      "name": "多层模型",
+      "summary": "表达个体、组织或地区的层级结构与组间差异。",
+      "kind": "software",
+      "components": [
+        "r-lme4"
+      ],
+      "operations": [],
+      "inputs": [
+        "结果",
+        "协变量",
+        "层级标识"
+      ],
+      "outputs": [
+        "固定与随机效应",
+        "组间变化"
+      ],
+      "knowledge": [
+        "quantitative.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "upstream_api",
+      "r_exports": []
+    },
+    {
+      "id": "panel-models",
+      "name": "面板与固定效应",
+      "summary": "根据个体、时间与变化来源组织面板模型。",
+      "kind": "software",
+      "components": [
+        "r-fixest"
+      ],
+      "operations": [],
+      "inputs": [
+        "面板数据",
+        "个体与时间",
+        "模型式"
+      ],
+      "outputs": [
+        "模型估计",
+        "组内变化说明"
+      ],
+      "knowledge": [
+        "quantitative.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "upstream_api",
+      "backends": {
+        "r": [
+          "r-fixest"
+        ],
+        "python": [
+          "python-models"
+        ]
+      },
+      "r_exports": []
+    },
+    {
+      "id": "time-series",
+      "name": "时间序列研究",
+      "summary": "研究趋势、周期、依赖结构与动态响应。",
+      "kind": "calculation",
+      "components": [
+        "python-empirical"
+      ],
+      "operations": [
+        "autoreg"
+      ],
+      "inputs": [
+        "时间序列",
+        "频率",
+        "模型范围"
+      ],
+      "outputs": [
+        "时间序列模型",
+        "预测与解释"
+      ],
+      "knowledge": [
+        "quantitative.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "backends": {
+        "reference": [
+          "python-empirical"
+        ],
+        "statsmodels": [
+          "python-models"
+        ]
+      },
+      "r_exports": []
+    },
+    {
+      "id": "event-history",
+      "name": "事件史与生存分析",
+      "summary": "组织起点、事件、随访与删失，计算生存过程。",
+      "kind": "calculation",
+      "components": [
+        "python-empirical"
+      ],
+      "operations": [
+        "kaplan_meier"
+      ],
+      "inputs": [
+        "持续时间",
+        "事件标记"
+      ],
+      "outputs": [
+        "生存曲线表",
+        "区间"
+      ],
+      "knowledge": [
+        "quantitative.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "r_exports": [
+        "cox"
+      ]
+    },
+    {
+      "id": "bayesian-models",
+      "name": "贝叶斯研究模型",
+      "summary": "表达先验、生成过程与后验，连接模型含义与观察结果。",
+      "kind": "software",
+      "components": [
+        "python-bayes"
+      ],
+      "operations": [],
+      "inputs": [
+        "数据",
+        "模型",
+        "先验"
+      ],
+      "outputs": [
+        "后验样本",
+        "预测",
+        "参数解释"
+      ],
+      "knowledge": [
+        "quantitative.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "upstream_api",
+      "r_exports": []
+    },
+    {
+      "id": "matching",
+      "name": "匹配与加权设计",
+      "summary": "按处理前信息构造可比较样本，说明目标总体和调整方式。",
+      "kind": "software",
+      "components": [
+        "r-matching"
+      ],
+      "operations": [],
+      "inputs": [
+        "处理",
+        "基线变量",
+        "目标总体"
+      ],
+      "outputs": [
+        "匹配或权重",
+        "样本比较"
+      ],
+      "knowledge": [
+        "causal.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "upstream_api",
+      "r_exports": []
+    },
+    {
+      "id": "adjusted-effects",
+      "name": "双重稳健效应估计",
+      "summary": "使用交叉拟合的处理与结果模型估计明确总体上的平均效应。",
+      "kind": "calculation",
+      "components": [
+        "python-empirical"
+      ],
+      "operations": [
+        "aipw"
+      ],
+      "inputs": [
+        "处理",
+        "结果",
+        "基线变量"
+      ],
+      "outputs": [
+        "ATE",
+        "区间",
+        "交叉拟合信息"
+      ],
+      "knowledge": [
+        "causal.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "backends": {
+        "aipw": [
+          "python-empirical"
+        ],
+        "causal-forest": [
+          "r-grf"
+        ]
+      },
+      "r_exports": [
+        "grf"
+      ]
+    },
+    {
+      "id": "double-machine-learning",
+      "name": "双重机器学习",
+      "summary": "按部分线性或交互回归任务选择正交得分与样本划分。",
+      "kind": "calculation",
+      "components": [
+        "python-empirical"
+      ],
+      "operations": [
+        "dml_plr",
+        "dml_irm"
+      ],
+      "inputs": [
+        "结果",
+        "处理",
+        "基线特征"
+      ],
+      "outputs": [
+        "目标参数",
+        "区间",
+        "划分信息"
+      ],
+      "knowledge": [
+        "causal.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "r_exports": []
+    },
+    {
+      "id": "instrumental-variables",
+      "name": "工具变量分析",
+      "summary": "以明确的工具来源与目标参数开展线性两阶段估计。",
+      "kind": "calculation",
+      "components": [
+        "python-empirical"
+      ],
+      "operations": [
+        "iv"
+      ],
+      "inputs": [
+        "结果",
+        "内生处理",
+        "工具",
+        "协变量"
+      ],
+      "outputs": [
+        "两阶段估计",
+        "区间",
+        "第一阶段"
+      ],
+      "knowledge": [
+        "causal.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "r_exports": []
+    },
+    {
+      "id": "did-two-period",
+      "name": "两期双重差分",
+      "summary": "在两个时期与两类群体上估计未调整的双重差分。",
+      "kind": "calculation",
+      "components": [
+        "python-empirical"
+      ],
+      "operations": [
+        "did_2x2"
+      ],
+      "inputs": [
+        "结果",
+        "群体",
+        "两个时期",
+        "个体标识"
+      ],
+      "outputs": [
+        "ATT",
+        "区间",
+        "样本信息"
+      ],
+      "knowledge": [
+        "causal.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "r_exports": []
+    },
+    {
+      "id": "did-staggered",
+      "name": "多期政策效果",
+      "summary": "按处理批次与时期组织效应及其汇总。",
+      "kind": "software",
+      "components": [
+        "r-did"
+      ],
+      "operations": [],
+      "inputs": [
+        "面板",
+        "首次处理时期",
+        "对照定义"
+      ],
+      "outputs": [
+        "组别时期效应",
+        "动态与汇总结果"
+      ],
+      "knowledge": [
+        "causal.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "upstream_api",
+      "backends": {
+        "group-time": [
+          "r-did"
+        ],
+        "continuous-dose": [
+          "r-contdid"
+        ],
+        "treatment-switching": [
+          "r-multiplegt"
+        ]
+      },
+      "r_exports": [
+        "did",
+        "contdid",
+        "did_multiplegt"
+      ]
+    },
+    {
+      "id": "regression-discontinuity",
+      "name": "断点设计",
+      "summary": "根据阈值规则与运行变量开展局部比较。",
+      "kind": "software",
+      "components": [
+        "r-rdrobust"
+      ],
+      "operations": [
+        "local_rd"
+      ],
+      "inputs": [
+        "结果",
+        "运行变量",
+        "阈值",
+        "处理"
+      ],
+      "outputs": [
+        "局部效应",
+        "带宽与图表"
+      ],
+      "knowledge": [
+        "causal.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "upstream_api",
+      "backends": {
+        "local-polynomial": [
+          "r-rdrobust"
+        ],
+        "local-randomization": [
+          "python-empirical"
+        ]
+      },
+      "r_exports": [
+        "rdrobust"
+      ]
+    },
+    {
+      "id": "synthetic-control",
+      "name": "合成控制",
+      "summary": "用供体轨迹拟合处理前过程并比较处理后的变化。",
+      "kind": "calculation",
+      "components": [
+        "python-empirical"
+      ],
+      "operations": [
+        "synthetic_control"
+      ],
+      "inputs": [
+        "完整面板",
+        "处理单位",
+        "供体",
+        "开始时期"
+      ],
+      "outputs": [
+        "供体权重",
+        "拟合轨迹",
+        "处理后差距"
+      ],
+      "knowledge": [
+        "causal.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "backends": {
+        "reference": [
+          "python-empirical"
+        ],
+        "synth": [
+          "r-synth"
+        ],
+        "synthetic-did": [
+          "r-synthdid"
+        ]
+      },
+      "r_exports": [
+        "synthdid"
+      ]
+    },
+    {
+      "id": "mediation",
+      "name": "中介与机制研究",
+      "summary": "明确作用时序与中介目标，连接过程研究和适用的效应分解。",
+      "kind": "software",
+      "components": [
+        "r-mediation"
+      ],
+      "operations": [],
+      "inputs": [
+        "处理",
+        "中介",
+        "结果",
+        "研究设计"
+      ],
+      "outputs": [
+        "机制分析方案",
+        "适用效应分解"
+      ],
+      "knowledge": [
+        "causal.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "upstream_api",
+      "r_exports": []
+    },
+    {
+      "id": "prediction",
+      "name": "预测与分类",
+      "summary": "按实际部署场景划分样本并开展表格预测。",
+      "kind": "calculation",
+      "components": [
+        "python-empirical"
+      ],
+      "operations": [
+        "predict"
+      ],
+      "inputs": [
+        "特征",
+        "标签",
+        "划分方式"
+      ],
+      "outputs": [
+        "留出预测",
+        "误差与校准指标"
+      ],
+      "knowledge": [
+        "prediction.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "r_exports": []
+    },
+    {
+      "id": "text-classification",
+      "name": "文本分类",
+      "summary": "在训练材料中学习文本表示，预测独立文本的类别。",
+      "kind": "calculation",
+      "components": [
+        "python-empirical"
+      ],
+      "operations": [
+        "text_predict"
+      ],
+      "inputs": [
+        "文本",
+        "标签",
+        "划分方式"
+      ],
+      "outputs": [
+        "预测",
+        "分类指标"
+      ],
+      "knowledge": [
+        "text.md"
+      ],
+      "skill": "hss-materials",
+      "workflows": [
+        "humanities.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "r_exports": []
+    },
+    {
+      "id": "conformal-prediction",
+      "name": "保形预测区间",
+      "summary": "以独立训练、校准与测试划分构造交换条件下的预测区间。",
+      "kind": "calculation",
+      "components": [
+        "python-empirical"
+      ],
+      "operations": [
+        "conformal"
+      ],
+      "inputs": [
+        "特征",
+        "结果",
+        "覆盖水平"
+      ],
+      "outputs": [
+        "区间宽度",
+        "测试覆盖"
+      ],
+      "knowledge": [
+        "prediction.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "r_exports": []
+    },
+    {
+      "id": "clustering",
+      "name": "类型与聚类探索",
+      "summary": "比较样本在特征空间中的组合模式并解释类别。",
+      "kind": "calculation",
+      "components": [
+        "python-empirical"
+      ],
+      "operations": [
+        "kmeans"
+      ],
+      "inputs": [
+        "特征",
+        "聚类数",
+        "分析单位"
+      ],
+      "outputs": [
+        "类别",
+        "中心",
+        "稳定性信息"
+      ],
+      "knowledge": [
+        "prediction.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "r_exports": []
+    },
+    {
+      "id": "principal-components",
+      "name": "主成分表示",
+      "summary": "将共同变化投影为低维线性表示，并保留载荷与变换结果。",
+      "kind": "calculation",
+      "components": [
+        "python-empirical"
+      ],
+      "operations": [
+        "pca"
+      ],
+      "inputs": [
+        "数值特征",
+        "成分数"
+      ],
+      "outputs": [
+        "成分",
+        "载荷",
+        "解释方差"
+      ],
+      "knowledge": [
+        "measurement.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "r_exports": []
+    },
+    {
+      "id": "topic-models",
+      "name": "主题模型",
+      "summary": "探索语料中的词语组合并联系具体文档解释主题。",
+      "kind": "calculation",
+      "components": [
+        "python-empirical"
+      ],
+      "operations": [
+        "topic"
+      ],
+      "inputs": [
+        "文档",
+        "主题数",
+        "词表设置"
+      ],
+      "outputs": [
+        "主题词",
+        "文档主题表示"
+      ],
+      "knowledge": [
+        "text.md"
+      ],
+      "skill": "hss-materials",
+      "workflows": [
+        "humanities.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "backends": {
+        "python": [
+          "python-empirical"
+        ],
+        "r": [
+          "r-quanteda"
+        ]
+      },
+      "r_exports": []
+    },
+    {
+      "id": "spatial-patterns",
+      "name": "空间格局分析",
+      "summary": "连接空间单位与邻接关系，研究集聚、分布和可达性。",
+      "kind": "software",
+      "components": [
+        "python-spatial"
+      ],
+      "operations": [],
+      "inputs": [
+        "空间数据",
+        "坐标",
+        "权重关系"
+      ],
+      "outputs": [
+        "空间指标",
+        "地图",
+        "比较结果"
+      ],
+      "knowledge": [
+        "spatial.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "upstream_api",
+      "r_exports": []
+    },
+    {
+      "id": "spatial-autocorrelation",
+      "name": "空间自相关",
+      "summary": "针对明确空间权重计算 Moran I 与随机标签置换结果。",
+      "kind": "calculation",
+      "components": [
+        "python-empirical"
+      ],
+      "operations": [
+        "moran"
+      ],
+      "inputs": [
+        "结果",
+        "空间权重"
+      ],
+      "outputs": [
+        "Moran I",
+        "置换分布摘要"
+      ],
+      "knowledge": [
+        "spatial.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "r_exports": []
+    },
+    {
+      "id": "network-structure",
+      "name": "关系网络结构",
+      "summary": "计算观察网络的连接、程度与连通结构。",
+      "kind": "calculation",
+      "components": [
+        "python-empirical"
+      ],
+      "operations": [
+        "network"
+      ],
+      "inputs": [
+        "关系边表",
+        "节点含义"
+      ],
+      "outputs": [
+        "网络描述",
+        "连接统计"
+      ],
+      "knowledge": [
+        "network.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "backends": {
+        "reference": [
+          "python-empirical"
+        ],
+        "networkx": [
+          "python-networks"
+        ]
+      },
+      "r_exports": []
+    },
+    {
+      "id": "network-models",
+      "name": "网络形成与演化",
+      "summary": "根据关系生成过程选择网络统计模型。",
+      "kind": "software",
+      "components": [
+        "r-network"
+      ],
+      "operations": [],
+      "inputs": [
+        "网络",
+        "节点属性",
+        "时间"
+      ],
+      "outputs": [
+        "模型",
+        "网络机制说明"
+      ],
+      "knowledge": [
+        "network.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "upstream_api",
+      "r_exports": []
+    },
+    {
+      "id": "agent-simulation",
+      "name": "主体模拟",
+      "summary": "将主体规则、关系、空间与时间推进组织为计算模型。",
+      "kind": "software",
+      "components": [
+        "python-simulation"
+      ],
+      "operations": [],
+      "inputs": [
+        "主体与行为规则",
+        "参数",
+        "初态"
+      ],
+      "outputs": [
+        "模拟轨迹",
+        "情景比较"
+      ],
+      "knowledge": [
+        "simulation.md"
+      ],
+      "skill": "hss-theory",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "upstream_api",
+      "r_exports": []
+    },
+    {
+      "id": "economic-models",
+      "name": "经济机制与动态模型",
+      "summary": "求解经济模型并比较参数、政策与均衡变化。",
+      "kind": "software",
+      "components": [
+        "python-economics"
+      ],
+      "operations": [],
+      "inputs": [
+        "经济模型",
+        "参数",
+        "求解目标"
+      ],
+      "outputs": [
+        "解",
+        "动态路径",
+        "比较静态"
+      ],
+      "knowledge": [
+        "simulation.md"
+      ],
+      "skill": "hss-theory",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "upstream_api",
+      "r_exports": []
+    },
+    {
+      "id": "financial-models",
+      "name": "金融定价与风险研究",
+      "summary": "依据合约、现金流、市场过程和研究假设开展金融计算。",
+      "kind": "software",
+      "components": [
+        "python-finance"
+      ],
+      "operations": [],
+      "inputs": [
+        "合约或资产",
+        "参数",
+        "时间"
+      ],
+      "outputs": [
+        "定价或风险结果",
+        "模型说明"
+      ],
+      "knowledge": [
+        "simulation.md"
+      ],
+      "skill": "hss-theory",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "upstream_api",
+      "r_exports": []
+    },
+    {
+      "id": "policy-appraisal",
+      "name": "政策与分配评价",
+      "summary": "把效果、成本、受益者和价值取向组织为政策比较。",
+      "kind": "guided",
+      "components": [],
+      "operations": [],
+      "inputs": [
+        "政策情景",
+        "效果与成本",
+        "评价范围"
+      ],
+      "outputs": [
+        "分配表",
+        "方案比较",
+        "敏感性分析"
+      ],
+      "knowledge": [
+        "theory.md"
+      ],
+      "skill": "hss-theory",
+      "workflows": [
+        "theory.json"
+      ],
+      "prompts": [
+        "interpret.md"
+      ],
+      "requires": [],
+      "execution": "research_guidance",
+      "r_exports": []
+    },
+    {
+      "id": "demographic-analysis",
+      "name": "人口与迁移研究",
+      "summary": "连接人口口径、生命事件、队列和迁移过程。",
+      "kind": "software",
+      "components": [
+        "r-survival"
+      ],
+      "operations": [],
+      "inputs": [
+        "人口数据",
+        "时期",
+        "风险集"
+      ],
+      "outputs": [
+        "人口过程表",
+        "模型与解释"
+      ],
+      "knowledge": [
+        "quantitative.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "upstream_api",
+      "r_exports": []
+    },
+    {
+      "id": "decomposition",
+      "name": "差异分解",
+      "summary": "按明确参考组将均值差异分解为协变量与系数相关部分。",
+      "kind": "calculation",
+      "components": [
+        "python-empirical"
+      ],
+      "operations": [
+        "oaxaca"
+      ],
+      "inputs": [
+        "结果",
+        "特征",
+        "两个群体"
+      ],
+      "outputs": [
+        "分解结果",
+        "重抽样区间"
+      ],
+      "knowledge": [
+        "quantitative.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "r_exports": []
+    },
+    {
+      "id": "meta-analysis",
+      "name": "元分析",
+      "summary": "在可比较效应尺度上综合独立研究的估计与不确定性。",
+      "kind": "calculation",
+      "components": [
+        "python-empirical"
+      ],
+      "operations": [
+        "meta"
+      ],
+      "inputs": [
+        "效应估计",
+        "标准误",
+        "研究信息"
+      ],
+      "outputs": [
+        "合并效应",
+        "异质性",
+        "区间"
+      ],
+      "knowledge": [
+        "synthesis.md"
+      ],
+      "skill": "hss-literature",
+      "workflows": [
+        "synthesis.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "backends": {
+        "reference": [
+          "python-empirical"
+        ],
+        "r": [
+          "r-metafor"
+        ]
+      },
+      "r_exports": []
+    },
+    {
+      "id": "systematic-review",
+      "name": "系统综述",
+      "summary": "明确研究范围、检索与纳入逻辑，综合研究之间的关系。",
+      "kind": "guided",
+      "components": [],
+      "operations": [],
+      "inputs": [
+        "综述问题",
+        "文献",
+        "材料提取表"
+      ],
+      "outputs": [
+        "研究清单",
+        "综合论述",
+        "研究地图"
+      ],
+      "knowledge": [
+        "synthesis.md"
+      ],
+      "skill": "hss-literature",
+      "workflows": [
+        "synthesis.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "research_guidance",
+      "r_exports": []
+    },
+    {
+      "id": "multiple-comparisons",
+      "name": "多重比较",
+      "summary": "在明确的检验族中计算 Holm 与 BH 调整。",
+      "kind": "calculation",
+      "components": [
+        "python-empirical"
+      ],
+      "operations": [
+        "multiple_testing"
+      ],
+      "inputs": [
+        "p 值",
+        "检验族定义"
+      ],
+      "outputs": [
+        "调整后的结果表"
+      ],
+      "knowledge": [
+        "quantitative.md"
+      ],
+      "skill": "hss-empirical",
+      "workflows": [
+        "empirical.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "r_exports": []
+    },
+    {
+      "id": "data-preparation",
+      "name": "研究数据整理",
+      "summary": "按变量含义处理类型、缺失、重复和数据结构。",
+      "kind": "calculation",
+      "components": [],
+      "operations": [
+        "table"
+      ],
+      "inputs": [
+        "CSV",
+        "字段说明",
+        "处理规则"
+      ],
+      "outputs": [
+        "整理后的表",
+        "字段概要"
+      ],
+      "knowledge": [
+        "data.md"
+      ],
+      "skill": "hss-research",
+      "workflows": [
+        "research.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "r_exports": []
+    },
+    {
+      "id": "data-linkage",
+      "name": "多源资料联结",
+      "summary": "明确联结键、粒度与基数，连接不同来源的记录。",
+      "kind": "software",
+      "components": [
+        "python-tables"
+      ],
+      "operations": [],
+      "inputs": [
+        "数据表",
+        "键与粒度"
+      ],
+      "outputs": [
+        "联结数据",
+        "匹配与未匹配统计"
+      ],
+      "knowledge": [
+        "data.md"
+      ],
+      "skill": "hss-research",
+      "workflows": [
+        "research.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "upstream_api",
+      "r_exports": []
+    },
+    {
+      "id": "missing-data",
+      "name": "缺失数据分析",
+      "summary": "根据缺失过程和分析目标选择处理或多重插补方式。",
+      "kind": "software",
+      "components": [
+        "r-missing"
+      ],
+      "operations": [],
+      "inputs": [
+        "数据",
+        "缺失模式",
+        "分析模型"
+      ],
+      "outputs": [
+        "处理方案",
+        "插补结果",
+        "汇总"
+      ],
+      "knowledge": [
+        "data.md"
+      ],
+      "skill": "hss-research",
+      "workflows": [
+        "research.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "upstream_api",
+      "r_exports": [
+        "mice"
+      ]
+    },
+    {
+      "id": "ocr-materials",
+      "name": "扫描材料识别",
+      "summary": "将扫描页转为文本并保留页码与图像位置。",
+      "kind": "software",
+      "components": [
+        "tesseract"
+      ],
+      "operations": [],
+      "inputs": [
+        "扫描材料",
+        "语言与版面"
+      ],
+      "outputs": [
+        "识别文本",
+        "页码对应"
+      ],
+      "knowledge": [
+        "history.md"
+      ],
+      "skill": "hss-materials",
+      "workflows": [
+        "humanities.json"
+      ],
+      "prompts": [
+        "interpret.md"
+      ],
+      "requires": [],
+      "execution": "upstream_api",
+      "r_exports": []
+    },
+    {
+      "id": "pdf-materials",
+      "name": "PDF 与文档提取",
+      "summary": "提取可读取的文本并保留文档来源与段落。",
+      "kind": "calculation",
+      "components": [
+        "python-documents"
+      ],
+      "operations": [
+        "corpus"
+      ],
+      "inputs": [
+        "PDF 或 Word 文件"
+      ],
+      "outputs": [
+        "文本语料",
+        "来源位置"
+      ],
+      "knowledge": [
+        "text.md"
+      ],
+      "skill": "hss-materials",
+      "workflows": [
+        "humanities.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "r_exports": []
+    },
+    {
+      "id": "research-writing",
+      "name": "研究成果写作",
+      "summary": "从已有材料、分析和论证组织连贯的文章、报告或专著章节。",
+      "kind": "guided",
+      "components": [],
+      "operations": [],
+      "inputs": [
+        "研究问题",
+        "材料与结果",
+        "目标读者"
+      ],
+      "outputs": [
+        "文稿",
+        "图表说明",
+        "参考文献"
+      ],
+      "knowledge": [
+        "writing.md"
+      ],
+      "skill": "hss-writing",
+      "workflows": [
+        "research.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "research_guidance",
+      "r_exports": []
+    },
+    {
+      "id": "research-publishing",
+      "name": "文稿编排与导出",
+      "summary": "将研究文稿、图表和引用转换为适合交付的格式。",
+      "kind": "software",
+      "components": [
+        "quarto"
+      ],
+      "operations": [],
+      "inputs": [
+        "文稿",
+        "图表",
+        "样式"
+      ],
+      "outputs": [
+        "HTML、PDF 或 Word 成果"
+      ],
+      "knowledge": [
+        "writing.md"
+      ],
+      "skill": "hss-writing",
+      "workflows": [
+        "research.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "upstream_api",
+      "r_exports": []
+    },
+    {
+      "id": "research-reproduction",
+      "name": "研究复算",
+      "summary": "根据公开材料重新运行分析，比较结果并解释差异来源。",
+      "kind": "guided",
+      "components": [],
+      "operations": [],
+      "inputs": [
+        "原研究",
+        "代码与数据",
+        "计算环境"
+      ],
+      "outputs": [
+        "复算程序",
+        "结果比较"
+      ],
+      "knowledge": [
+        "research.md"
+      ],
+      "skill": "hss-research",
+      "workflows": [
+        "research.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "research_guidance",
+      "r_exports": []
+    },
+    {
+      "id": "legal-interpretation",
+      "name": "法律解释与比较",
+      "summary": "区分法源、适用时间和解释路径，比较规则在具体事实中的作用。",
+      "kind": "guided",
+      "components": [],
+      "operations": [],
+      "inputs": [
+        "法律文本",
+        "适用范围",
+        "案例事实"
+      ],
+      "outputs": [
+        "法源表",
+        "解释路径",
+        "比较论述"
+      ],
+      "knowledge": [
+        "humanities.md"
+      ],
+      "skill": "hss-materials",
+      "workflows": [
+        "humanities.json"
+      ],
+      "prompts": [
+        "interpret.md"
+      ],
+      "requires": [],
+      "execution": "research_guidance",
+      "r_exports": []
+    },
+    {
+      "id": "intellectual-history",
+      "name": "思想史与理论文本",
+      "summary": "把概念与论述放回作者、争论、制度和时期中理解。",
+      "kind": "guided",
+      "components": [],
+      "operations": [],
+      "inputs": [
+        "理论文本",
+        "作者与时期",
+        "相关材料"
+      ],
+      "outputs": [
+        "概念演变",
+        "争论脉络",
+        "解释"
+      ],
+      "knowledge": [
+        "history.md"
+      ],
+      "skill": "hss-materials",
+      "workflows": [
+        "humanities.json"
+      ],
+      "prompts": [
+        "interpret.md"
+      ],
+      "requires": [],
+      "execution": "research_guidance",
+      "r_exports": []
+    },
+    {
+      "id": "curriculum-research",
+      "name": "课程与教学研究",
+      "summary": "把教学目标、课堂过程、学习表现和制度条件连接起来。",
+      "kind": "guided",
+      "components": [],
+      "operations": [],
+      "inputs": [
+        "课程问题",
+        "教学材料",
+        "学习资料"
+      ],
+      "outputs": [
+        "研究方案",
+        "课程比较",
+        "解释"
+      ],
+      "knowledge": [
+        "research.md"
+      ],
+      "skill": "hss-research",
+      "workflows": [
+        "research.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "research_guidance",
+      "r_exports": []
+    },
+    {
+      "id": "organizational-research",
+      "name": "组织与管理研究",
+      "summary": "连接组织层级、行动者、制度安排和运行结果。",
+      "kind": "guided",
+      "components": [],
+      "operations": [],
+      "inputs": [
+        "组织问题",
+        "案例或数据",
+        "理论"
+      ],
+      "outputs": [
+        "组织机制",
+        "研究设计",
+        "比较"
+      ],
+      "knowledge": [
+        "research.md"
+      ],
+      "skill": "hss-research",
+      "workflows": [
+        "research.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "research_guidance",
+      "r_exports": []
+    },
+    {
+      "id": "media-research",
+      "name": "媒介与传播研究",
+      "summary": "区分内容生产、传播结构、接触与受众解释。",
+      "kind": "guided",
+      "components": [],
+      "operations": [],
+      "inputs": [
+        "媒介材料",
+        "平台情境",
+        "受众范围"
+      ],
+      "outputs": [
+        "内容或网络分析方案",
+        "传播解释"
+      ],
+      "knowledge": [
+        "humanities.md"
+      ],
+      "skill": "hss-materials",
+      "workflows": [
+        "humanities.json"
+      ],
+      "prompts": [
+        "interpret.md"
+      ],
+      "requires": [],
+      "execution": "research_guidance",
+      "r_exports": []
+    },
+    {
+      "id": "bibliography",
+      "name": "文献库与引用",
+      "summary": "保存文献条目、来源位置与阅读备注，按研究任务检索。",
+      "kind": "calculation",
+      "components": [],
+      "operations": [
+        "bibliography"
+      ],
+      "inputs": [
+        "书目信息",
+        "来源与笔记"
+      ],
+      "outputs": [
+        "项目文献库",
+        "检索结果"
+      ],
+      "knowledge": [
+        "literature.md"
+      ],
+      "skill": "hss-literature",
+      "workflows": [
+        "synthesis.json"
+      ],
+      "prompts": [
+        "design.md"
+      ],
+      "requires": [],
+      "execution": "native",
+      "r_exports": []
+    }
+  ],
+  "components": [
+    {
+      "id": "python-empirical",
+      "name": "Python empirical methods",
+      "kind": "python",
+      "requirements": [
+        "numpy>=1.26",
+        "scipy>=1.11",
+        "pandas>=2.1",
+        "scikit-learn>=1.4"
+      ],
+      "imports": [
+        "numpy",
+        "scipy",
+        "pandas",
+        "sklearn"
+      ],
+      "url": "https://scikit-learn.org/stable/"
+    },
+    {
+      "id": "python-models",
+      "name": "Statistical and panel models",
+      "kind": "python",
+      "requirements": [
+        "statsmodels>=0.14",
+        "linearmodels>=6"
+      ],
+      "imports": [
+        "statsmodels",
+        "linearmodels"
+      ],
+      "url": "https://www.statsmodels.org/"
+    },
+    {
+      "id": "python-tables",
+      "name": "Columnar tables and SQL",
+      "kind": "python",
+      "requirements": [
+        "duckdb>=1",
+        "pyarrow>=16"
+      ],
+      "imports": [
+        "duckdb",
+        "pyarrow"
+      ],
+      "url": "https://duckdb.org/docs/"
+    },
+    {
+      "id": "python-spatial",
+      "name": "Spatial data and models",
+      "kind": "python",
+      "requirements": [
+        "geopandas>=1",
+        "libpysal>=4",
+        "esda>=2"
+      ],
+      "imports": [
+        "geopandas",
+        "libpysal",
+        "esda"
+      ],
+      "url": "https://pysal.org/"
+    },
+    {
+      "id": "python-networks",
+      "name": "Graph analysis",
+      "kind": "python",
+      "requirements": [
+        "networkx>=3"
+      ],
+      "imports": [
+        "networkx"
+      ],
+      "url": "https://networkx.org/"
+    },
+    {
+      "id": "python-simulation",
+      "name": "Agent-based models",
+      "kind": "python",
+      "requirements": [
+        "mesa>=3"
+      ],
+      "imports": [
+        "mesa"
+      ],
+      "url": "https://mesa.readthedocs.io/"
+    },
+    {
+      "id": "python-economics",
+      "name": "Computational economics",
+      "kind": "python",
+      "requirements": [
+        "quantecon>=0.7"
+      ],
+      "imports": [
+        "quantecon"
+      ],
+      "url": "https://quantecon.org/"
+    },
+    {
+      "id": "python-finance",
+      "name": "Quantitative finance",
+      "kind": "python",
+      "requirements": [
+        "QuantLib>=1.35"
+      ],
+      "imports": [
+        "QuantLib"
+      ],
+      "url": "https://www.quantlib.org/"
+    },
+    {
+      "id": "python-documents",
+      "name": "PDF and Word materials",
+      "kind": "python",
+      "requirements": [
+        "pypdf>=5",
+        "python-docx>=1"
+      ],
+      "imports": [
+        "pypdf",
+        "docx"
+      ],
+      "url": "https://pypdf.readthedocs.io/"
+    },
+    {
+      "id": "python-language",
+      "name": "Language processing",
+      "kind": "python",
+      "requirements": [
+        "spacy>=3.7"
+      ],
+      "imports": [
+        "spacy"
+      ],
+      "url": "https://spacy.io/"
+    },
+    {
+      "id": "python-bayes",
+      "name": "Bayesian modelling",
+      "kind": "python",
+      "requirements": [
+        "pymc>=5",
+        "arviz>=0.19"
+      ],
+      "imports": [
+        "pymc",
+        "arviz"
+      ],
+      "url": "https://www.pymc.io/"
+    },
+    {
+      "id": "r-survey",
+      "name": "Complex survey analysis",
+      "kind": "r",
+      "packages": [
+        "survey"
+      ],
+      "url": "https://cran.r-project.org/package=survey",
+      "setup": "Connect an existing Rscript interpreter; the selected packages are prepared in the HSS R library."
+    },
+    {
+      "id": "r-lavaan",
+      "name": "Latent variable models",
+      "kind": "r",
+      "packages": [
+        "lavaan"
+      ],
+      "url": "https://lavaan.ugent.be/",
+      "setup": "Connect an existing Rscript interpreter; the selected packages are prepared in the HSS R library."
+    },
+    {
+      "id": "r-mirt",
+      "name": "Item response models",
+      "kind": "r",
+      "packages": [
+        "mirt"
+      ],
+      "url": "https://cran.r-project.org/package=mirt",
+      "setup": "Connect an existing Rscript interpreter; the selected packages are prepared in the HSS R library."
+    },
+    {
+      "id": "r-lme4",
+      "name": "Multilevel models",
+      "kind": "r",
+      "packages": [
+        "lme4"
+      ],
+      "url": "https://lme4.github.io/lme4/",
+      "setup": "Connect an existing Rscript interpreter; the selected packages are prepared in the HSS R library."
+    },
+    {
+      "id": "r-fixest",
+      "name": "Panel and fixed effects",
+      "kind": "r",
+      "packages": [
+        "fixest"
+      ],
+      "url": "https://lrberge.github.io/fixest/",
+      "setup": "Connect an existing Rscript interpreter; the selected packages are prepared in the HSS R library."
+    },
+    {
+      "id": "r-did",
+      "name": "Group-time treatment effects",
+      "kind": "r",
+      "packages": [
+        "did"
+      ],
+      "url": "https://bcallaway11.github.io/did/",
+      "setup": "Connect an existing Rscript interpreter; the selected packages are prepared in the HSS R library."
+    },
+    {
+      "id": "r-rdrobust",
+      "name": "Regression discontinuity",
+      "kind": "r",
+      "packages": [
+        "rdrobust",
+        "rddensity"
+      ],
+      "url": "https://rdpackages.github.io/",
+      "setup": "Connect an existing Rscript interpreter; the selected packages are prepared in the HSS R library."
+    },
+    {
+      "id": "r-matching",
+      "name": "Matching and weighting",
+      "kind": "r",
+      "packages": [
+        "MatchIt",
+        "WeightIt",
+        "cobalt"
+      ],
+      "url": "https://kosukeimai.github.io/MatchIt/",
+      "setup": "Connect an existing Rscript interpreter; the selected packages are prepared in the HSS R library."
+    },
+    {
+      "id": "r-mediation",
+      "name": "Causal mediation",
+      "kind": "r",
+      "packages": [
+        "mediation"
+      ],
+      "url": "https://cran.r-project.org/package=mediation",
+      "setup": "Connect an existing Rscript interpreter; the selected packages are prepared in the HSS R library."
+    },
+    {
+      "id": "r-metafor",
+      "name": "Meta-analysis",
+      "kind": "r",
+      "packages": [
+        "metafor"
+      ],
+      "url": "https://www.metafor-project.org/",
+      "setup": "Connect an existing Rscript interpreter; the selected packages are prepared in the HSS R library."
+    },
+    {
+      "id": "r-qca",
+      "name": "Set-theoretic comparison",
+      "kind": "r",
+      "packages": [
+        "QCA"
+      ],
+      "url": "https://cran.r-project.org/package=QCA",
+      "setup": "Connect an existing Rscript interpreter; the selected packages are prepared in the HSS R library."
+    },
+    {
+      "id": "r-quanteda",
+      "name": "Text analysis",
+      "kind": "r",
+      "packages": [
+        "quanteda"
+      ],
+      "url": "https://quanteda.io/",
+      "setup": "Connect an existing Rscript interpreter; the selected packages are prepared in the HSS R library."
+    },
+    {
+      "id": "r-network",
+      "name": "Statistical network models",
+      "kind": "r",
+      "packages": [
+        "igraph",
+        "ergm"
+      ],
+      "url": "https://statnet.org/",
+      "setup": "Connect an existing Rscript interpreter; the selected packages are prepared in the HSS R library."
+    },
+    {
+      "id": "r-synth",
+      "name": "Synthetic control",
+      "kind": "r",
+      "packages": [
+        "Synth"
+      ],
+      "url": "https://cran.r-project.org/package=Synth",
+      "setup": "Connect an existing Rscript interpreter; the selected packages are prepared in the HSS R library."
+    },
+    {
+      "id": "r-missing",
+      "name": "Multiple imputation",
+      "kind": "r",
+      "packages": [
+        "mice"
+      ],
+      "url": "https://amices.org/mice/",
+      "setup": "Connect an existing Rscript interpreter; the selected packages are prepared in the HSS R library."
+    },
+    {
+      "id": "r-iv",
+      "name": "Instrumental variable models",
+      "kind": "r",
+      "packages": [
+        "ivreg"
+      ],
+      "url": "https://zeileis.github.io/ivreg/",
+      "setup": "Connect an existing Rscript interpreter; the selected packages are prepared in the HSS R library."
+    },
+    {
+      "id": "r-survival",
+      "name": "Event history models",
+      "kind": "r",
+      "packages": [
+        "survival"
+      ],
+      "url": "https://cran.r-project.org/package=survival",
+      "setup": "Connect an existing Rscript interpreter; the selected packages are prepared in the HSS R library."
+    },
+    {
+      "id": "r-sampling",
+      "name": "Sampling and allocation",
+      "kind": "r",
+      "packages": [
+        "sampling"
+      ],
+      "url": "https://cran.r-project.org/package=sampling",
+      "setup": "Connect an existing Rscript interpreter; the selected packages are prepared in the HSS R library."
+    },
+    {
+      "id": "pandoc",
+      "name": "Document conversion",
+      "kind": "command",
+      "command": "pandoc",
+      "url": "https://pandoc.org/",
+      "setup": "Connect pandoc on the selected execution host."
+    },
+    {
+      "id": "quarto",
+      "name": "Research publishing",
+      "kind": "command",
+      "command": "quarto",
+      "url": "https://quarto.org/",
+      "setup": "Connect the Quarto command; rendering uses its configured engines."
+    },
+    {
+      "id": "tesseract",
+      "name": "Optical character recognition",
+      "kind": "command",
+      "command": "tesseract",
+      "url": "https://tesseract-ocr.github.io/",
+      "setup": "Install Tesseract and select language data for the material."
+    },
+    {
+      "id": "qualcoder",
+      "name": "Qualitative coding workspace",
+      "kind": "command",
+      "command": "qualcoder",
+      "url": "https://github.com/ccbogel/QualCoder",
+      "setup": "Open QualCoder on the research computer; exchange the project materials and coding tables through files."
+    },
+    {
+      "id": "qgis",
+      "name": "Geographical research workspace",
+      "kind": "command",
+      "command": "qgis",
+      "url": "https://qgis.org/",
+      "setup": "Connect QGIS on the research computer. Use its configured processing environment."
+    },
+    {
+      "id": "stata",
+      "name": "Stata analysis",
+      "kind": "command",
+      "command": "stata",
+      "url": "https://www.stata.com/",
+      "setup": "Connect an existing Stata installation. Its batch command is configured by the host."
+    },
+    {
+      "id": "jspsych",
+      "name": "Browser behavioural experiments",
+      "kind": "node",
+      "packages": [
+        "jspsych",
+        "@jspsych/plugin-html-keyboard-response",
+        "@jspsych/plugin-survey"
+      ],
+      "command": "node",
+      "url": "https://www.jspsych.org/",
+      "setup": "Connect Node.js and npm to prepare the browser experiment libraries."
+    },
+    {
+      "id": "limesurvey",
+      "name": "Survey collection service",
+      "kind": "service",
+      "url": "https://www.limesurvey.org/",
+      "setup": "Connect an existing LimeSurvey service and its survey export directory."
+    },
+    {
+      "id": "r-contdid",
+      "name": "contdid",
+      "kind": "r",
+      "packages": [
+        "contdid"
+      ],
+      "url": "https://bcallaway11.github.io/contdid/",
+      "setup": "Connect an Rscript interpreter; HSS installs the selected package in its research library."
+    },
+    {
+      "id": "r-multiplegt",
+      "name": "DIDmultiplegtDYN",
+      "kind": "r",
+      "packages": [
+        "DIDmultiplegtDYN"
+      ],
+      "url": "https://github.com/chaisemartinPackages/did_multiplegt_dyn",
+      "setup": "Connect an Rscript interpreter; HSS installs the selected package in its research library."
+    },
+    {
+      "id": "r-synthdid",
+      "name": "synthdid",
+      "kind": "r",
+      "packages": [
+        "synthdid"
+      ],
+      "url": "https://synth-inference.github.io/synthdid/",
+      "setup": "Connect an Rscript interpreter; HSS installs the selected package in its research library.",
+      "github_packages": {
+        "synthdid": "synth-inference/synthdid"
+      }
+    },
+    {
+      "id": "r-grf",
+      "name": "grf",
+      "kind": "r",
+      "packages": [
+        "grf"
+      ],
+      "url": "https://grf-labs.github.io/grf/",
+      "setup": "Connect an Rscript interpreter; HSS installs the selected package in its research library."
+    }
+  ],
+  "bundles": [
+    {
+      "id": "policy-study",
+      "name": "政策研究",
+      "modules": [
+        "research-question",
+        "literature-search",
+        "theory-building",
+        "data-preparation",
+        "did-staggered",
+        "policy-appraisal",
+        "research-writing"
+      ]
+    },
+    {
+      "id": "interview-study",
+      "name": "访谈与主题研究",
+      "modules": [
+        "research-question",
+        "interview-design",
+        "corpus-assembly",
+        "interview-coding",
+        "thematic-analysis",
+        "research-writing"
+      ]
+    },
+    {
+      "id": "historical-study",
+      "name": "历史与文献研究",
+      "modules": [
+        "historical-sources",
+        "text-collation",
+        "text-concordance",
+        "historical-comparison",
+        "research-writing"
+      ]
+    },
+    {
+      "id": "survey-study",
+      "name": "问卷与测量研究",
+      "modules": [
+        "research-question",
+        "sampling",
+        "questionnaire",
+        "scale-design",
+        "factor-analysis",
+        "survey-analysis",
+        "research-writing"
+      ]
+    },
+    {
+      "id": "behaviour-study",
+      "name": "行为实验研究",
+      "modules": [
+        "research-question",
+        "behavioural-experiments",
+        "randomized-experiment",
+        "descriptive-statistics",
+        "research-writing"
+      ]
+    },
+    {
+      "id": "theory-study",
+      "name": "理论与规范研究",
+      "modules": [
+        "concept-analysis",
+        "literature-synthesis",
+        "argument-analysis",
+        "theory-building",
+        "normative-analysis",
+        "research-writing"
+      ]
+    },
+    {
+      "id": "computational-study",
+      "name": "计算社会科学",
+      "modules": [
+        "data-preparation",
+        "corpus-assembly",
+        "text-classification",
+        "network-structure",
+        "spatial-patterns",
+        "agent-simulation"
+      ]
+    },
+    {
+      "id": "synthesis-study",
+      "name": "文献与研究综合",
+      "modules": [
+        "literature-search",
+        "bibliography",
+        "systematic-review",
+        "meta-analysis",
+        "research-writing"
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "id": "crossref",
+      "name": "Crossref",
+      "kind": "literature",
+      "url": "https://api.crossref.org/works",
+      "access": "API",
+      "connection": "native"
+    },
+    {
+      "id": "openalex",
+      "name": "OpenAlex",
+      "kind": "literature",
+      "url": "https://help.openalex.org/api/",
+      "access": "API; configure a key when required",
+      "connection": "native"
+    },
+    {
+      "id": "zotero",
+      "name": "Zotero",
+      "kind": "bibliography",
+      "url": "https://www.zotero.org/support/dev/web_api/v3/start",
+      "access": "Local or web library connection",
+      "connection": "native"
+    },
+    {
+      "id": "worldbank",
+      "name": "World Bank indicators",
+      "kind": "data",
+      "url": "https://datahelpdesk.worldbank.org/knowledgebase/topics/125589",
+      "access": "API",
+      "connection": "native"
+    },
+    {
+      "id": "un-data",
+      "name": "UN Data",
+      "kind": "data",
+      "url": "https://data.un.org/",
+      "access": "Dataset-specific download",
+      "connection": "catalogue"
+    },
+    {
+      "id": "oecd",
+      "name": "OECD Data Explorer",
+      "kind": "data",
+      "url": "https://data-explorer.oecd.org/",
+      "access": "Dataset-specific SDMX or download",
+      "connection": "catalogue"
+    },
+    {
+      "id": "nbs",
+      "name": "国家统计局国家数据",
+      "kind": "data",
+      "url": "https://data.stats.gov.cn/",
+      "access": "Source tables and definitions",
+      "connection": "catalogue"
+    },
+    {
+      "id": "cfps",
+      "name": "中国家庭追踪调查 CFPS",
+      "kind": "data",
+      "url": "https://www.isss.pku.edu.cn/cfps/",
+      "access": "Connect the researcher’s available data",
+      "connection": "catalogue"
+    },
+    {
+      "id": "cgss",
+      "name": "中国综合社会调查 CGSS",
+      "kind": "data",
+      "url": "http://cgss.ruc.edu.cn/",
+      "access": "Connect the researcher’s available data",
+      "connection": "catalogue"
+    },
+    {
+      "id": "cessda",
+      "name": "CESSDA Data Catalogue",
+      "kind": "data",
+      "url": "https://datacatalogue.cessda.eu/",
+      "access": "Catalogue and source-specific access",
+      "connection": "catalogue"
+    },
+    {
+      "id": "icpsr",
+      "name": "ICPSR",
+      "kind": "data",
+      "url": "https://www.icpsr.umich.edu/",
+      "access": "Collection-specific access",
+      "connection": "catalogue"
+    },
+    {
+      "id": "dataverse",
+      "name": "Dataverse",
+      "kind": "data",
+      "url": "https://dataverse.org/",
+      "access": "Repository-specific API or download",
+      "connection": "catalogue"
+    },
+    {
+      "id": "zenodo",
+      "name": "Zenodo",
+      "kind": "data",
+      "url": "https://zenodo.org/",
+      "access": "Record-specific downloads",
+      "connection": "catalogue"
+    },
+    {
+      "id": "clarin",
+      "name": "CLARIN",
+      "kind": "corpora",
+      "url": "https://www.clarin.eu/",
+      "access": "Resource-specific access",
+      "connection": "catalogue"
+    },
+    {
+      "id": "dariah",
+      "name": "DARIAH",
+      "kind": "humanities",
+      "url": "https://www.dariah.eu/",
+      "access": "Methods and resources",
+      "connection": "catalogue"
+    },
+    {
+      "id": "ssh-marketplace",
+      "name": "SSH Open Marketplace",
+      "kind": "methods",
+      "url": "https://marketplace.sshopencloud.eu/",
+      "access": "Resource discovery",
+      "connection": "catalogue"
+    },
+    {
+      "id": "tei",
+      "name": "Text Encoding Initiative",
+      "kind": "standard",
+      "url": "https://tei-c.org/",
+      "access": "Text encoding guidance",
+      "connection": "catalogue"
+    },
+    {
+      "id": "iiif",
+      "name": "IIIF",
+      "kind": "standard",
+      "url": "https://iiif.io/",
+      "access": "Image and presentation APIs",
+      "connection": "catalogue"
+    },
+    {
+      "id": "ctext",
+      "name": "Chinese Text Project",
+      "kind": "corpora",
+      "url": "https://ctext.org/",
+      "access": "Collection-specific text access",
+      "connection": "catalogue"
+    },
+    {
+      "id": "cbdb",
+      "name": "China Biographical Database",
+      "kind": "data",
+      "url": "https://cbdb.fas.harvard.edu/",
+      "access": "Dataset and research documentation",
+      "connection": "catalogue"
+    },
+    {
+      "id": "sep",
+      "name": "Stanford Encyclopedia of Philosophy",
+      "kind": "knowledge",
+      "url": "https://plato.stanford.edu/",
+      "access": "Scholarly reference entries",
+      "connection": "catalogue"
+    },
+    {
+      "id": "philpapers",
+      "name": "PhilPapers",
+      "kind": "literature",
+      "url": "https://philpapers.org/",
+      "access": "Bibliographic discovery",
+      "connection": "catalogue"
+    },
+    {
+      "id": "cnki",
+      "name": "中国知网",
+      "kind": "literature",
+      "url": "https://www.cnki.net/",
+      "access": "Use the researcher’s connected access or exports",
+      "connection": "catalogue"
+    },
+    {
+      "id": "zhihui-weishu",
+      "name": "智汇微数",
+      "kind": "data",
+      "url": "",
+      "access": "Host-supplied service or exported data; no endpoint is assumed",
+      "connection": "catalogue"
+    }
+  ]
+}

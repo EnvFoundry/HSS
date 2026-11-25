@@ -1,0 +1,277 @@
+[
+  {
+    "source_id": "S01",
+    "title": "statsmodels User Guide",
+    "url": "https://www.statsmodels.org/stable/user-guide.html"
+  },
+  {
+    "source_id": "S02",
+    "title": "scikit-learn User Guide",
+    "url": "https://scikit-learn.org/stable/user_guide.html"
+  },
+  {
+    "source_id": "S03",
+    "title": "DoubleML Models",
+    "url": "https://docs.doubleml.org/stable/guide/models.html"
+  },
+  {
+    "source_id": "S04",
+    "title": "EconML Documentation",
+    "url": "https://www.pywhy.org/EconML/"
+  },
+  {
+    "source_id": "S05",
+    "title": "DoWhy Introduction",
+    "url": "https://www.pywhy.org/dowhy/main/user_guide/intro.html"
+  },
+  {
+    "source_id": "S06",
+    "title": "Generalized Random Forests",
+    "url": "https://grf-labs.github.io/grf/"
+  },
+  {
+    "source_id": "S07",
+    "title": "did Articles",
+    "url": "https://bcallaway11.github.io/did/articles/index.html"
+  },
+  {
+    "source_id": "S08",
+    "title": "RD Packages",
+    "url": "https://rdpackages.github.io/"
+  },
+  {
+    "source_id": "S09",
+    "title": "Synthetic Difference in Differences",
+    "url": "https://synth-inference.github.io/synthdid/"
+  },
+  {
+    "source_id": "S10",
+    "title": "PySAL",
+    "url": "https://pysal.org/"
+  },
+  {
+    "source_id": "S11",
+    "title": "lavaan",
+    "url": "https://lavaan.ugent.be/"
+  },
+  {
+    "source_id": "S12",
+    "title": "mice",
+    "url": "https://amices.org/mice/"
+  },
+  {
+    "source_id": "S13",
+    "title": "survey package author website",
+    "url": "https://r-survey.r-forge.r-project.org/survey/"
+  },
+  {
+    "source_id": "S14",
+    "title": "Stan Users Guide",
+    "url": "https://mc-stan.org/docs/stan-users-guide/"
+  },
+  {
+    "source_id": "S15",
+    "title": "causal-learn Documentation",
+    "url": "https://causal-learn.readthedocs.io/en/latest/"
+  },
+  {
+    "source_id": "S16",
+    "title": "NetworkX Reference",
+    "url": "https://networkx.org/documentation/stable/reference/index.html"
+  },
+  {
+    "source_id": "S17",
+    "title": "statnet",
+    "url": "https://statnet.org/"
+  },
+  {
+    "source_id": "S18",
+    "title": "Mesa Agent Based Modeling",
+    "url": "https://mesa.readthedocs.io/latest/"
+  },
+  {
+    "source_id": "S19",
+    "title": "PyBLP",
+    "url": "https://pyblp.readthedocs.io/en/stable/"
+  },
+  {
+    "source_id": "S20",
+    "title": "metafor",
+    "url": "https://www.metafor-project.org/doku.php"
+  },
+  {
+    "source_id": "S21",
+    "title": "Prediction Powered Inference",
+    "url": "https://ppi-py.readthedocs.io/en/latest/"
+  },
+  {
+    "source_id": "S22",
+    "title": "MAPIE",
+    "url": "https://mapie.readthedocs.io/en/stable/"
+  },
+  {
+    "source_id": "S23",
+    "title": "Hugging Face Transformers",
+    "url": "https://huggingface.co/docs/transformers/index"
+  },
+  {
+    "source_id": "S24",
+    "title": "Stata Causal Inference",
+    "url": "https://www.stata.com/features/overview/causal-inference/"
+  },
+  {
+    "source_id": "S25",
+    "title": "HonestDiD author repository",
+    "url": "https://github.com/asheshrambachan/HonestDiD"
+  },
+  {
+    "source_id": "S26",
+    "title": "QCA with R Adrian Dusa",
+    "url": "https://bookdown.org/dusadrian/QCAbook/"
+  },
+  {
+    "source_id": "S27",
+    "title": "PRISMA Statement",
+    "url": "https://www.prisma-statement.org/"
+  },
+  {
+    "source_id": "S28",
+    "title": "statsmodels Survival and Duration",
+    "url": "https://www.statsmodels.org/stable/duration.html"
+  },
+  {
+    "source_id": "S29",
+    "title": "statsmodels Discrete Dependent Variables",
+    "url": "https://www.statsmodels.org/stable/discretemod.html"
+  },
+  {
+    "source_id": "S30",
+    "title": "scikit-learn Ensembles",
+    "url": "https://scikit-learn.org/stable/modules/ensemble.html"
+  },
+  {
+    "source_id": "S31",
+    "title": "scikit-learn Clustering",
+    "url": "https://scikit-learn.org/stable/modules/clustering.html"
+  },
+  {
+    "source_id": "S32",
+    "title": "statsmodels Time Series",
+    "url": "https://www.statsmodels.org/stable/tsa.html"
+  },
+  {
+    "source_id": "S33",
+    "title": "Huber and Oberhaensli 2026 DiD mediation DML",
+    "url": "https://arxiv.org/abs/2602.23877"
+  },
+  {
+    "source_id": "S34",
+    "title": "DML original paper",
+    "url": "https://www.nber.org/papers/w23564"
+  },
+  {
+    "source_id": "S35",
+    "title": "Wager and Athey Causal Forests",
+    "url": "https://arxiv.org/abs/1510.04342"
+  },
+  {
+    "source_id": "S36",
+    "title": "contdid official reference",
+    "url": "https://bcallaway11.github.io/contdid/reference/cont_did.html"
+  },
+  {
+    "source_id": "S37",
+    "title": "DIDmultiplegtDYN author repository",
+    "url": "https://github.com/Credible-Answers/did_multiplegt_dyn"
+  },
+  {
+    "source_id": "S38",
+    "title": "Caetano Callaway Payne Sant Anna DiD with bad controls",
+    "url": "https://arxiv.org/abs/2608.03881"
+  },
+  {
+    "source_id": "S39",
+    "title": "Wu and Xiao Panel mediation DML",
+    "url": "https://arxiv.org/abs/2610.21339"
+  },
+  {
+    "source_id": "S40",
+    "title": "Emmenegger Stahler Podimata Multi task PPI",
+    "url": "https://arxiv.org/abs/2605.29249"
+  },
+  {
+    "source_id": "S41",
+    "title": "Imai Nakamura GenAI causal inference overview",
+    "url": "https://imai.fas.harvard.edu/research/llm/"
+  },
+  {
+    "source_id": "S42",
+    "title": "Imai Nakamura GenAI causal inference PNAS",
+    "url": "https://imai.fas.harvard.edu/research/gpi/"
+  },
+  {
+    "source_id": "S43",
+    "title": "GenAI dynamic causal inference",
+    "url": "https://imai.fas.harvard.edu/research/genaidci/"
+  },
+  {
+    "source_id": "S44",
+    "title": "GenAI Powered Inference official software",
+    "url": "https://gpi-pack.github.io/"
+  },
+  {
+    "source_id": "S45",
+    "title": "No Free Lunch Non Asymptotic PPI ICML 2026",
+    "url": "https://proceedings.mlr.press/v306/mani26b.html"
+  },
+  {
+    "source_id": "S46",
+    "title": "RD heterogeneous effects author software",
+    "url": "https://github.com/rdpackages/rdhte"
+  },
+  {
+    "source_id": "S47",
+    "title": "Boundary discontinuity author software",
+    "url": "https://github.com/rdpackages/rd2d"
+  },
+  {
+    "source_id": "S48",
+    "title": "did att_gt official reference",
+    "url": "https://bcallaway11.github.io/did/reference/att_gt.html"
+  },
+  {
+    "source_id": "S49",
+    "title": "DoubleML panel and newer model families",
+    "url": "https://docs.doubleml.org/stable/guide/models.html"
+  },
+  {
+    "source_id": "S50",
+    "title": "FAB PPI ICML 2025",
+    "url": "https://proceedings.mlr.press/v267/cortinovis25a.html"
+  },
+  {
+    "source_id": "S51",
+    "title": "Post Prediction Adaptive Inference JMLR 2025",
+    "url": "https://jmlr.org/papers/v26/24-0056.html"
+  },
+  {
+    "source_id": "S52",
+    "title": "Rscript official scripting front end",
+    "url": "https://stat.ethz.ch/R-manual/R-devel/library/utils/html/Rscript.html"
+  },
+  {
+    "source_id": "S53",
+    "title": "Stata Python integration official reference",
+    "url": "https://www.stata.com/python/"
+  },
+  {
+    "source_id": "S54",
+    "title": "Stata regress official reference",
+    "url": "https://www.stata.com/manuals/rregress.pdf"
+  },
+  {
+    "source_id": "S55",
+    "title": "Stata Windows batch mode official FAQ",
+    "url": "https://www.stata.com/support/faqs/windows/batch-mode/"
+  }
+]

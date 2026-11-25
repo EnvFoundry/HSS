@@ -1,0 +1,2347 @@
+[
+  {
+    "id": "rct",
+    "name": "Randomized treatment contrast",
+    "kind": "statistical",
+    "scope": "Binary assignment; optional centered baseline covariates and their treatment interactions; HC3 or clustered CR1.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "variables"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "rct"
+        },
+        "data": {
+          "type": "string"
+        },
+        "source_task": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "object",
+          "required": [
+            "outcome",
+            "treatment"
+          ],
+          "properties": {
+            "outcome": {
+              "type": "string"
+            },
+            "treatment": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "data"
+          ]
+        },
+        {
+          "required": [
+            "source_task"
+          ]
+        }
+      ]
+    },
+    "example": {
+      "id": "analysis",
+      "operation": "rct",
+      "data": "data.csv",
+      "variables": {
+        "outcome": "y",
+        "treatment": "d"
+      },
+      "estimand": {
+        "kind": "ATE"
+      }
+    }
+  },
+  {
+    "id": "iv",
+    "name": "Linear instrumental-variable estimate",
+    "kind": "statistical",
+    "scope": "2SLS with robust or clustered covariance; requires identification beyond a first-stage association.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "variables"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "iv"
+        },
+        "data": {
+          "type": "string"
+        },
+        "source_task": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "object",
+          "required": [
+            "outcome",
+            "treatment",
+            "instruments"
+          ],
+          "properties": {
+            "outcome": {
+              "type": "string"
+            },
+            "treatment": {
+              "type": "string"
+            },
+            "instruments": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "data"
+          ]
+        },
+        {
+          "required": [
+            "source_task"
+          ]
+        }
+      ]
+    },
+    "example": {
+      "id": "analysis",
+      "operation": "iv",
+      "data": "data.csv",
+      "variables": {
+        "outcome": "y",
+        "treatment": "d",
+        "instruments": [
+          "z"
+        ]
+      },
+      "estimand": {
+        "kind": "linear_IV_parameter"
+      }
+    }
+  },
+  {
+    "id": "aipw",
+    "name": "Augmented inverse-probability ATE",
+    "kind": "statistical",
+    "scope": "Binary treatment ATE, cross-fitted propensity and outcome models.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "variables"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "aipw"
+        },
+        "data": {
+          "type": "string"
+        },
+        "source_task": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "object",
+          "required": [
+            "outcome",
+            "treatment",
+            "controls"
+          ],
+          "properties": {
+            "outcome": {
+              "type": "string"
+            },
+            "treatment": {
+              "type": "string"
+            },
+            "controls": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "data"
+          ]
+        },
+        {
+          "required": [
+            "source_task"
+          ]
+        }
+      ]
+    },
+    "example": {
+      "id": "analysis",
+      "operation": "aipw",
+      "data": "data.csv",
+      "variables": {
+        "outcome": "y",
+        "treatment": "d",
+        "controls": [
+          "x1",
+          "x2"
+        ]
+      },
+      "estimand": {
+        "kind": "ATE"
+      },
+      "analysis": {
+        "folds": 3
+      }
+    }
+  },
+  {
+    "id": "dml_irm",
+    "name": "Interactive-regression orthogonal score",
+    "kind": "statistical",
+    "scope": "AIPW score with cross-fitted random forests for the binary-treatment ATE.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "variables"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "dml_irm"
+        },
+        "data": {
+          "type": "string"
+        },
+        "source_task": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "object",
+          "required": [
+            "outcome",
+            "treatment",
+            "controls"
+          ],
+          "properties": {
+            "outcome": {
+              "type": "string"
+            },
+            "treatment": {
+              "type": "string"
+            },
+            "controls": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "data"
+          ]
+        },
+        {
+          "required": [
+            "source_task"
+          ]
+        }
+      ]
+    },
+    "example": {
+      "id": "analysis",
+      "operation": "dml_irm",
+      "data": "data.csv",
+      "variables": {
+        "outcome": "y",
+        "treatment": "d",
+        "controls": [
+          "x1",
+          "x2"
+        ]
+      },
+      "estimand": {
+        "kind": "ATE"
+      },
+      "analysis": {
+        "folds": 3
+      }
+    }
+  },
+  {
+    "id": "dml_plr",
+    "name": "Partially linear orthogonal estimate",
+    "kind": "statistical",
+    "scope": "Partially linear parameter; distinct from a general heterogeneous-treatment ATE.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "variables"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "dml_plr"
+        },
+        "data": {
+          "type": "string"
+        },
+        "source_task": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "object",
+          "required": [
+            "outcome",
+            "treatment",
+            "controls"
+          ],
+          "properties": {
+            "outcome": {
+              "type": "string"
+            },
+            "treatment": {
+              "type": "string"
+            },
+            "controls": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "data"
+          ]
+        },
+        {
+          "required": [
+            "source_task"
+          ]
+        }
+      ]
+    },
+    "example": {
+      "id": "analysis",
+      "operation": "dml_plr",
+      "data": "data.csv",
+      "variables": {
+        "outcome": "y",
+        "treatment": "d",
+        "controls": [
+          "x1",
+          "x2"
+        ]
+      },
+      "analysis": {
+        "folds": 3
+      }
+    }
+  },
+  {
+    "id": "did_2x2",
+    "name": "Two-group two-period difference in differences",
+    "kind": "statistical",
+    "scope": "Balanced panel differences or repeated-cross-section cell contrasts; treated-group indicator is constant within unit.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "variables"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "did_2x2"
+        },
+        "data": {
+          "type": "string"
+        },
+        "source_task": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "object",
+          "required": [
+            "outcome",
+            "treatment",
+            "unit",
+            "time"
+          ],
+          "properties": {
+            "outcome": {
+              "type": "string"
+            },
+            "treatment": {
+              "type": "string"
+            },
+            "unit": {
+              "type": "string"
+            },
+            "time": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "data"
+          ]
+        },
+        {
+          "required": [
+            "source_task"
+          ]
+        }
+      ]
+    },
+    "example": {
+      "id": "analysis",
+      "operation": "did_2x2",
+      "data": "data.csv",
+      "variables": {
+        "outcome": "y",
+        "treatment": "d",
+        "unit": "id",
+        "time": "time"
+      },
+      "data_contract": {
+        "structure": "panel"
+      },
+      "estimand": {
+        "kind": "ATT"
+      }
+    }
+  },
+  {
+    "id": "local_rd",
+    "name": "Local-randomization threshold comparison",
+    "kind": "statistical",
+    "scope": "Sharp assignment inside an explicitly chosen window; distinct from local-polynomial RD.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "variables"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "local_rd"
+        },
+        "data": {
+          "type": "string"
+        },
+        "source_task": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "object",
+          "required": [
+            "outcome",
+            "treatment",
+            "running"
+          ],
+          "properties": {
+            "outcome": {
+              "type": "string"
+            },
+            "treatment": {
+              "type": "string"
+            },
+            "running": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "data"
+          ]
+        },
+        {
+          "required": [
+            "source_task"
+          ]
+        }
+      ]
+    },
+    "example": {
+      "id": "analysis",
+      "operation": "local_rd",
+      "data": "data.csv",
+      "variables": {
+        "outcome": "y",
+        "treatment": "d",
+        "running": "running"
+      },
+      "estimand": {
+        "kind": "local_RD"
+      },
+      "analysis": {
+        "window": [
+          -1,
+          1
+        ]
+      },
+      "design": {
+        "cutoff": 0
+      }
+    }
+  },
+  {
+    "id": "synthetic_control",
+    "name": "Classical synthetic-control weights",
+    "kind": "statistical",
+    "scope": "One treated unit, balanced panel, nonnegative donor weights summing to one; no invented confidence interval.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "variables"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "synthetic_control"
+        },
+        "data": {
+          "type": "string"
+        },
+        "source_task": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "object",
+          "required": [
+            "outcome",
+            "unit",
+            "time"
+          ],
+          "properties": {
+            "outcome": {
+              "type": "string"
+            },
+            "unit": {
+              "type": "string"
+            },
+            "time": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "data"
+          ]
+        },
+        {
+          "required": [
+            "source_task"
+          ]
+        }
+      ]
+    },
+    "example": {
+      "id": "analysis",
+      "operation": "synthetic_control",
+      "data": "data.csv",
+      "variables": {
+        "outcome": "y",
+        "unit": "id",
+        "time": "time"
+      },
+      "analysis": {
+        "treated_unit": "T",
+        "donor_units": [
+          "A",
+          "B"
+        ],
+        "treatment_start": 4
+      }
+    }
+  },
+  {
+    "id": "summary",
+    "name": "Sample summaries",
+    "kind": "statistical",
+    "scope": "Positive optional weights; unweighted mean t intervals; weighted point estimates.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "variables"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "summary"
+        },
+        "data": {
+          "type": "string"
+        },
+        "source_task": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "object",
+          "required": [
+            "outcome"
+          ],
+          "properties": {
+            "outcome": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "data"
+          ]
+        },
+        {
+          "required": [
+            "source_task"
+          ]
+        }
+      ]
+    },
+    "example": {
+      "id": "analysis",
+      "operation": "summary",
+      "data": "data.csv",
+      "variables": {
+        "outcome": "y"
+      }
+    }
+  },
+  {
+    "id": "distribution",
+    "name": "Distribution and inequality",
+    "kind": "statistical",
+    "scope": "ECDF; Gini and Theil on nonnegative outcomes with positive mean.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "variables"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "distribution"
+        },
+        "data": {
+          "type": "string"
+        },
+        "source_task": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "object",
+          "required": [
+            "outcome"
+          ],
+          "properties": {
+            "outcome": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "data"
+          ]
+        },
+        {
+          "required": [
+            "source_task"
+          ]
+        }
+      ]
+    },
+    "example": {
+      "id": "analysis",
+      "operation": "distribution",
+      "data": "data.csv",
+      "variables": {
+        "outcome": "y"
+      }
+    }
+  },
+  {
+    "id": "ols",
+    "name": "Linear conditional association",
+    "kind": "statistical",
+    "scope": "OLS or explicit WLS with HC3 or clustered CR1 covariance.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "variables"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "ols"
+        },
+        "data": {
+          "type": "string"
+        },
+        "source_task": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "object",
+          "required": [
+            "outcome",
+            "features"
+          ],
+          "properties": {
+            "outcome": {
+              "type": "string"
+            },
+            "features": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "data"
+          ]
+        },
+        {
+          "required": [
+            "source_task"
+          ]
+        }
+      ]
+    },
+    "example": {
+      "id": "analysis",
+      "operation": "ols",
+      "data": "data.csv",
+      "variables": {
+        "outcome": "y",
+        "features": [
+          "x1",
+          "x2",
+          "x3"
+        ]
+      }
+    }
+  },
+  {
+    "id": "predict",
+    "name": "Tabular held-out prediction",
+    "kind": "statistical",
+    "scope": "Regression or classification; explicit iid, group, spatial or forward-time split; preprocess training rows only.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "variables"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "predict"
+        },
+        "data": {
+          "type": "string"
+        },
+        "source_task": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "object",
+          "required": [
+            "outcome",
+            "features"
+          ],
+          "properties": {
+            "outcome": {
+              "type": "string"
+            },
+            "features": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "data"
+          ]
+        },
+        {
+          "required": [
+            "source_task"
+          ]
+        }
+      ]
+    },
+    "example": {
+      "id": "analysis",
+      "operation": "predict",
+      "data": "data.csv",
+      "variables": {
+        "outcome": "y",
+        "features": [
+          "x1",
+          "x2",
+          "x3"
+        ]
+      },
+      "selected_method_id": "f11.ridge",
+      "outcome_type": "continuous",
+      "prediction": {
+        "split": "iid_holdout",
+        "test_fraction": 0.25
+      }
+    }
+  },
+  {
+    "id": "text_predict",
+    "name": "Text classification or regression",
+    "kind": "statistical",
+    "scope": "Training-only TF-IDF; declare empty-text handling and character or word features.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "variables"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "text_predict"
+        },
+        "data": {
+          "type": "string"
+        },
+        "source_task": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "object",
+          "required": [
+            "outcome",
+            "text"
+          ],
+          "properties": {
+            "outcome": {
+              "type": "string"
+            },
+            "text": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "data"
+          ]
+        },
+        {
+          "required": [
+            "source_task"
+          ]
+        }
+      ]
+    },
+    "example": {
+      "id": "analysis",
+      "operation": "text_predict",
+      "data": "data.csv",
+      "variables": {
+        "outcome": "y",
+        "text": "text"
+      },
+      "selected_method_id": "f14.text_classifier",
+      "outcome_type": "binary",
+      "prediction": {
+        "split": "iid_holdout"
+      },
+      "analysis": {
+        "analyzer": "char"
+      }
+    }
+  },
+  {
+    "id": "kmeans",
+    "name": "K-means exploratory groups",
+    "kind": "statistical",
+    "scope": "Standardized features; repeated subsample agreement; groups require substantive interpretation.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "variables"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "kmeans"
+        },
+        "data": {
+          "type": "string"
+        },
+        "source_task": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "object",
+          "required": [
+            "features"
+          ],
+          "properties": {
+            "features": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "data"
+          ]
+        },
+        {
+          "required": [
+            "source_task"
+          ]
+        }
+      ]
+    },
+    "example": {
+      "id": "analysis",
+      "operation": "kmeans",
+      "data": "data.csv",
+      "variables": {
+        "features": [
+          "x1",
+          "x2",
+          "x3"
+        ]
+      },
+      "analysis": {
+        "n_clusters": 3
+      }
+    }
+  },
+  {
+    "id": "pca",
+    "name": "Principal-component representation",
+    "kind": "statistical",
+    "scope": "Standardized PCA; exports original columns plus PC1, PC2, etc.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "variables"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "pca"
+        },
+        "data": {
+          "type": "string"
+        },
+        "source_task": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "object",
+          "required": [
+            "features"
+          ],
+          "properties": {
+            "features": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "data"
+          ]
+        },
+        {
+          "required": [
+            "source_task"
+          ]
+        }
+      ]
+    },
+    "example": {
+      "id": "analysis",
+      "operation": "pca",
+      "data": "data.csv",
+      "variables": {
+        "features": [
+          "x1",
+          "x2",
+          "x3"
+        ]
+      },
+      "analysis": {
+        "components": 2
+      }
+    }
+  },
+  {
+    "id": "topic",
+    "name": "Latent Dirichlet allocation topics",
+    "kind": "statistical",
+    "scope": "Exploratory count-based topics; Chinese word analysis requires explicit tokenization.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "variables"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "topic"
+        },
+        "data": {
+          "type": "string"
+        },
+        "source_task": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "object",
+          "required": [
+            "text"
+          ],
+          "properties": {
+            "text": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "data"
+          ]
+        },
+        {
+          "required": [
+            "source_task"
+          ]
+        }
+      ]
+    },
+    "example": {
+      "id": "analysis",
+      "operation": "topic",
+      "data": "data.csv",
+      "variables": {
+        "text": "text"
+      },
+      "analysis": {
+        "topics": 2,
+        "language": "en",
+        "analyzer": "word"
+      }
+    }
+  },
+  {
+    "id": "kaplan_meier",
+    "name": "Kaplan–Meier survival",
+    "kind": "statistical",
+    "scope": "Independent right censoring, binary event, no left truncation; pointwise Greenwood normal approximation.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "variables"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "kaplan_meier"
+        },
+        "data": {
+          "type": "string"
+        },
+        "source_task": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "object",
+          "required": [
+            "duration",
+            "event"
+          ],
+          "properties": {
+            "duration": {
+              "type": "string"
+            },
+            "event": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "data"
+          ]
+        },
+        {
+          "required": [
+            "source_task"
+          ]
+        }
+      ]
+    },
+    "example": {
+      "id": "analysis",
+      "operation": "kaplan_meier",
+      "data": "data.csv",
+      "variables": {
+        "duration": "duration",
+        "event": "event"
+      }
+    }
+  },
+  {
+    "id": "autoreg",
+    "name": "Rolling autoregressive prediction",
+    "kind": "statistical",
+    "scope": "One regularly spaced series; expanding-window one-step OLS forecasts.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "variables"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "autoreg"
+        },
+        "data": {
+          "type": "string"
+        },
+        "source_task": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "object",
+          "required": [
+            "outcome",
+            "time"
+          ],
+          "properties": {
+            "outcome": {
+              "type": "string"
+            },
+            "time": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "data"
+          ]
+        },
+        {
+          "required": [
+            "source_task"
+          ]
+        }
+      ]
+    },
+    "example": {
+      "id": "analysis",
+      "operation": "autoreg",
+      "data": "data.csv",
+      "variables": {
+        "outcome": "y",
+        "time": "time"
+      },
+      "analysis": {
+        "lags": 1,
+        "train_fraction": 0.65
+      }
+    }
+  },
+  {
+    "id": "moran",
+    "name": "Global Moran spatial statistic",
+    "kind": "statistical",
+    "scope": "Explicit weights matching data-unit order; fixed-weight random-label permutation test.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "variables"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "moran"
+        },
+        "data": {
+          "type": "string"
+        },
+        "source_task": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "object",
+          "required": [
+            "outcome",
+            "unit"
+          ],
+          "properties": {
+            "outcome": {
+              "type": "string"
+            },
+            "unit": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "data"
+          ]
+        },
+        {
+          "required": [
+            "source_task"
+          ]
+        }
+      ]
+    },
+    "example": {
+      "id": "analysis",
+      "operation": "moran",
+      "data": "data.csv",
+      "variables": {
+        "outcome": "y",
+        "unit": "id"
+      },
+      "analysis": {
+        "spatial_weights": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ],
+        "weights_unit_order": [
+          "a",
+          "b",
+          "c"
+        ],
+        "permutations": 199
+      }
+    }
+  },
+  {
+    "id": "network",
+    "name": "Observed simple network structure",
+    "kind": "statistical",
+    "scope": "Undirected binary graph; duplicate edges collapsed; degree, clustering and connected components.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "variables"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "network"
+        },
+        "data": {
+          "type": "string"
+        },
+        "source_task": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "object",
+          "required": [
+            "source",
+            "target"
+          ],
+          "properties": {
+            "source": {
+              "type": "string"
+            },
+            "target": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "data"
+          ]
+        },
+        {
+          "required": [
+            "source_task"
+          ]
+        }
+      ]
+    },
+    "example": {
+      "id": "analysis",
+      "operation": "network",
+      "data": "data.csv",
+      "variables": {
+        "source": "source",
+        "target": "target"
+      }
+    }
+  },
+  {
+    "id": "oaxaca",
+    "name": "Two-group outcome-gap decomposition",
+    "kind": "statistical",
+    "scope": "Reference group zero; within-group iid percentile bootstrap; descriptive decomposition.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "variables"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "oaxaca"
+        },
+        "data": {
+          "type": "string"
+        },
+        "source_task": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "object",
+          "required": [
+            "outcome",
+            "features",
+            "group"
+          ],
+          "properties": {
+            "outcome": {
+              "type": "string"
+            },
+            "features": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "group": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "data"
+          ]
+        },
+        {
+          "required": [
+            "source_task"
+          ]
+        }
+      ]
+    },
+    "example": {
+      "id": "analysis",
+      "operation": "oaxaca",
+      "data": "data.csv",
+      "variables": {
+        "outcome": "y",
+        "features": [
+          "x1",
+          "x2",
+          "x3"
+        ],
+        "group": "group"
+      },
+      "analysis": {
+        "bootstrap_repetitions": 199
+      }
+    }
+  },
+  {
+    "id": "meta",
+    "name": "Independent compatible-effect synthesis",
+    "kind": "statistical",
+    "scope": "Common-effect or DerSimonian–Laird random effects, normal intervals; compatible scales required.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "variables"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "meta"
+        },
+        "data": {
+          "type": "string"
+        },
+        "source_task": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "object",
+          "required": [
+            "effect",
+            "se"
+          ],
+          "properties": {
+            "effect": {
+              "type": "string"
+            },
+            "se": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "data"
+          ]
+        },
+        {
+          "required": [
+            "source_task"
+          ]
+        }
+      ]
+    },
+    "example": {
+      "id": "analysis",
+      "operation": "meta",
+      "data": "data.csv",
+      "variables": {
+        "effect": "effect",
+        "se": "se"
+      },
+      "selected_method_id": "f35.fixed_meta"
+    }
+  },
+  {
+    "id": "multiple_testing",
+    "name": "Holm and Benjamini–Hochberg adjustment",
+    "kind": "statistical",
+    "scope": "Declared hypothesis family; BH uses independence or suitable positive dependence.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "variables"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "multiple_testing"
+        },
+        "data": {
+          "type": "string"
+        },
+        "source_task": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "object",
+          "required": [
+            "p_value"
+          ],
+          "properties": {
+            "p_value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "data"
+          ]
+        },
+        {
+          "required": [
+            "source_task"
+          ]
+        }
+      ]
+    },
+    "example": {
+      "id": "analysis",
+      "operation": "multiple_testing",
+      "data": "data.csv",
+      "variables": {
+        "p_value": "p"
+      }
+    }
+  },
+  {
+    "id": "conformal",
+    "name": "Split-conformal prediction intervals",
+    "kind": "statistical",
+    "scope": "Exchangeable regression observations, separate train/calibration/test splits, marginal coverage target.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "variables"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "conformal"
+        },
+        "data": {
+          "type": "string"
+        },
+        "source_task": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "object",
+          "required": [
+            "outcome",
+            "features"
+          ],
+          "properties": {
+            "outcome": {
+              "type": "string"
+            },
+            "features": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "data"
+          ]
+        },
+        {
+          "required": [
+            "source_task"
+          ]
+        }
+      ]
+    },
+    "example": {
+      "id": "analysis",
+      "operation": "conformal",
+      "data": "data.csv",
+      "variables": {
+        "outcome": "y",
+        "features": [
+          "x1",
+          "x2",
+          "x3"
+        ]
+      },
+      "prediction": {
+        "split": "iid_three_way"
+      },
+      "analysis": {
+        "alpha": 0.1
+      }
+    }
+  },
+  {
+    "id": "corpus",
+    "name": "Corpus",
+    "kind": "material",
+    "scope": "Operates on explicitly supplied material and structured researcher inputs. See the exact example fields; text offsets use Unicode code points.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "corpus"
+        },
+        "documents": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "documents"
+          ]
+        },
+        {
+          "required": [
+            "paths"
+          ]
+        }
+      ]
+    },
+    "example": {
+      "id": "corpus",
+      "operation": "corpus",
+      "documents": [
+        {
+          "id": "interview-1",
+          "source": "Invented teaching example",
+          "text": "我搬到城里后仍然想念家乡。工作方便，但是邻里交流少了。"
+        },
+        {
+          "id": "interview-2",
+          "source": "Invented teaching example",
+          "text": "在城里找到工作以后，我开始参加社区活动。"
+        }
+      ]
+    }
+  },
+  {
+    "id": "concordance",
+    "name": "Concordance",
+    "kind": "material",
+    "scope": "Operates on explicitly supplied material and structured researcher inputs. See the exact example fields; text offsets use Unicode code points.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "query"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "concordance"
+        },
+        "documents": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "query": {
+          "type": "string"
+        },
+        "paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "documents"
+          ]
+        },
+        {
+          "required": [
+            "paths"
+          ]
+        }
+      ]
+    },
+    "example": {
+      "id": "concordance",
+      "operation": "concordance",
+      "documents": [
+        {
+          "id": "interview-1",
+          "source": "Invented teaching example",
+          "text": "我搬到城里后仍然想念家乡。工作方便，但是邻里交流少了。"
+        },
+        {
+          "id": "interview-2",
+          "source": "Invented teaching example",
+          "text": "在城里找到工作以后，我开始参加社区活动。"
+        }
+      ],
+      "query": "城里"
+    }
+  },
+  {
+    "id": "coding",
+    "name": "Coding",
+    "kind": "material",
+    "scope": "Operates on explicitly supplied material and structured researcher inputs. See the exact example fields; text offsets use Unicode code points.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "codebook",
+        "annotations"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "coding"
+        },
+        "documents": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "codebook": {
+          "type": "object"
+        },
+        "annotations": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "documents"
+          ]
+        },
+        {
+          "required": [
+            "paths"
+          ]
+        }
+      ]
+    },
+    "example": {
+      "id": "coding",
+      "operation": "coding",
+      "documents": [
+        {
+          "id": "interview-1",
+          "source": "Invented teaching example",
+          "text": "我搬到城里后仍然想念家乡。工作方便，但是邻里交流少了。"
+        },
+        {
+          "id": "interview-2",
+          "source": "Invented teaching example",
+          "text": "在城里找到工作以后，我开始参加社区活动。"
+        }
+      ],
+      "codebook": {
+        "belonging": "An explicit statement about attachment to a place"
+      },
+      "annotations": [
+        {
+          "document": "interview-1",
+          "start": 6,
+          "end": 12,
+          "code": "belonging",
+          "coder": "researcher",
+          "quote": "仍然想念家乡"
+        }
+      ]
+    }
+  },
+  {
+    "id": "agreement",
+    "name": "Agreement",
+    "kind": "material",
+    "scope": "Operates on explicitly supplied material and structured researcher inputs. See the exact example fields; text offsets use Unicode code points.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "ratings"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "agreement"
+        },
+        "ratings": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "example": {
+      "id": "agreement",
+      "operation": "agreement",
+      "ratings": [
+        {
+          "unit": 1,
+          "a": "A",
+          "b": "A"
+        },
+        {
+          "unit": 2,
+          "a": "B",
+          "b": "B"
+        },
+        {
+          "unit": 3,
+          "a": "A",
+          "b": "B"
+        },
+        {
+          "unit": 4,
+          "a": "B",
+          "b": "B"
+        }
+      ]
+    }
+  },
+  {
+    "id": "collate",
+    "name": "Collate",
+    "kind": "material",
+    "scope": "Operates on explicitly supplied material and structured researcher inputs. See the exact example fields; text offsets use Unicode code points.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "collate"
+        },
+        "documents": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "documents"
+          ]
+        },
+        {
+          "required": [
+            "paths"
+          ]
+        }
+      ]
+    },
+    "example": {
+      "id": "collation",
+      "operation": "collate",
+      "documents": [
+        {
+          "id": "witness-a",
+          "text": "学而时习之，不亦说乎。"
+        },
+        {
+          "id": "witness-b",
+          "text": "学而时习之，不亦悦乎。"
+        }
+      ]
+    }
+  },
+  {
+    "id": "argument_map",
+    "name": "Argument Map",
+    "kind": "material",
+    "scope": "Operates on explicitly supplied material and structured researcher inputs. See the exact example fields; text offsets use Unicode code points.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "claims",
+        "relations"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "argument_map"
+        },
+        "claims": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "relations": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "example": {
+      "id": "argument",
+      "operation": "argument_map",
+      "claims": [
+        {
+          "id": "P1",
+          "role": "premise",
+          "text": "A policy is justified when it improves the specified common outcome."
+        },
+        {
+          "id": "P2",
+          "role": "empirical premise",
+          "text": "The policy improves the specified common outcome."
+        },
+        {
+          "id": "C1",
+          "role": "conclusion",
+          "text": "The policy is justified under the stated criterion."
+        }
+      ],
+      "relations": [
+        {
+          "from": "P1",
+          "to": "C1",
+          "kind": "supports",
+          "reason": "Normative premise"
+        },
+        {
+          "from": "P2",
+          "to": "C1",
+          "kind": "supports",
+          "reason": "Empirical premise to investigate"
+        }
+      ]
+    }
+  },
+  {
+    "id": "questionnaire",
+    "name": "Questionnaire",
+    "kind": "material",
+    "scope": "Operates on explicitly supplied material and structured researcher inputs. See the exact example fields; text offsets use Unicode code points.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "items"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "questionnaire"
+        },
+        "title": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "example": {
+      "id": "survey",
+      "operation": "questionnaire",
+      "title": "Community participation pilot",
+      "items": [
+        {
+          "id": "participation",
+          "type": "single",
+          "prompt": "Have you attended a community event in the past month?",
+          "options": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "frequency",
+          "type": "number",
+          "prompt": "How many events did you attend?",
+          "show_if": {
+            "item": "participation",
+            "equals": "Yes"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "experiment",
+    "name": "Experiment",
+    "kind": "material",
+    "scope": "Operates on explicitly supplied material and structured researcher inputs. See the exact example fields; text offsets use Unicode code points.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "trials"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "experiment"
+        },
+        "trials": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "example": {
+      "id": "experiment",
+      "operation": "experiment",
+      "trials": [
+        {
+          "stimulus": "LEFT",
+          "keys": [
+            "f",
+            "j"
+          ],
+          "instruction": "Press F for LEFT, J for RIGHT"
+        },
+        {
+          "stimulus": "RIGHT",
+          "keys": [
+            "f",
+            "j"
+          ],
+          "instruction": "Press F for LEFT, J for RIGHT"
+        }
+      ]
+    }
+  },
+  {
+    "id": "table",
+    "name": "Table",
+    "kind": "material",
+    "scope": "Operates on explicitly supplied material and structured researcher inputs. See the exact example fields; text offsets use Unicode code points.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "data"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "table"
+        },
+        "data": {
+          "type": "string"
+        },
+        "keys": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "example": {
+      "id": "table",
+      "operation": "table",
+      "data": "data.csv",
+      "keys": [
+        "id"
+      ]
+    }
+  },
+  {
+    "id": "bibliography",
+    "name": "Bibliography",
+    "kind": "material",
+    "scope": "Operates on explicitly supplied material and structured researcher inputs. See the exact example fields; text offsets use Unicode code points.",
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "operation",
+        "works"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operation": {
+          "const": "bibliography"
+        },
+        "works": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "example": {
+      "id": "bibliography",
+      "operation": "bibliography",
+      "works": [
+        {
+          "id": "local-note",
+          "title": "Researcher supplied note",
+          "authors": [
+            "Researcher"
+          ],
+          "year": 2026
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,1623 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HSS executable study",
+  "type": "object",
+  "required": [
+    "tasks"
+  ],
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "question": {
+      "type": "string"
+    },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "variables"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "rct"
+              },
+              "data": {
+                "type": "string"
+              },
+              "source_task": {
+                "type": "string"
+              },
+              "variables": {
+                "type": "object",
+                "required": [
+                  "outcome",
+                  "treatment"
+                ],
+                "properties": {
+                  "outcome": {
+                    "type": "string"
+                  },
+                  "treatment": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "data"
+                ]
+              },
+              {
+                "required": [
+                  "source_task"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "variables"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "iv"
+              },
+              "data": {
+                "type": "string"
+              },
+              "source_task": {
+                "type": "string"
+              },
+              "variables": {
+                "type": "object",
+                "required": [
+                  "outcome",
+                  "treatment",
+                  "instruments"
+                ],
+                "properties": {
+                  "outcome": {
+                    "type": "string"
+                  },
+                  "treatment": {
+                    "type": "string"
+                  },
+                  "instruments": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "data"
+                ]
+              },
+              {
+                "required": [
+                  "source_task"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "variables"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "aipw"
+              },
+              "data": {
+                "type": "string"
+              },
+              "source_task": {
+                "type": "string"
+              },
+              "variables": {
+                "type": "object",
+                "required": [
+                  "outcome",
+                  "treatment",
+                  "controls"
+                ],
+                "properties": {
+                  "outcome": {
+                    "type": "string"
+                  },
+                  "treatment": {
+                    "type": "string"
+                  },
+                  "controls": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "data"
+                ]
+              },
+              {
+                "required": [
+                  "source_task"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "variables"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "dml_irm"
+              },
+              "data": {
+                "type": "string"
+              },
+              "source_task": {
+                "type": "string"
+              },
+              "variables": {
+                "type": "object",
+                "required": [
+                  "outcome",
+                  "treatment",
+                  "controls"
+                ],
+                "properties": {
+                  "outcome": {
+                    "type": "string"
+                  },
+                  "treatment": {
+                    "type": "string"
+                  },
+                  "controls": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "data"
+                ]
+              },
+              {
+                "required": [
+                  "source_task"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "variables"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "dml_plr"
+              },
+              "data": {
+                "type": "string"
+              },
+              "source_task": {
+                "type": "string"
+              },
+              "variables": {
+                "type": "object",
+                "required": [
+                  "outcome",
+                  "treatment",
+                  "controls"
+                ],
+                "properties": {
+                  "outcome": {
+                    "type": "string"
+                  },
+                  "treatment": {
+                    "type": "string"
+                  },
+                  "controls": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "data"
+                ]
+              },
+              {
+                "required": [
+                  "source_task"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "variables"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "did_2x2"
+              },
+              "data": {
+                "type": "string"
+              },
+              "source_task": {
+                "type": "string"
+              },
+              "variables": {
+                "type": "object",
+                "required": [
+                  "outcome",
+                  "treatment",
+                  "unit",
+                  "time"
+                ],
+                "properties": {
+                  "outcome": {
+                    "type": "string"
+                  },
+                  "treatment": {
+                    "type": "string"
+                  },
+                  "unit": {
+                    "type": "string"
+                  },
+                  "time": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "data"
+                ]
+              },
+              {
+                "required": [
+                  "source_task"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "variables"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "local_rd"
+              },
+              "data": {
+                "type": "string"
+              },
+              "source_task": {
+                "type": "string"
+              },
+              "variables": {
+                "type": "object",
+                "required": [
+                  "outcome",
+                  "treatment",
+                  "running"
+                ],
+                "properties": {
+                  "outcome": {
+                    "type": "string"
+                  },
+                  "treatment": {
+                    "type": "string"
+                  },
+                  "running": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "data"
+                ]
+              },
+              {
+                "required": [
+                  "source_task"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "variables"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "synthetic_control"
+              },
+              "data": {
+                "type": "string"
+              },
+              "source_task": {
+                "type": "string"
+              },
+              "variables": {
+                "type": "object",
+                "required": [
+                  "outcome",
+                  "unit",
+                  "time"
+                ],
+                "properties": {
+                  "outcome": {
+                    "type": "string"
+                  },
+                  "unit": {
+                    "type": "string"
+                  },
+                  "time": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "data"
+                ]
+              },
+              {
+                "required": [
+                  "source_task"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "variables"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "summary"
+              },
+              "data": {
+                "type": "string"
+              },
+              "source_task": {
+                "type": "string"
+              },
+              "variables": {
+                "type": "object",
+                "required": [
+                  "outcome"
+                ],
+                "properties": {
+                  "outcome": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "data"
+                ]
+              },
+              {
+                "required": [
+                  "source_task"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "variables"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "distribution"
+              },
+              "data": {
+                "type": "string"
+              },
+              "source_task": {
+                "type": "string"
+              },
+              "variables": {
+                "type": "object",
+                "required": [
+                  "outcome"
+                ],
+                "properties": {
+                  "outcome": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "data"
+                ]
+              },
+              {
+                "required": [
+                  "source_task"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "variables"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "ols"
+              },
+              "data": {
+                "type": "string"
+              },
+              "source_task": {
+                "type": "string"
+              },
+              "variables": {
+                "type": "object",
+                "required": [
+                  "outcome",
+                  "features"
+                ],
+                "properties": {
+                  "outcome": {
+                    "type": "string"
+                  },
+                  "features": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "data"
+                ]
+              },
+              {
+                "required": [
+                  "source_task"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "variables"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "predict"
+              },
+              "data": {
+                "type": "string"
+              },
+              "source_task": {
+                "type": "string"
+              },
+              "variables": {
+                "type": "object",
+                "required": [
+                  "outcome",
+                  "features"
+                ],
+                "properties": {
+                  "outcome": {
+                    "type": "string"
+                  },
+                  "features": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "data"
+                ]
+              },
+              {
+                "required": [
+                  "source_task"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "variables"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "text_predict"
+              },
+              "data": {
+                "type": "string"
+              },
+              "source_task": {
+                "type": "string"
+              },
+              "variables": {
+                "type": "object",
+                "required": [
+                  "outcome",
+                  "text"
+                ],
+                "properties": {
+                  "outcome": {
+                    "type": "string"
+                  },
+                  "text": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "data"
+                ]
+              },
+              {
+                "required": [
+                  "source_task"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "variables"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "kmeans"
+              },
+              "data": {
+                "type": "string"
+              },
+              "source_task": {
+                "type": "string"
+              },
+              "variables": {
+                "type": "object",
+                "required": [
+                  "features"
+                ],
+                "properties": {
+                  "features": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "data"
+                ]
+              },
+              {
+                "required": [
+                  "source_task"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "variables"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "pca"
+              },
+              "data": {
+                "type": "string"
+              },
+              "source_task": {
+                "type": "string"
+              },
+              "variables": {
+                "type": "object",
+                "required": [
+                  "features"
+                ],
+                "properties": {
+                  "features": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "data"
+                ]
+              },
+              {
+                "required": [
+                  "source_task"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "variables"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "topic"
+              },
+              "data": {
+                "type": "string"
+              },
+              "source_task": {
+                "type": "string"
+              },
+              "variables": {
+                "type": "object",
+                "required": [
+                  "text"
+                ],
+                "properties": {
+                  "text": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "data"
+                ]
+              },
+              {
+                "required": [
+                  "source_task"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "variables"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "kaplan_meier"
+              },
+              "data": {
+                "type": "string"
+              },
+              "source_task": {
+                "type": "string"
+              },
+              "variables": {
+                "type": "object",
+                "required": [
+                  "duration",
+                  "event"
+                ],
+                "properties": {
+                  "duration": {
+                    "type": "string"
+                  },
+                  "event": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "data"
+                ]
+              },
+              {
+                "required": [
+                  "source_task"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "variables"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "autoreg"
+              },
+              "data": {
+                "type": "string"
+              },
+              "source_task": {
+                "type": "string"
+              },
+              "variables": {
+                "type": "object",
+                "required": [
+                  "outcome",
+                  "time"
+                ],
+                "properties": {
+                  "outcome": {
+                    "type": "string"
+                  },
+                  "time": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "data"
+                ]
+              },
+              {
+                "required": [
+                  "source_task"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "variables"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "moran"
+              },
+              "data": {
+                "type": "string"
+              },
+              "source_task": {
+                "type": "string"
+              },
+              "variables": {
+                "type": "object",
+                "required": [
+                  "outcome",
+                  "unit"
+                ],
+                "properties": {
+                  "outcome": {
+                    "type": "string"
+                  },
+                  "unit": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "data"
+                ]
+              },
+              {
+                "required": [
+                  "source_task"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "variables"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "network"
+              },
+              "data": {
+                "type": "string"
+              },
+              "source_task": {
+                "type": "string"
+              },
+              "variables": {
+                "type": "object",
+                "required": [
+                  "source",
+                  "target"
+                ],
+                "properties": {
+                  "source": {
+                    "type": "string"
+                  },
+                  "target": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "data"
+                ]
+              },
+              {
+                "required": [
+                  "source_task"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "variables"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "oaxaca"
+              },
+              "data": {
+                "type": "string"
+              },
+              "source_task": {
+                "type": "string"
+              },
+              "variables": {
+                "type": "object",
+                "required": [
+                  "outcome",
+                  "features",
+                  "group"
+                ],
+                "properties": {
+                  "outcome": {
+                    "type": "string"
+                  },
+                  "features": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "group": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "data"
+                ]
+              },
+              {
+                "required": [
+                  "source_task"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "variables"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "meta"
+              },
+              "data": {
+                "type": "string"
+              },
+              "source_task": {
+                "type": "string"
+              },
+              "variables": {
+                "type": "object",
+                "required": [
+                  "effect",
+                  "se"
+                ],
+                "properties": {
+                  "effect": {
+                    "type": "string"
+                  },
+                  "se": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "data"
+                ]
+              },
+              {
+                "required": [
+                  "source_task"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "variables"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "multiple_testing"
+              },
+              "data": {
+                "type": "string"
+              },
+              "source_task": {
+                "type": "string"
+              },
+              "variables": {
+                "type": "object",
+                "required": [
+                  "p_value"
+                ],
+                "properties": {
+                  "p_value": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "data"
+                ]
+              },
+              {
+                "required": [
+                  "source_task"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "variables"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "conformal"
+              },
+              "data": {
+                "type": "string"
+              },
+              "source_task": {
+                "type": "string"
+              },
+              "variables": {
+                "type": "object",
+                "required": [
+                  "outcome",
+                  "features"
+                ],
+                "properties": {
+                  "outcome": {
+                    "type": "string"
+                  },
+                  "features": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "data"
+                ]
+              },
+              {
+                "required": [
+                  "source_task"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "corpus"
+              },
+              "documents": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "paths": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "documents"
+                ]
+              },
+              {
+                "required": [
+                  "paths"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "query"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "concordance"
+              },
+              "documents": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "query": {
+                "type": "string"
+              },
+              "paths": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "documents"
+                ]
+              },
+              {
+                "required": [
+                  "paths"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "codebook",
+              "annotations"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "coding"
+              },
+              "documents": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "codebook": {
+                "type": "object"
+              },
+              "annotations": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "paths": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "documents"
+                ]
+              },
+              {
+                "required": [
+                  "paths"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "ratings"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "agreement"
+              },
+              "ratings": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "paths": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "collate"
+              },
+              "documents": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "paths": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "documents"
+                ]
+              },
+              {
+                "required": [
+                  "paths"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "claims",
+              "relations"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "argument_map"
+              },
+              "claims": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "relations": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "paths": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "items"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "questionnaire"
+              },
+              "title": {
+                "type": "string"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "paths": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "trials"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "experiment"
+              },
+              "trials": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "paths": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "data"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "table"
+              },
+              "data": {
+                "type": "string"
+              },
+              "keys": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "paths": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "operation",
+              "works"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "bibliography"
+              },
+              "works": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "paths": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "branch_id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "branch_id": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "selected_method_id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "selected_method_id": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
