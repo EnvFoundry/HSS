@@ -17,7 +17,7 @@ TOOL_SPECS = {
     "browse": ("Browse fields, directions and bundles", {"field": STRING}, []),
     "search": (
         "Find reusable research modules",
-        {"query": STRING, "field": STRING, "kind": STRING},
+        {"query": STRING, "field": STRING, "direction": STRING, "kind": STRING},
         [],
     ),
     "methods": (

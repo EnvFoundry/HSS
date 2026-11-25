@@ -58,7 +58,7 @@ class InterfaceTests(unittest.TestCase):
             self.assertTrue((root / "moved/skills/hss-theory/SKILL.md").exists())
 
     def test_source_and_export_share_descriptions_with_actual_resource_paths(self):
-        source = json.loads((ROOT / 'plugin.json').read_text())['environment']
+        source = json.loads((ROOT / 'plugin.json').read_text(encoding='utf-8'))['environment']
         self.assertEqual(source['presentation'], environment_metadata()['presentation'])
         for item in source['resources']:
             if 'package_path' in item:
@@ -66,7 +66,7 @@ class InterfaceTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             output = Path(tmp) / 'export'
             export(Manager(Path(tmp) / 'space'), output, ['argument-analysis'])
-            metadata = json.loads((output / 'plugin.json').read_text())['environment']
+            metadata = json.loads((output / 'plugin.json').read_text(encoding='utf-8'))['environment']
             self.assertEqual(source['presentation'], metadata['presentation'])
             for item in metadata['resources']:
                 self.assertTrue((output / item['package_path']).exists(), item)
@@ -163,6 +163,17 @@ class InterfaceTests(unittest.TestCase):
                     )
                     tools = await session.list_tools()
                     self.assertIn("hss_run", [t.name for t in tools.tools])
+                    search_tool = next(t for t in tools.tools if t.name == "hss_search")
+                    self.assertIn("direction", search_tool.inputSchema["properties"])
+                    result = await session.call_tool(
+                        "hss_search", {"field": "philosophy", "direction": "logic"}
+                    )
+                    selected = json.loads(result.content[0].text)
+                    self.assertTrue(selected)
+                    self.assertTrue(all(
+                        {"field": "philosophy", "direction": "logic"} in item["paths"]
+                        for item in selected
+                    ))
                     result = await session.call_tool("hss_browse", {})
                     self.assertFalse(result.model_dump(by_alias=True)["isError"])
                     self.assertIn("fields", json.loads(result.content[0].text))
