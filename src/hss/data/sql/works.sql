@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS works(id TEXT PRIMARY KEY, title TEXT NOT NULL, authors TEXT, year INTEGER, doi TEXT, url TEXT, metadata TEXT NOT NULL);
