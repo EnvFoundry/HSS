@@ -1,8 +1,31 @@
 {
-  "name": "@envfoundry/hss", "version": "0.1.0", "type": "module",
-  "description": "HSS host client and field/direction/module picker",
-  "exports": {".": {"types": "./lib/client.d.ts", "import": "./lib/client.js"}, "./picker": "./lib/picker.js", "./node": "./node.mjs"},
-  "files": ["lib", "node.mjs"],
-  "scripts": {"build": "tsc -p tsconfig.json", "test": "node --test test/*.mjs"},
-  "devDependencies": {"typescript": "^5.9.3"}
+  "name": "@envfoundry/hss",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "HSS research workbench and host client",
+  "exports": {
+    ".": {
+      "types": "./lib/client.d.ts",
+      "import": "./lib/client.js"
+    },
+    "./picker": "./lib/picker.js",
+    "./node": "./node.mjs",
+    "./workbench": "./lib/workbench.js",
+    "./server": "./server.mjs"
+  },
+  "files": [
+    "lib",
+    "node.mjs",
+    "server.mjs",
+    "workbench.html"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "node --test test/*.mjs",
+    "start": "node server.mjs"
+  },
+  "devDependencies": {
+    "jsdom": "^26.1.0",
+    "typescript": "^5.9.3"
+  }
 }
