@@ -1,9 +1,18 @@
 """File and stdio interfaces shared by research operating systems and agents."""
 
 from pathlib import Path
+import json
 import shutil
 import sys
 from .catalog import write_json
+
+
+def environment_metadata(package_prefix="src/hss"):
+    """Read the same authored descriptions for source and exported packages."""
+    value = json.loads((Path(__file__).parent / "data/environment.json").read_text(encoding="utf-8"))
+    for resource in value["resources"]:
+        resource["package_path"] = resource["package_path"].replace("src/hss/", package_prefix + "/", 1)
+    return value
 
 
 def export(manager, output, selections=()):
@@ -66,9 +75,11 @@ print(root / "mcp.json")
         {
             "name": "hss-research",
             "version": "0.1.0",
-            "description": "Humanities and social sciences research resources and execution",
+            "display_name": "HSS",
+            "description": environment_metadata()["presentation"]["en"]["summary"],
+            "homepage": "https://github.com/EnvFoundry/HSS",
             "skills": ["skills/" + s for s in skills],
-            "environment": {"resources": []},
+            "environment": environment_metadata("runtime/hss"),
             "mcpServers": {
                 "hss": {
                     "transport": "stdio",

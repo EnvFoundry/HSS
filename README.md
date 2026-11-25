@@ -8,6 +8,8 @@ HSS brings research guidance, methods, software, Skills, literature and data con
 
 The catalogue covers philosophy, literature and language, history, arts and culture, sociology and anthropology, politics and public policy, law, Marxist theory, economics, business and finance, education, psychology, communication, population and human geography. Common research capabilities are shared across these fields.
 
+Host packages include [publisher-maintained descriptions and resource locations](src/hss/data/environment.json) in English and Chinese. The host resolves each `package_path` against the actual installed package; installation state, software locations and running tasks remain with their existing managers. Refreshing these descriptions does not install research software.
+
 ## Research environment
 
 The research workbench connects module selection, research design, executable studies and manuscript assembly. Every catalogue direction expands into a blueprint containing its material inputs, outputs, research guidance, workflows, software choices and operation contracts. A host Agent develops the substantive research argument with the researcher and supplies model calls.
