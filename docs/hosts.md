@@ -74,7 +74,12 @@ Render `<hss-picker></hss-picker>` in the product. The component keeps selection
 
 Add `https://github.com/EnvFoundry/HSS` through Origo's repository source import. The root `plugin.json` declares eight Skills and the stdio research service. Origo supplies `RESEARCH_PYTHON`, `PACKAGE_ROOT` and `WORKSPACE_ROOT`; no separate HSS package installation is needed to browse or prepare resources.
 
-Origo installs this environment plugin as `System/env/hss-research`. Selected software and HSS state use `System/env/hss`; knowledge, Skills, workflows and project material retain their resource-specific locations. Keep the plugin name `hss-research` distinct from the mutable software directory when importing or renaming it.
+Origo installs this environment plugin as `System/env/hss-research`. New software
+and HSS state use `System/software/hss`. An existing `System/env/hss` is reused
+when the new location is absent; explicit resource-area mappings take precedence.
+Knowledge, Skills, workflows and project material retain their resource-specific
+locations. Keep the plugin name `hss-research` distinct from the mutable software
+directory when importing or renaming it.
 
 This path was exercised with the actual `Oxelra-AI/agentic-research-os` extension loader: repository package discovery, materialization, installation into the environment area, eight Skill declarations and an MCP catalogue call all completed. No private product code is included in HSS. The product's existing source importer is used; no new built-in catalogue tile is required.
 
