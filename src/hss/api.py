@@ -4,7 +4,7 @@ from .catalog import Catalog, DATA, read_json
 from .manager import Manager
 
 
-def request(payload, progress=None):
+def request(payload, progress=None, *, cancel=None):
     action = payload["action"]
     catalog = Catalog(payload.get("extension"))
     manager = Manager(payload.get("space"), payload.get("layout"), catalog)
@@ -72,6 +72,7 @@ def request(payload, progress=None):
             payload.get("software", True),
             payload.get("options"),
             progress,
+            cancel=cancel,
         )
     if action == "installed":
         return manager.installed()

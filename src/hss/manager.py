@@ -10,6 +10,7 @@ from .catalog import Catalog, write_json
 from .layout import Layout
 from .state import State
 from . import software
+from .process import check_cancel, lock
 
 
 class Manager:
@@ -97,14 +98,7 @@ class Manager:
                     "requirements": component.get(
                         "requirements", component.get("packages", [])
                     ),
-                    "destination": str(
-                        self.layout["env"]
-                        / (
-                            "R/library"
-                            if component["kind"] == "r"
-                            else "software/" + name
-                        )
-                    ),
+                    "destination": str(self.layout["env"] / "R/library" if component["kind"] == "r" else self.layout.component_root(name)),
                     "download_bytes": None,
                     "disk_bytes": None,
                     "setup": component.get("setup"),
@@ -118,6 +112,9 @@ class Manager:
             "modules": modules,
             "actions": actions,
             "assets": list(assets),
+            "resources": [{"path": path, "kind": next((area for area in ("skills", "knowledge", "workflows", "prompts")
+                           if Path(path).is_relative_to(self.layout[area])), "resource"), "bytes": size}
+                          for path, size in assets.items()],
             "resource_bytes": sum(assets.values()),
             "layout": self.layout.describe(),
         }
@@ -130,10 +127,17 @@ class Manager:
         software_enabled=True,
         options=None,
         progress=None,
+        *,
+        cancel=None,
     ):
         modules = self.catalog.select(selections)
         if not modules:
             return {"modules": [], "ready": [], "pending": [], "failed": []}
+        with lock(self.layout["env"] / "prepare.lock", cancel=cancel):
+            return self._prepare(modules, existing, backends, software_enabled, options, progress, cancel)
+
+    def _prepare(self, modules, existing, backends, software_enabled, options, progress, cancel):
+        check_cancel(cancel)
         prepared_assets = []
         known = {r["path"]: r["content"] for r in self.state.rows("assets")}
         for name in modules:
@@ -164,8 +168,9 @@ class Manager:
                 )
         ready, pending, failed = [], [], []
         for name in self.components(modules, backends):
+            check_cancel(cancel)
             component = self.catalog.components[name]
-            binding = software.find_existing(component, self.state.bindings(), existing)
+            binding = software.find_existing(component, self.state.bindings(), existing, cancel=cancel)
             if binding:
                 self.state.bind(name, **binding)
                 ready.append({"component": name, "status": "ready", **binding})
@@ -182,7 +187,7 @@ class Manager:
                         ),
                     ]
                     result = software.install(
-                        component, self.layout, available, options, progress
+                        component, self.layout, available, options, progress, cancel=cancel
                     )
                     if result["status"] == "ready":
                         self.state.bind(
@@ -225,9 +230,26 @@ class Manager:
         return self.state.bindings()[component]
 
     def installed(self):
+        bindings = self.state.bindings()
+        selected = sorted(r["id"] for r in self.state.rows("modules"))
+        components = {r["component"] for r in self.state.rows("module_components")}
+        ready, failed = [], []
+        for name, binding in bindings.items():
+            if binding["command"] and (Path(binding["command"][0]).is_file() or shutil.which(binding["command"][0])):
+                ready.append({"component": name, "status": "ready", **binding})
+            else:
+                failed.append({"component": name, "error": "The registered executable is unavailable"})
+        available = {row["component"] for row in ready}
+        module_components = {name: set() for name in selected}
+        for row in self.state.rows("module_components"):
+            module_components.setdefault(row["module"], set()).add(row["component"])
         return {
-            "modules": sorted(r["id"] for r in self.state.rows("modules")),
-            "bindings": self.state.bindings(),
+            "modules": selected,
+            "ready_modules": [name for name in selected if module_components[name] <= available],
+            "bindings": bindings,
+            "ready": ready,
+            "pending": [{"component": name, "status": "not_prepared"} for name in sorted(components - bindings.keys())],
+            "failed": failed,
         }
 
     def context(self, selections):

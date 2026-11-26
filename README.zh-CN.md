@@ -18,6 +18,23 @@ HSS 将研究知识、方法、软件、Skills、提示词、工作流和文献�
 
 仓库根目录的 `plugin.json` 可直接供 Origo 的仓库导入入口识别。已使用 Origo 的实际插件加载代码完成安装和 MCP 调用，识别了 8 个 Skill 与研究服务。其他 Agent、Harness 和研究系统通过 MCP、CLI/JSON 或 TypeScript 客户端接入。
 
+## 宿主准备接口与资源位置
+
+环境声明在安装前提供目录，并明确发布 `hss_installed`、`hss_plan` 和
+`hss_prepare`。计划包含软件目标路径和分类后的资料路径，不执行安装。
+`installed.modules` 记录已放置资料的选择；`ready_modules` 仅包含所选软件入口
+已可用的模块。只准备资料时，尚未准备的软件仍明确列为待准备。
+
+支持 MCP Tasks 的宿主以 `task: {}` 调用 `hss_prepare`，通过 `tasks/get`、
+`tasks/result` 和 `tasks/cancel` 读取状态、结果和取消。准备由持久后台进程负责，
+MCP 重连不丢失任务；取消保留已准备资料，失败和取消都有可读取的结果。
+后台进程意外结束会明确报告失败，可重新准备剩余内容。普通 MCP 调用及
+`hss prepare-request -` 保持原有同步接口。
+
+新软件放在 `System/software/hss/<component>`；已有的 `System/env/hss` 安装及
+显式指定的布局继续使用。技能、知识资料、流程、提示、数据库和缓存分别保存在
+对应区域。浏览和准备资源不会启动研究或操作仪器。
+
 ## 语言与职责
 
 | 语言 | 实际功能 | 源码 |
@@ -63,7 +80,7 @@ Windows 可使用 `D:\Research` 等路径；命令不在 PATH 时改用 `python 
 
 | 内容 | 研究空间中的默认位置 |
 |---|---|
-| 软件、解释器与绑定 | `System/env/hss` |
+| 软件、解释器与绑定 | `System/software/hss` |
 | Skills | `System/skills/hss-*` |
 | 知识指南 | `System/knowledge/hss` |
 | 工作流与提示词 | `System/workflows/hss`、`System/prompts/hss` |

@@ -7,9 +7,10 @@ import shutil
 import subprocess
 import sys
 from .catalog import DATA
+from .process import run
 
 
-def build(component, root, options):
+def build(component, root, options, *, cancel=None):
     source = DATA / "native"
     root.mkdir(parents=True, exist_ok=True)
     target = root / (component["command"] + (".exe" if os.name == "nt" else ""))
@@ -60,8 +61,8 @@ def build(component, root, options):
                 "instructions": component["setup"],
             }
     for command in commands:
-        subprocess.run(
-            command, check=True, stdout=sys.stderr, timeout=options.get("timeout", 600)
+        run(
+            command, check=True, stdout=sys.stderr, timeout=options.get("timeout", 600), cancel=cancel
         )
     if not target.exists():
         produced = next((root / "build").rglob(target.name), None)

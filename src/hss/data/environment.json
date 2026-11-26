@@ -29,7 +29,8 @@
       "titles": {
         "en": "From a question to a research project",
         "zh-CN": "从研究问题开始"
-      }
+      },
+      "repository_path": "src/hss/data/skills/hss-research/SKILL.md"
     },
     {
       "kind": "catalogue",
@@ -38,7 +39,8 @@
       "titles": {
         "en": "Fields, directions and modules",
         "zh-CN": "领域、方向与模块"
-      }
+      },
+      "repository_path": "src/hss/data/catalog.json"
     },
     {
       "kind": "knowledge",
@@ -47,7 +49,8 @@
       "titles": {
         "en": "Research knowledge and methods",
         "zh-CN": "研究知识与方法"
-      }
+      },
+      "repository_path": "src/hss/data/knowledge"
     },
     {
       "kind": "workflows",
@@ -56,7 +59,8 @@
       "titles": {
         "en": "Research workflows",
         "zh-CN": "研究流程"
-      }
+      },
+      "repository_path": "src/hss/data/workflows"
     },
     {
       "kind": "guidance",
@@ -65,7 +69,8 @@
       "titles": {
         "en": "Research and writing guidance",
         "zh-CN": "研究与写作引导"
-      }
+      },
+      "repository_path": "src/hss/data/prompts"
     },
     {
       "kind": "skills",
@@ -74,7 +79,8 @@
       "titles": {
         "en": "Agent guidance",
         "zh-CN": "Agent 使用方法"
-      }
+      },
+      "repository_path": "src/hss/data/skills"
     },
     {
       "kind": "configuration",
@@ -83,7 +89,14 @@
       "titles": {
         "en": "MCP / Plugin",
         "zh-CN": "MCP 与插件配置"
-      }
+      },
+      "repository_path": "plugin.json"
     }
-  ]
+  ],
+  "preparation": {
+    "server": "hss",
+    "installed": "hss_installed",
+    "plan": "hss_plan",
+    "prepare": "hss_prepare"
+  }
 }

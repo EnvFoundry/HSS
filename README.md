@@ -25,6 +25,27 @@ The research workbench connects module selection, research design, executable st
 
 The root `plugin.json` makes this repository directly importable through Origo's repository source interface. Its actual extension loader has installed the package and called the research service successfully. Other hosts use the same stdio MCP or JSON interface.
 
+## Host preparation and resource locations
+
+The environment declaration publishes the catalogue before installation and names
+its exact MCP operations: `hss_installed`, `hss_plan`, and `hss_prepare`. Planning
+returns software destinations and typed resource paths without preparing them.
+`installed.modules` records materialized selections; `ready_modules` includes only
+those whose selected software bindings are available. Pending software remains
+visible after resource-only preparation.
+
+A host supporting MCP Tasks can submit `hss_prepare` with `task: {}`, then use
+`tasks/get`, `tasks/result`, and `tasks/cancel`. Preparation runs in a persistent
+worker, continues across MCP reconnection, and retains completed resources when
+cancelled. Failed and cancelled tasks retain their results. An interrupted worker
+is reported as failed so the host can request the remaining preparation. Plain
+MCP calls and `hss prepare-request -` keep their synchronous interfaces.
+
+New software uses `System/software/hss/<component>`; an existing
+`System/env/hss` installation or explicit layout stays in use. Skills, knowledge,
+workflows, prompts, databases and cache retain their separate resource areas.
+No research or instrument operation starts when browsing or preparing resources.
+
 ## Start
 
 Python 3.11 or later. The catalogue, research guidance, material operations, JSON API and MCP server require only Python's standard library.
@@ -90,7 +111,7 @@ Method cards support research design and retrieval. Executable tasks use the ope
 
 | Resource | Default location in the research space |
 |---|---|
-| Interpreters, software bindings and installation records | `System/env/hss` |
+| Interpreters, software bindings and installation records | `System/software/hss` |
 | Skills | `System/skills/hss-*` |
 | Research knowledge | `System/knowledge/hss` |
 | Workflows and prompts | `System/workflows/hss`, `System/prompts/hss` |
