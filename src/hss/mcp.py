@@ -11,6 +11,7 @@ from .preparation import Tasks
 STRING = {"type": "string"}
 SELECTIONS = {"type": "array", "items": STRING}
 BACKENDS = {"type": "object", "additionalProperties": STRING}
+CONNECTION_LIFECYCLE = "io.envfoundry/connection-lifecycle"
 TOOL_SPECS = {
     "describe": (
         "Get exact operation inputs and a complete example before writing a study task",
@@ -177,15 +178,18 @@ def resources():
     return result
 
 
-def dispatch(method, params):
+def dispatch(method, params, *, request_lifetime=False):
     if method == "initialize":
         requested = params.get("protocolVersion")
+        protocol = requested if requested in {"2024-11-05", "2025-03-26", "2025-06-18", "2025-11-25"} else "2025-11-25"
+        capabilities = {"tools": {}, "resources": {}, "prompts": {},
+                        "tasks": {"requests": {"tools": {"call": {}}}, "cancel": {}}}
+        lifecycle = params.get("capabilities", {}).get("experimental", {}).get(CONNECTION_LIFECYCLE, {})
+        if protocol == "2025-11-25" and lifecycle.get("scope") == "request":
+            capabilities["experimental"] = {CONNECTION_LIFECYCLE: {"scope": "request"}}
         return {
-            "protocolVersion": requested
-            if requested in {"2024-11-05", "2025-03-26", "2025-06-18", "2025-11-25"}
-            else "2025-11-25",
-            "capabilities": {"tools": {}, "resources": {}, "prompts": {},
-                             "tasks": {"requests": {"tools": {"call": {}}}, "cancel": {}}},
+            "protocolVersion": protocol,
+            "capabilities": capabilities,
             "serverInfo": {"name": "hss", "version": "0.1.0"},
             "instructions": "Browse first; load only relevant context. Prepare explicit selections. Keep project files outside System.",
         }
@@ -239,6 +243,8 @@ def dispatch(method, params):
         )
         if not action:
             raise ValueError("Unknown tool: " + name)
+        if request_lifetime and action == "prepare" and "task" not in params:
+            raise ValueError("This connection requires MCP Tasks for preparation; include task: {}")
         if "task" in params:
             if action != "prepare":
                 raise NotImplementedError("This tool does not support tasks")
@@ -354,14 +360,18 @@ def serve():
         if hasattr(stream, "reconfigure"):
             stream.reconfigure(encoding="utf-8")
     output_lock = threading.Lock()
+    request_lifetime = False
 
     def respond(line):
+        nonlocal request_lifetime
         message = None
         try:
             message = json.loads(line)
             if "id" not in message:
                 return
-            result = dispatch(message["method"], message.get("params", {}))
+            result = dispatch(message["method"], message.get("params", {}), request_lifetime=request_lifetime)
+            if message["method"] == "initialize":
+                request_lifetime = result["capabilities"].get("experimental", {}).get(CONNECTION_LIFECYCLE, {}).get("scope") == "request"
             response = {"jsonrpc": "2.0", "id": message["id"], "result": result}
         except Exception as exc:
             code = (
