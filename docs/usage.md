@@ -46,7 +46,7 @@ hss bind r-survey /path/to/Rscript
 hss exec r-survey --vanilla /path/to/analysis.R
 hss installed
 hss remove prediction
-hss remove prediction --prune
+hss uninstall prediction
 ```
 
 Use the JSON `bind` action to provide interpreter environment variables such as `R_LIBS_USER`. A command component can use a configured launcher command; `existing` entries for such a launcher should name its `components` explicitly.

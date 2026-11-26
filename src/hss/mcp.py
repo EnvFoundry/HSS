@@ -2,8 +2,11 @@
 
 import json
 import sys
+import threading
+from concurrent.futures import ThreadPoolExecutor
 from .api import request
 from .catalog import DATA
+from .preparation import Tasks
 
 STRING = {"type": "string"}
 SELECTIONS = {"type": "array", "items": STRING}
@@ -91,6 +94,11 @@ TOOL_SPECS = {
         {"selections": SELECTIONS, "prune": {"type": "boolean"}},
         ["selections"],
     ),
+    "uninstall": (
+        "Uninstall selected modules; retain shared, external and user-edited resources",
+        {"selections": SELECTIONS},
+        ["selections"],
+    ),
     "explore": (
         "Develop alternative research designs from an initial brief",
         {"brief": {"type": "object"}},
@@ -176,7 +184,8 @@ def dispatch(method, params):
             "protocolVersion": requested
             if requested in {"2024-11-05", "2025-03-26", "2025-06-18", "2025-11-25"}
             else "2025-11-25",
-            "capabilities": {"tools": {}, "resources": {}, "prompts": {}},
+            "capabilities": {"tools": {}, "resources": {}, "prompts": {},
+                             "tasks": {"requests": {"tools": {"call": {}}}, "cancel": {}}},
             "serverInfo": {"name": "hss", "version": "0.1.0"},
             "instructions": "Browse first; load only relevant context. Prepare explicit selections. Keep project files outside System.",
         }
@@ -200,6 +209,7 @@ def dispatch(method, params):
             result.append(
                 {
                     "name": "hss_" + name.replace("-", "_"),
+                    **({"execution": {"taskSupport": "optional"}} if name == "prepare" else {}),
                     "description": description,
                     "inputSchema": {
                         "type": "object",
@@ -213,13 +223,15 @@ def dispatch(method, params):
                     },
                     "annotations": {
                         "readOnlyHint": readonly,
-                        "destructiveHint": name == "remove",
+                        "destructiveHint": name in {"remove", "uninstall"},
                         "idempotentHint": readonly or name == "prepare",
                         "openWorldHint": name in {"connect", "prepare"},
                     },
                 }
             )
         return {"tools": result}
+    if method in {"tasks/get", "tasks/result", "tasks/cancel"}:
+        return getattr(Tasks(), method.split("/")[1])(params["taskId"])
     if method == "tools/call":
         name = params["name"]
         action = next(
@@ -227,6 +239,10 @@ def dispatch(method, params):
         )
         if not action:
             raise ValueError("Unknown tool: " + name)
+        if "task" in params:
+            if action != "prepare":
+                raise NotImplementedError("This tool does not support tasks")
+            return Tasks().start(params.get("arguments", {}))
         try:
             value = request({**params.get("arguments", {}), "action": action})
             structured = value if isinstance(value, dict) else {"items": value}
@@ -238,7 +254,7 @@ def dispatch(method, params):
                     }
                 ],
                 "structuredContent": structured,
-                "isError": False,
+                "isError": bool(action == "prepare" and isinstance(value, dict) and value.get("failed")),
             }
         except Exception as exc:
             return {
@@ -337,12 +353,14 @@ def serve():
     for stream in (sys.stdin, sys.stdout, sys.stderr):
         if hasattr(stream, "reconfigure"):
             stream.reconfigure(encoding="utf-8")
-    for line in sys.stdin:
+    output_lock = threading.Lock()
+
+    def respond(line):
         message = None
         try:
             message = json.loads(line)
             if "id" not in message:
-                continue
+                return
             result = dispatch(message["method"], message.get("params", {}))
             response = {"jsonrpc": "2.0", "id": message["id"], "result": result}
         except Exception as exc:
@@ -358,7 +376,19 @@ def serve():
                 "id": message.get("id") if isinstance(message, dict) else None,
                 "error": {"code": code, "message": str(exc)},
             }
-        print(json.dumps(response, ensure_ascii=False, allow_nan=False), flush=True)
+        with output_lock:
+            print(json.dumps(response, ensure_ascii=False, allow_nan=False), flush=True)
+
+    with ThreadPoolExecutor(thread_name_prefix="hss-mcp") as calls:
+        for line in sys.stdin:
+            try:
+                method = json.loads(line).get("method")
+            except (ValueError, AttributeError):
+                method = None
+            if method in {"tasks/result", "tasks/cancel"}:
+                calls.submit(respond, line)
+            else:
+                respond(line)
 
 
 if __name__ == "__main__":

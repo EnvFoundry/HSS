@@ -171,6 +171,7 @@ export declare class HSSClient {
     }>;
     connect(provider: string, query: string, options?: Record<string, unknown>, limit?: number): Promise<unknown>;
     remove(selections: Selection[], prune?: boolean): Promise<unknown>;
+    uninstall(selections: Selection[]): Promise<unknown>;
     export(output: string, selections: Selection[]): Promise<unknown>;
 }
 /** NDJSON streams preparation progress before the final response. */

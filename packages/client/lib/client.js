@@ -53,6 +53,9 @@ export class HSSClient {
     remove(selections, prune = false) {
         return this.request("remove", { selections, prune });
     }
+    uninstall(selections) {
+        return this.request("uninstall", { selections });
+    }
     export(output, selections) {
         return this.request("export", { output, selections });
     }

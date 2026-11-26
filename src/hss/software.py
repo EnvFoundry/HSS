@@ -6,10 +6,10 @@ from pathlib import Path
 import shutil
 import subprocess
 import sys
-import venv
+from .process import check_cancel, run
 
 
-def probe(component, command, environment=None):
+def probe(component, command, environment=None, *, cancel=None):
     if not command or not all(isinstance(x, str) and x for x in command):
         return False
     kind = component["kind"]
@@ -44,7 +44,7 @@ def probe(component, command, environment=None):
     else:
         return False
     try:
-        result = subprocess.run(args, env=env, capture_output=True, timeout=30)
+        result = run(args, env=env, capture_output=True, timeout=30, cancel=cancel)
         return result.returncode == 0
     except (OSError, subprocess.TimeoutExpired):
         return False
@@ -60,7 +60,7 @@ def r_vector(values):
     )
 
 
-def find_existing(component, bindings, existing=()):
+def find_existing(component, bindings, existing=(), *, cancel=None):
     candidates = [
         item
         for item in existing
@@ -81,6 +81,7 @@ def find_existing(component, bindings, existing=()):
         candidates.append({"command": [shutil.which(component["command"])]})
     seen = set()
     for item in candidates:
+        check_cancel(cancel)
         command = item.get("command", [])
         key = json.dumps([command, item.get("environment", {})], sort_keys=True)
         if key in seen:
@@ -95,7 +96,7 @@ def find_existing(component, bindings, existing=()):
                 or Path(command[0]).stem.casefold() != component["command"].casefold()
             ):
                 continue
-        if probe(component, command, item.get("environment")):
+        if probe(component, command, item.get("environment"), cancel=cancel):
             return {
                 "command": command,
                 "environment": item.get("environment", {}),
@@ -105,29 +106,22 @@ def find_existing(component, bindings, existing=()):
     return None
 
 
-def install(component, layout, existing=(), options=None, progress=None):
+def install(component, layout, existing=(), options=None, progress=None, *, cancel=None):
     options = options or {}
     progress = progress or (lambda message: None)
     name = component["id"]
-    root = layout["env"] / "software" / name
+    root = layout.component_root(name)
     kind = component["kind"]
     if kind == "native":
         from .native import build
 
-        return build(component, root, options)
+        return build(component, root, options, cancel=cancel)
     if kind == "python":
         interpreter = root / ("Scripts/python.exe" if os.name == "nt" else "bin/python")
         if not interpreter.exists():
             progress({"component": name, "step": "create_environment"})
-            base_python = options.get("python")
-            if base_python:
-                subprocess.run(
-                    [base_python, "-m", "venv", str(root)],
-                    check=True,
-                    stdout=sys.stderr,
-                )
-            else:
-                venv.EnvBuilder(with_pip=True).create(root)
+            run([options.get("python") or sys.executable, "-m", "venv", str(root)],
+                check=True, stdout=sys.stderr, cancel=cancel)
         args = [
             str(interpreter),
             "-m",
@@ -143,8 +137,8 @@ def install(component, layout, existing=(), options=None, progress=None):
             args += ["--find-links", str(options["find_links"])]
         args += component["requirements"] + ["packaging>=23"]
         progress({"component": name, "step": "install_packages"})
-        subprocess.run(
-            args, check=True, stdout=sys.stderr, timeout=options.get("timeout", 1800)
+        run(
+            args, check=True, stdout=sys.stderr, timeout=options.get("timeout", 1800), cancel=cancel
         )
         binding = {
             "command": [str(interpreter)],
@@ -168,7 +162,7 @@ def install(component, layout, existing=(), options=None, progress=None):
         library = layout["env"] / "R" / "library"
         library.mkdir(parents=True, exist_ok=True)
         environment = {"R_LIBS_USER": str(library)}
-        if not probe(component, command, environment):
+        if not probe(component, command, environment, cancel=cancel):
             if options.get("offline"):
                 return {
                     "status": "connection_needed",
@@ -197,12 +191,13 @@ def install(component, layout, existing=(), options=None, progress=None):
                     + ", upgrade='never', dependencies=NA)"
                 )
             progress({"component": name, "step": "install_packages"})
-            subprocess.run(
+            run(
                 [*command, "--vanilla", "-e", expression],
                 env={**os.environ, **environment},
                 check=True,
                 stdout=sys.stderr,
                 timeout=options.get("timeout", 1800),
+                cancel=cancel,
             )
         binding = {
             "command": command,
@@ -234,8 +229,8 @@ def install(component, layout, existing=(), options=None, progress=None):
             args.append("--offline")
         args += component["packages"]
         progress({"component": name, "step": "install_packages"})
-        subprocess.run(
-            args, check=True, stdout=sys.stderr, timeout=options.get("timeout", 1800)
+        run(
+            args, check=True, stdout=sys.stderr, timeout=options.get("timeout", 1800), cancel=cancel
         )
         binding = {
             "command": [node],
@@ -251,6 +246,6 @@ def install(component, layout, existing=(), options=None, progress=None):
                 "setup", "Connect this resource in the host."
             ),
         }
-    if not probe(component, binding["command"], binding["environment"]):
+    if not probe(component, binding["command"], binding["environment"], cancel=cancel):
         raise RuntimeError(f"The prepared interpreter cannot load {name}")
     return {"status": "ready", "component": name, **binding}

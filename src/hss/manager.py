@@ -10,6 +10,7 @@ from .catalog import Catalog, write_json
 from .layout import Layout
 from .state import State
 from . import software
+from .process import check_cancel, lock
 
 
 class Manager:
@@ -97,14 +98,7 @@ class Manager:
                     "requirements": component.get(
                         "requirements", component.get("packages", [])
                     ),
-                    "destination": str(
-                        self.layout["env"]
-                        / (
-                            "R/library"
-                            if component["kind"] == "r"
-                            else "software/" + name
-                        )
-                    ),
+                    "destination": str(self.layout["env"] / "R/library" if component["kind"] == "r" else self.layout.component_root(name)),
                     "download_bytes": None,
                     "disk_bytes": None,
                     "setup": component.get("setup"),
@@ -118,6 +112,9 @@ class Manager:
             "modules": modules,
             "actions": actions,
             "assets": list(assets),
+            "resources": [{"path": path, "kind": next((area for area in ("skills", "knowledge", "workflows", "prompts")
+                           if Path(path).is_relative_to(self.layout[area])), "resource"), "bytes": size}
+                          for path, size in assets.items()],
             "resource_bytes": sum(assets.values()),
             "layout": self.layout.describe(),
         }
@@ -130,10 +127,17 @@ class Manager:
         software_enabled=True,
         options=None,
         progress=None,
+        *,
+        cancel=None,
     ):
         modules = self.catalog.select(selections)
         if not modules:
             return {"modules": [], "ready": [], "pending": [], "failed": []}
+        with lock(self.layout["env"] / "prepare.lock", cancel=cancel):
+            return self._prepare(modules, existing, backends, software_enabled, options, progress, cancel)
+
+    def _prepare(self, modules, existing, backends, software_enabled, options, progress, cancel):
+        check_cancel(cancel)
         prepared_assets = []
         known = {r["path"]: r["content"] for r in self.state.rows("assets")}
         for name in modules:
@@ -164,8 +168,9 @@ class Manager:
                 )
         ready, pending, failed = [], [], []
         for name in self.components(modules, backends):
+            check_cancel(cancel)
             component = self.catalog.components[name]
-            binding = software.find_existing(component, self.state.bindings(), existing)
+            binding = software.find_existing(component, self.state.bindings(), existing, cancel=cancel)
             if binding:
                 self.state.bind(name, **binding)
                 ready.append({"component": name, "status": "ready", **binding})
@@ -182,7 +187,7 @@ class Manager:
                         ),
                     ]
                     result = software.install(
-                        component, self.layout, available, options, progress
+                        component, self.layout, available, options, progress, cancel=cancel
                     )
                     if result["status"] == "ready":
                         self.state.bind(
@@ -201,7 +206,13 @@ class Manager:
                     else:
                         pending.append(result)
                 except (OSError, RuntimeError, subprocess.SubprocessError) as exc:
-                    failed.append({"component": name, "error": str(exc)})
+                    failure = {"component": name, "error": str(exc)}
+                    if isinstance(exc, subprocess.CalledProcessError):
+                        program = Path(exc.cmd[0]).name if isinstance(exc.cmd, (list, tuple)) else "Installer"
+                        failure.update(error=f"{program} exited with status {exc.returncode}", exit_code=exc.returncode)
+                    elif isinstance(exc, subprocess.TimeoutExpired):
+                        failure.update(error=f"Preparation exceeded {exc.timeout} seconds", timeout=exc.timeout)
+                    failed.append(failure)
         write_json(
             self.layout["env"] / "selection.json",
             {"modules": self.installed()["modules"], "layout": self.layout.describe()},
@@ -225,9 +236,26 @@ class Manager:
         return self.state.bindings()[component]
 
     def installed(self):
+        bindings = self.state.bindings()
+        selected = sorted(r["id"] for r in self.state.rows("modules"))
+        components = {r["component"] for r in self.state.rows("module_components")}
+        ready, failed = [], []
+        for name, binding in bindings.items():
+            if binding["command"] and (Path(binding["command"][0]).is_file() or shutil.which(binding["command"][0])):
+                ready.append({"component": name, "status": "ready", **binding})
+            else:
+                failed.append({"component": name, "error": "The registered executable is unavailable"})
+        available = {row["component"] for row in ready}
+        module_components = {name: set() for name in selected}
+        for row in self.state.rows("module_components"):
+            module_components.setdefault(row["module"], set()).add(row["component"])
         return {
-            "modules": sorted(r["id"] for r in self.state.rows("modules")),
-            "bindings": self.state.bindings(),
+            "modules": selected,
+            "ready_modules": [name for name in selected if module_components[name] <= available],
+            "bindings": bindings,
+            "ready": ready,
+            "pending": [{"component": name, "status": "not_prepared"} for name in sorted(components - bindings.keys())],
+            "failed": failed,
         }
 
     def context(self, selections):
@@ -260,6 +288,8 @@ class Manager:
             return {"removed": [], "retained": []}
         with self.state.connection() as con:
             rows = list(con.execute("SELECT * FROM assets"))
+            affected = {row["component"] for row in con.execute("SELECT * FROM module_components")
+                        if row["module"] in selected}
             for name in selected:
                 con.execute("DELETE FROM modules WHERE id=?", (name,))
                 con.execute("DELETE FROM assets WHERE module=?", (name,))
@@ -277,10 +307,13 @@ class Manager:
                         deleted.append(str(path))
                     else:
                         retained.append(str(path))
+            needed = {
+                r[0] for r in con.execute("SELECT component FROM module_components")
+            }
+            for row in con.execute("SELECT * FROM bindings"):
+                if row["component"] in affected and (not prune or row["component"] in needed) and row["location"]:
+                    retained.append(row["location"])
             if prune:
-                needed = {
-                    r[0] for r in con.execute("SELECT component FROM module_components")
-                }
                 retained_locations = {
                     r[0]
                     for r in con.execute(
@@ -291,15 +324,21 @@ class Manager:
                     location = (
                         Path(row["location"]).resolve() if row["location"] else None
                     )
-                    if row["component"] not in needed:
+                    if row["component"] in affected and row["component"] not in needed:
                         if (
                             row["managed"]
                             and location
                             and str(location) not in retained_locations
-                            and location.is_relative_to(self.layout["env"] / "software")
+                            and any(location != root and location.is_relative_to(root) for root in {
+                                self.layout.component_root(row["component"]).parent.resolve(),
+                                (self.layout["env"] / "software").resolve(),
+                            })
                             and location.is_dir()
                         ):
                             shutil.rmtree(location)
+                            deleted.append(str(location))
+                        elif location:
+                            retained.append(str(location))
                         con.execute(
                             "DELETE FROM bindings WHERE component=?",
                             (row["component"],),
@@ -307,7 +346,7 @@ class Manager:
         return {
             "removed": sorted(selected & installed),
             "files": sorted(set(deleted)),
-            "retained": retained,
+            "retained": sorted(set(retained)),
         }
 
     def execute(self, component, arguments, cwd=None, timeout=600):

@@ -4,7 +4,7 @@ import os
 from pathlib import Path
 
 AREAS = {
-    "env": "env/hss",
+    "env": "software/hss",
     "skills": "skills",
     "knowledge": "knowledge/hss",
     "workflows": "workflows/hss",
@@ -34,6 +34,8 @@ class Layout:
         for name, suffix in AREAS.items():
             value = (areas or {}).get(name)
             path = Path(value).expanduser() if value else system / suffix
+            if name == "env" and not value and not path.exists() and (system / "env/hss").is_dir():
+                path = system / "env/hss"
             self.areas[name] = (
                 path if path.is_absolute() else self.space / path
             ).resolve()
@@ -43,3 +45,7 @@ class Layout:
 
     def describe(self):
         return {name: str(path) for name, path in self.areas.items()}
+
+    def component_root(self, component):
+        root = self["env"]
+        return (root if root == self.system / "software/hss" else root / "software") / component
