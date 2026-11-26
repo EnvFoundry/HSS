@@ -33,6 +33,39 @@ def workspace():
 
 
 class PreparationTests(unittest.TestCase):
+    def test_request_lifetime_negotiates_tasks_and_preserves_reconnection(self):
+        from hss.mcp import CONNECTION_LIFECYCLE
+        initialize = {"protocolVersion": "2025-11-25", "capabilities": {
+            "experimental": {CONNECTION_LIFECYCLE: {"scope": "request"}}}}
+        for params in ({"protocolVersion": "2025-11-25"},
+                       {**initialize, "protocolVersion": "2025-06-18"}):
+            self.assertNotIn("experimental", dispatch("initialize", params)["capabilities"])
+        with workspace() as tmp:
+            env = {**os.environ, "HSS_RESEARCH_SPACE": tmp}
+            arguments = {"selections": ["concept-analysis"], "software": False}
+            messages = [
+                {"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": initialize},
+                {"jsonrpc": "2.0", "id": 2, "method": "tools/call",
+                 "params": {"name": "hss_prepare", "arguments": arguments}},
+                {"jsonrpc": "2.0", "id": 3, "method": "tools/call",
+                 "params": {"name": "hss_prepare", "arguments": arguments, "task": {}}},
+            ]
+            process = subprocess.run([sys.executable, "-m", "hss", "serve"],
+                                     input="".join(json.dumps(value) + "\n" for value in messages),
+                                     text=True, capture_output=True, check=True, env=env, timeout=10)
+            replies = [json.loads(line) for line in process.stdout.splitlines()]
+            self.assertEqual(replies[0]["result"]["capabilities"]["experimental"][CONNECTION_LIFECYCLE], {"scope": "request"})
+            self.assertEqual(replies[1]["error"]["code"], -32602)
+            task_id = replies[2]["result"]["task"]["taskId"]
+            resumed = [messages[0], {"jsonrpc": "2.0", "id": 4, "method": "tasks/result", "params": {"taskId": task_id}}]
+            process = subprocess.run([sys.executable, "-m", "hss", "serve"],
+                                     input="".join(json.dumps(value) + "\n" for value in resumed),
+                                     text=True, capture_output=True, check=True, env=env, timeout=10)
+            value = next(json.loads(line)["result"] for line in process.stdout.splitlines() if json.loads(line)["id"] == 4)
+            self.assertFalse(value["isError"])
+            self.assertEqual(value["_meta"]["io.modelcontextprotocol/related-task"]["taskId"], task_id)
+            self.assertTrue(Path(tmp, "System/skills/hss-theory/SKILL.md").is_file())
+
     def test_task_result_survives_mcp_process_exit(self):
         with workspace() as tmp:
             env = {**os.environ, "HSS_RESEARCH_SPACE": tmp}

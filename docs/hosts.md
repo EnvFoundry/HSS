@@ -34,6 +34,20 @@ The server supports the MCP 2025-11-25 lifecycle with stdio tools, resources and
 
 Tools cover catalogue browsing, context, research formulation, preparation, studies, data queries and R code export. Resources expose knowledge guides and workflow descriptions; prompts help develop a design and interpret findings. Tool errors return `isError` with the underlying cause.
 
+### Connection lifetime
+
+A host using MCP 2025-11-25 can include
+`capabilities.experimental["io.envfoundry/connection-lifecycle"] = {"scope":"request"}`
+in `initialize`. HSS echoes that value only for this negotiated protocol.
+On such a connection `hss_prepare` requires `task: {}`. Other operations finish
+their owned work before replying. The host retains the process/container while
+calls or unresolved Tasks remain; once they finish, it may close the connection.
+Reopening the same research space preserves prepared resources, task IDs and
+results. This does not authorize terminating a running preparation worker.
+
+Without the capability request, ordinary synchronous calls and optional Tasks
+remain available as before. No extra host configuration field is required.
+
 ## TypeScript and selection UI
 
 `packages/client` includes compiled JavaScript, declarations, a typed client, a Node transport and a dependency-free web component.
