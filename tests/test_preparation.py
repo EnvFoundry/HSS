@@ -11,7 +11,7 @@ from unittest.mock import patch
 from hss.layout import Layout
 from hss.manager import Manager
 from hss.mcp import dispatch
-from hss.preparation import Tasks
+from hss.preparation import Tasks, partial_result
 
 
 class PreparationTests(unittest.TestCase):
@@ -85,6 +85,28 @@ class PreparationTests(unittest.TestCase):
             self.assertIn("missing-compiler", status["statusMessage"])
             self.assertTrue(result["isError"])
             self.assertEqual(result["structuredContent"]["failed"][0]["component"], "native-corpus")
+
+    def test_cancelled_result_links_existing_material(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            m = Manager(tmp)
+            m.prepare(["concept-analysis"], software_enabled=False)
+            result = partial_result({"space": tmp, "selections": ["concept-analysis"]}, "Cancelled", True)
+            self.assertTrue(result["assets"])
+            self.assertTrue(all(Path(path).is_file() for path in result["assets"]))
+
+    @unittest.skipIf(os.name == "nt", "Unix compiler fixture")
+    def test_compiler_failure_is_concise_with_real_output_log(self):
+        with tempfile.TemporaryDirectory() as tmp, patch.dict(os.environ, {"HSS_RESEARCH_SPACE": tmp}):
+            compiler = Path(tmp) / "compiler"
+            compiler.write_text("#!/bin/sh\necho 'invalid source fixture' >&2\nexit 23\n")
+            compiler.chmod(0o700)
+            tasks = Tasks()
+            task = tasks.start({"selections": ["corpus-assembly"], "backends": {"corpus-assembly": "rust"},
+                                "options": {"rustc": str(compiler)}})["task"]["taskId"]
+            value = tasks.result(task)["structuredContent"]
+            self.assertEqual(value["failed"][0]["error"], "compiler exited with status 23")
+            self.assertEqual(value["failed"][0]["exit_code"], 23)
+            self.assertIn("invalid source fixture", Path(value["log"]).read_text())
 
 
 if __name__ == "__main__":

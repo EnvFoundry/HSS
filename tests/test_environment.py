@@ -130,6 +130,23 @@ class EnvironmentTests(unittest.TestCase):
             self.assertEqual(result["pending"][0]["status"], "connection_needed")
 
     def test_managed_dependency_retained_while_shared(self):
+        for legacy in (False, True):
+            with self.subTest(legacy=legacy), tempfile.TemporaryDirectory() as tmp:
+                if legacy:
+                    (Path(tmp) / "System/env/hss").mkdir(parents=True)
+                m = Manager(tmp)
+                location = m.layout.component_root("python-empirical")
+                location.mkdir(parents=True)
+                m.state.bind("python-empirical", [sys.executable], managed=True, location=str(location))
+                m.prepare(["descriptive-statistics", "linear-association"], software_enabled=False)
+                first = m.remove(["descriptive-statistics"], prune=True)
+                self.assertTrue(location.exists())
+                self.assertIn(str(location), first["retained"])
+                second = m.remove(["linear-association"], prune=True)
+                self.assertFalse(location.exists())
+                self.assertIn(str(location), second["files"])
+
+    def test_legacy_software_subdirectory_remains_removable(self):
         with tempfile.TemporaryDirectory() as tmp:
             m = Manager(tmp)
             location = m.layout["env"] / "software/test"

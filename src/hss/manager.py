@@ -206,7 +206,13 @@ class Manager:
                     else:
                         pending.append(result)
                 except (OSError, RuntimeError, subprocess.SubprocessError) as exc:
-                    failed.append({"component": name, "error": str(exc)})
+                    failure = {"component": name, "error": str(exc)}
+                    if isinstance(exc, subprocess.CalledProcessError):
+                        program = Path(exc.cmd[0]).name if isinstance(exc.cmd, (list, tuple)) else "Installer"
+                        failure.update(error=f"{program} exited with status {exc.returncode}", exit_code=exc.returncode)
+                    elif isinstance(exc, subprocess.TimeoutExpired):
+                        failure.update(error=f"Preparation exceeded {exc.timeout} seconds", timeout=exc.timeout)
+                    failed.append(failure)
         write_json(
             self.layout["env"] / "selection.json",
             {"modules": self.installed()["modules"], "layout": self.layout.describe()},
@@ -282,6 +288,8 @@ class Manager:
             return {"removed": [], "retained": []}
         with self.state.connection() as con:
             rows = list(con.execute("SELECT * FROM assets"))
+            affected = {row["component"] for row in con.execute("SELECT * FROM module_components")
+                        if row["module"] in selected}
             for name in selected:
                 con.execute("DELETE FROM modules WHERE id=?", (name,))
                 con.execute("DELETE FROM assets WHERE module=?", (name,))
@@ -299,10 +307,13 @@ class Manager:
                         deleted.append(str(path))
                     else:
                         retained.append(str(path))
+            needed = {
+                r[0] for r in con.execute("SELECT component FROM module_components")
+            }
+            for row in con.execute("SELECT * FROM bindings"):
+                if row["component"] in affected and (not prune or row["component"] in needed) and row["location"]:
+                    retained.append(row["location"])
             if prune:
-                needed = {
-                    r[0] for r in con.execute("SELECT component FROM module_components")
-                }
                 retained_locations = {
                     r[0]
                     for r in con.execute(
@@ -313,15 +324,21 @@ class Manager:
                     location = (
                         Path(row["location"]).resolve() if row["location"] else None
                     )
-                    if row["component"] not in needed:
+                    if row["component"] in affected and row["component"] not in needed:
                         if (
                             row["managed"]
                             and location
                             and str(location) not in retained_locations
-                            and location.is_relative_to(self.layout["env"] / "software")
+                            and any(location != root and location.is_relative_to(root) for root in {
+                                self.layout.component_root(row["component"]).parent.resolve(),
+                                (self.layout["env"] / "software").resolve(),
+                            })
                             and location.is_dir()
                         ):
                             shutil.rmtree(location)
+                            deleted.append(str(location))
+                        elif location:
+                            retained.append(str(location))
                         con.execute(
                             "DELETE FROM bindings WHERE component=?",
                             (row["component"],),
@@ -329,7 +346,7 @@ class Manager:
         return {
             "removed": sorted(selected & installed),
             "files": sorted(set(deleted)),
-            "retained": retained,
+            "retained": sorted(set(retained)),
         }
 
     def execute(self, component, arguments, cwd=None, timeout=600):

@@ -38,6 +38,8 @@ def partial_result(arguments, error, cancelled=False):
                 {"component": name, "status": "not_prepared"}
                 for name in sorted(components - {item["component"] for item in ready})],
             "failed": [] if cancelled else [{"error": str(error)}],
+            "assets": sorted({row["path"] for row in manager.state.rows("assets")
+                              if row["module"] in modules and Path(row["path"]).is_file()}),
             "error": str(error), "cancelled": cancelled, "layout": manager.layout.describe()}
 
 
@@ -160,6 +162,8 @@ class Tasks:
                 value = request({**json.loads(row["request"]), "action": "prepare"}, progress, cancel=cancel)
                 check_cancel(cancel)
                 failed = bool(value.get("failed"))
+                if failed:
+                    value["log"] = str(self.folder(task_id) / "output.log")
                 message = "; ".join(item["error"] for item in value.get("failed", []) if item.get("error")) or None
                 self.update(task_id, "failed" if failed else "completed", tool_result(value, failed), message)
             except Cancelled as error:
