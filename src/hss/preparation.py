@@ -8,6 +8,7 @@ import threading
 import time
 import uuid
 from datetime import datetime, timezone
+from contextlib import closing
 
 from .layout import Layout
 from .process import Cancelled, check_cancel, lock
@@ -57,7 +58,7 @@ class Tasks:
         self.folder(task_id)
         if not self.state.path.exists():
             raise ValueError("Unknown preparation task")
-        with sqlite3.connect(self.state.path.as_uri() + "?mode=ro", uri=True) as con:
+        with closing(sqlite3.connect(self.state.path.as_uri() + "?mode=ro", uri=True)) as con:
             con.row_factory = sqlite3.Row
             try:
                 row = con.execute("SELECT * FROM preparations WHERE id=?", (task_id,)).fetchone()

@@ -49,7 +49,7 @@ class PreparationTests(unittest.TestCase):
 
     def test_existing_home_is_preserved_and_new_layout_is_short(self):
         with tempfile.TemporaryDirectory() as tmp:
-            root = Path(tmp)
+            root = Path(tmp).resolve()
             new = Layout(root)
             self.assertEqual(new.component_root("solver"), root / "System/software/hss/solver")
             legacy = root / "System/env/hss"
