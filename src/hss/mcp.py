@@ -376,7 +376,14 @@ def serve():
 
     with ThreadPoolExecutor(thread_name_prefix="hss-mcp") as calls:
         for line in sys.stdin:
-            calls.submit(respond, line)
+            try:
+                method = json.loads(line).get("method")
+            except (ValueError, AttributeError):
+                method = None
+            if method in {"tasks/result", "tasks/cancel"}:
+                calls.submit(respond, line)
+            else:
+                respond(line)
 
 
 if __name__ == "__main__":
