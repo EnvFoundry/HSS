@@ -7,6 +7,7 @@ import tempfile
 import time
 import unittest
 from unittest.mock import patch
+from contextlib import contextmanager
 
 from hss.layout import Layout
 from hss.manager import Manager
@@ -14,9 +15,26 @@ from hss.mcp import dispatch
 from hss.preparation import Tasks, partial_result
 
 
+@contextmanager
+def workspace():
+    directory = tempfile.TemporaryDirectory()
+    try:
+        yield directory.name
+    finally:
+        deadline = time.monotonic() + 5
+        while True:
+            try:
+                directory.cleanup()
+                break
+            except PermissionError:
+                if os.name != "nt" or time.monotonic() >= deadline:
+                    raise
+                time.sleep(.02)
+
+
 class PreparationTests(unittest.TestCase):
     def test_task_result_survives_mcp_process_exit(self):
-        with tempfile.TemporaryDirectory() as tmp:
+        with workspace() as tmp:
             env = {**os.environ, "HSS_RESEARCH_SPACE": tmp}
             message = {"jsonrpc": "2.0", "id": 1, "method": "tools/call",
                        "params": {"name": "hss_prepare", "task": {},
@@ -38,7 +56,7 @@ class PreparationTests(unittest.TestCase):
                     dispatch("tasks/cancel", {"taskId": task})
 
     def test_software_pending_does_not_mark_module_ready(self):
-        with tempfile.TemporaryDirectory() as tmp:
+        with workspace() as tmp:
             m = Manager(tmp)
             with patch("hss.software.find_existing", return_value=None):
                 m.prepare(["prediction"], software_enabled=False)
@@ -48,7 +66,7 @@ class PreparationTests(unittest.TestCase):
             self.assertTrue(installed["pending"])
 
     def test_existing_home_is_preserved_and_new_layout_is_short(self):
-        with tempfile.TemporaryDirectory() as tmp:
+        with workspace() as tmp:
             root = Path(tmp).resolve()
             new = Layout(root)
             self.assertEqual(new.component_root("solver"), root / "System/software/hss/solver")
@@ -60,7 +78,7 @@ class PreparationTests(unittest.TestCase):
 
     def test_cancel_waiting_preparation_retains_completed_material(self):
         from hss.process import lock
-        with tempfile.TemporaryDirectory() as tmp, patch.dict(os.environ, {"HSS_RESEARCH_SPACE": tmp}):
+        with workspace() as tmp, patch.dict(os.environ, {"HSS_RESEARCH_SPACE": tmp}):
             m = Manager(tmp)
             m.prepare(["concept-analysis"], software_enabled=False)
             tasks = Tasks()
@@ -74,7 +92,7 @@ class PreparationTests(unittest.TestCase):
             self.assertNotIn("prediction", m.installed()["modules"])
 
     def test_failed_prepare_retains_its_error_and_partial_result(self):
-        with tempfile.TemporaryDirectory() as tmp, patch.dict(os.environ, {"HSS_RESEARCH_SPACE": tmp}):
+        with workspace() as tmp, patch.dict(os.environ, {"HSS_RESEARCH_SPACE": tmp}):
             tasks = Tasks()
             task = tasks.start({"selections": ["corpus-assembly"],
                                 "backends": {"corpus-assembly": "rust"},
@@ -87,7 +105,7 @@ class PreparationTests(unittest.TestCase):
             self.assertEqual(result["structuredContent"]["failed"][0]["component"], "native-corpus")
 
     def test_cancelled_result_links_existing_material(self):
-        with tempfile.TemporaryDirectory() as tmp:
+        with workspace() as tmp:
             m = Manager(tmp)
             m.prepare(["concept-analysis"], software_enabled=False)
             result = partial_result({"space": tmp, "selections": ["concept-analysis"]}, "Cancelled", True)
@@ -96,7 +114,7 @@ class PreparationTests(unittest.TestCase):
 
     @unittest.skipIf(os.name == "nt", "Unix compiler fixture")
     def test_compiler_failure_is_concise_with_real_output_log(self):
-        with tempfile.TemporaryDirectory() as tmp, patch.dict(os.environ, {"HSS_RESEARCH_SPACE": tmp}):
+        with workspace() as tmp, patch.dict(os.environ, {"HSS_RESEARCH_SPACE": tmp}):
             compiler = Path(tmp) / "compiler"
             compiler.write_text("#!/bin/sh\necho 'invalid source fixture' >&2\nexit 23\n")
             compiler.chmod(0o700)
