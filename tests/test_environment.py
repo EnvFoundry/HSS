@@ -142,7 +142,7 @@ class EnvironmentTests(unittest.TestCase):
                 first = m.remove(["descriptive-statistics"], prune=True)
                 self.assertTrue(location.exists())
                 self.assertIn(str(location), first["retained"])
-                second = m.remove(["linear-association"], prune=True)
+                second = request({"action": "uninstall", "space": tmp, "selections": ["linear-association"]})
                 self.assertFalse(location.exists())
                 self.assertIn(str(location), second["files"])
 

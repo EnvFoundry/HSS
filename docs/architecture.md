@@ -19,7 +19,7 @@ flowchart TD
 
 Each Python component has an isolated environment when a compatible interpreter is unavailable. Later modules can reuse an already prepared environment if it contains their required packages. R packages share an HSS library; Node packages are installed within the selected component. Package caches are shared. The implementation does not predict exact download or disk usage before package resolution; `plan` reports known resource bytes and leaves unknown software sizes as null.
 
-Installed assets are placed by role: knowledge, Skills, prompts, workflows, software and database indexes. The registry records ownership so removing one module preserves shared assets. Edited files and external interpreters are retained. `remove --prune` removes an unused managed software directory; R's shared library remains available for reuse.
+Installed assets are placed by role: knowledge, Skills, prompts, workflows, software and database indexes. The registry records ownership so removing one module preserves shared assets. Edited files and external interpreters are retained. `uninstall` (or `remove --prune`) removes an unused managed software directory; R's shared library remains available for reuse.
 
 Study tasks are a directed acyclic graph with explicit dependencies and optional derived-data connections. The worker runs in the configured interpreter, writes tables and result records into a project output directory, and produces a readable results document. Material operations use standard Python; statistical operations load the numerical stack only when needed. Upstream R adapters, project Python/R/JavaScript scripts, SQL and native text operations participate in the same task graph using registered runtimes.
 

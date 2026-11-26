@@ -16,7 +16,7 @@ result = request({
 })
 ```
 
-Actions: `browse`, `search`, `methods`, `resources`, `context`, `plan`, `prepare`, `installed`, `bind`, `remove`, `exec`, `explore`, `blueprint`, `project`, `run`, `manuscript`, `connect`, `index`, `lookup`, `export-r`, `export`. The implementation is in `src/hss/api.py`; examples show concrete payloads.
+Actions: `browse`, `search`, `methods`, `resources`, `context`, `plan`, `prepare`, `installed`, `bind`, `remove`, `uninstall`, `exec`, `explore`, `blueprint`, `project`, `run`, `manuscript`, `connect`, `index`, `lookup`, `export-r`, `export`. The implementation is in `src/hss/api.py`; examples show concrete payloads.
 
 The host owns its task ID, process group, cancellation and account state. It records the returned interpreter command and resources with the rest of its environment registrations. HSS reuses SeedEnv interpreters when their packages meet the selected component requirements. This integration shape does not require either environment to import the other.
 

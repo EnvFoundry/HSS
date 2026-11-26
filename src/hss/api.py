@@ -82,6 +82,8 @@ def request(payload, progress=None, *, cancel=None):
         )
     if action == "remove":
         return manager.remove(selections, payload.get("prune", False))
+    if action == "uninstall":
+        return manager.remove(selections, prune=True)
     if action == "exec":
         return manager.execute(
             payload["component"],

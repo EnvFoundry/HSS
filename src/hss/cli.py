@@ -49,6 +49,7 @@ def main(argv=None):
         "context",
         "blueprint",
         "remove",
+        "uninstall",
         "export",
         "index",
     ):

@@ -98,6 +98,6 @@
     "installed": "hss_installed",
     "plan": "hss_plan",
     "prepare": "hss_prepare",
-    "remove": "hss_remove"
+    "remove": "hss_uninstall"
   }
 }

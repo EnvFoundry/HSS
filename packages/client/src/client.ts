@@ -218,6 +218,9 @@ export class HSSClient {
   remove(selections: Selection[], prune = false): Promise<unknown> {
     return this.request("remove", { selections, prune });
   }
+  uninstall(selections: Selection[]): Promise<unknown> {
+    return this.request("uninstall", { selections });
+  }
   export(output: string, selections: Selection[]): Promise<unknown> {
     return this.request("export", { output, selections });
   }

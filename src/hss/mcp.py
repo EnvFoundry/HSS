@@ -94,6 +94,11 @@ TOOL_SPECS = {
         {"selections": SELECTIONS, "prune": {"type": "boolean"}},
         ["selections"],
     ),
+    "uninstall": (
+        "Uninstall selected modules; retain shared, external and user-edited resources",
+        {"selections": SELECTIONS},
+        ["selections"],
+    ),
     "explore": (
         "Develop alternative research designs from an initial brief",
         {"brief": {"type": "object"}},
@@ -218,7 +223,7 @@ def dispatch(method, params):
                     },
                     "annotations": {
                         "readOnlyHint": readonly,
-                        "destructiveHint": name == "remove",
+                        "destructiveHint": name in {"remove", "uninstall"},
                         "idempotentHint": readonly or name == "prepare",
                         "openWorldHint": name in {"connect", "prepare"},
                     },
